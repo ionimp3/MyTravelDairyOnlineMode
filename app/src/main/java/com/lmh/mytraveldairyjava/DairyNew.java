@@ -19,7 +19,7 @@ import com.google.common.collect.Range;
 
 public class DairyNew extends AppCompatActivity {
 
-    //변수초기화화
+    //변수초기화
     EditText _planname, _plandepartday, _plandays;
     Button _createplanbtn;
 
