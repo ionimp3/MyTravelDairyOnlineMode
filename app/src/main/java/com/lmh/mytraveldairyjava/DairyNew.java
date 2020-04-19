@@ -1,10 +1,13 @@
 package com.lmh.mytraveldairyjava;
 
+import android.app.Dialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -33,10 +36,10 @@ public class DairyNew extends AppCompatActivity {
         setContentView(R.layout.dairy_new);
 
         // 변수에 맞는 항목 할당(xml에 등록한거) //
-        _planname = findViewById(R.id.editplanname);
-        _plandepartday = findViewById(R.id.editplandepartday);
-        _plandays = findViewById(R.id.editplandays);
-        _createplanbtn = findViewById(R.id.createplanbtn);
+        EditText _planname = findViewById(R.id.editplanname);
+        EditText _plandepartday = findViewById(R.id.editplandepartday);
+        EditText _plandays = findViewById(R.id.editplandays);
+        Button _createplanbtn = findViewById(R.id.createplanbtn);
 
 
         // AwesomeValidation 에서 제공하는 style 설정
@@ -71,18 +74,9 @@ public class DairyNew extends AppCompatActivity {
                     Toast.makeText(getApplicationContext()
                             , "성공!!!!!!!!!", Toast.LENGTH_SHORT).show();
 
+
                     // 경고창화면
-                    AlertDialog.Builder builder = new AlertDialog.Builder(DairyNew.this,R.style.AlterDialogTheme);
-                    builder.setIcon(R.drawable.ic_action_warning);
-
-                    builder.setTitle("신규계획생성");
-                    builder.setMessage("임시");
-
-                    builder.setPositiveButton("OK", null);
-
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-
+                    showAlertDialog();
 
                 } else {
                     Toast.makeText(getApplicationContext()
@@ -92,6 +86,63 @@ public class DairyNew extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    private void showAlertDialog() {
+
+        final Dialog dialog = new Dialog(DairyNew.this);
+        dialog.setContentView(R.layout.alert_dialog);
+
+
+        final CheckBox checkBox = dialog.findViewById(R.id.alert_check_box);
+        final Button btalertok = dialog.findViewById(R.id.bt_alertok);
+        Button btalertcancel = dialog.findViewById(R.id.bt_alertcancel);
+
+
+
+        btalertcancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialog.cancel();
+
+            }
+        });
+
+        btalertok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+             dialog.dismiss();
+
+            }
+        });
+
+        checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                if (checkBox.isChecked()) {
+
+                    btalertok.setEnabled(true);
+                    // 버튼 사용가될때 버튼배경색 바꾸기
+                    btalertok.setBackgroundColor(getResources().getColor(android.R.color.black));
+
+
+                }
+                else {
+
+                    btalertok.setEnabled(false);
+                    btalertok.setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
+                }
+
+
+            }
+        });
+        dialog.show();
 
     }
 
