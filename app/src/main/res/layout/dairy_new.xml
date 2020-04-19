@@ -38,7 +38,7 @@
             android:background="@color/blackColor"
             android:gravity="center"
             android:hint="@string/editdepart"
-            android:inputType="date"
+            android:inputType="datetime"
             android:textColor="@color/whiteColor"
             android:textColorHint="@color/hintColor"
             android:textSize="16sp" />
