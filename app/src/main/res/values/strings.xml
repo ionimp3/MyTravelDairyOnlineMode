@@ -16,7 +16,7 @@
     <string name="logo">llogo</string>
     <string name="createbtn">신규생성</string>
     <string name="progressbar"></string>
-    <string name="dairytxt2">* 출발일 : 예)20201001</string>
+    <string name="dairytxt2">* 출발일 : 예)2020-10-01</string>
     <string name="dairytxt3"><![CDATA[* 기간 : 숫자 예) 7 <-- 일주일일 경우]]></string>
     <string name="dairytxt1">* 여행계획서이름 : 숫자,문자, _ 만 사용해 주세요</string>
     <string name="dairytxt4">[주의] 기존 DB에 동일한 계획서가 존재 하면 전체 DATA를</string>
