@@ -9,4 +9,5 @@
     <color name="yellowColor">#FFEB3B</color>
     <color name="redColor">#FF334B</color>
     <color name="warningColor">#3EB6EC</color>
+    <color name="alrterColor">#ffffff</color>
 </resources>

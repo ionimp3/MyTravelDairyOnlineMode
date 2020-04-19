@@ -2,19 +2,18 @@ package com.lmh.mytraveldairyjava;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.google.common.collect.Range;
-
 
 
 public class DairyNew extends AppCompatActivity {
@@ -50,7 +49,7 @@ public class DairyNew extends AppCompatActivity {
         awesomeValidation.addValidation(this, R.id.editplandepartday, "^((2000|2400|2800|(19|2[0-9](0[48]|[2468][048]|[13579][26])))-02-29)$"
                 + "|^(((19|2[0-9])[0-9]{2})-02-(0[1-9]|1[0-9]|2[0-8]))$"
                 + "|^(((19|2[0-9])[0-9]{2})-(0[13578]|10|12)-(0[1-9]|[12][0-9]|3[01]))$"
-                + "|^(((19|2[0-9])[0-9]{2})-(0[469]|11)-(0[1-9]|[12][0-9]|30))$",R.string.invalidplandepartday);
+                + "|^(((19|2[0-9])[0-9]{2})-(0[469]|11)-(0[1-9]|[12][0-9]|30))$", R.string.invalidplandepartday);
 
 
         // dd/MM/yyyy
@@ -71,6 +70,20 @@ public class DairyNew extends AppCompatActivity {
                     //성공
                     Toast.makeText(getApplicationContext()
                             , "성공!!!!!!!!!", Toast.LENGTH_SHORT).show();
+
+                    // 경고창화면
+                    AlertDialog.Builder builder = new AlertDialog.Builder(DairyNew.this,R.style.AlterDialogTheme);
+                    builder.setIcon(R.drawable.ic_action_warning);
+
+                    builder.setTitle("신규계획생성");
+                    builder.setMessage("임시");
+
+                    builder.setPositiveButton("OK", null);
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+
+
                 } else {
                     Toast.makeText(getApplicationContext()
                             , "실패!!!!!!!!!", Toast.LENGTH_SHORT).show();
@@ -78,7 +91,6 @@ public class DairyNew extends AppCompatActivity {
 
             }
         });
-
 
 
     }

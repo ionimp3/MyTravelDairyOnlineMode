@@ -13,5 +13,9 @@
         <item name="colorPrimaryDark">#000000</item>
         <item name="colorAccent">#2C2A2A</item>
     </style>
+    <style name="AlterDialogTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorAccent">@color/alrterColor</item>
+
+    </style>
 
 </resources>
