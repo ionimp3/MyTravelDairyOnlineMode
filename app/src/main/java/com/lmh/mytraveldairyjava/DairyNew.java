@@ -91,6 +91,7 @@ public class DairyNew extends AppCompatActivity {
 
     private void showAlertDialog() {
 
+
         final Dialog dialog = new Dialog(DairyNew.this);
         dialog.setContentView(R.layout.alert_dialog);
 
