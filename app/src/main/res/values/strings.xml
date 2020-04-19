@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">MyTravelDairyJava</string>
+    <string name="viewbetalogo">viewbetalogo</string>
+    <string name="btnviewplan">btnviewplan</string>
+    <string name="btnnewplan" />
+    <string name="betatext1">여행계획 및 자료 정리 APP</string>
+    <string name="dnattfileicon">dnattfileicon</string>
+    <string name="dnattfiletext1">dnattfiletext1</string>
+    <string name="testtextview2">testtextView2</string>
+    <string name="test">화면전환 test</string>
+    <string name="days">기간(Days)</string>
+    <string name="editdepart">출발일:YYYYMMDD</string>
+    <string name="editplanname">여행계획서 이름 입력</string>
+    <string name="backbtn">backbtn</string>
+    <string name="logotext">MyTravelDairy</string>
+    <string name="logo">llogo</string>
+    <string name="createbtn">신규생성</string>
+    <string name="progressbar"></string>
+    <string name="dairytxt2">* 출발일 : 예)20201001</string>
+    <string name="dairytxt3"><![CDATA[* 기간 : 숫자 예) 7 <-- 일주일일 경우]]></string>
+    <string name="dairytxt1">* 여행계획서이름 : 숫자,문자, _ 만 사용해 주세요</string>
+    <string name="dairytxt4">[주의] 기존 DB에 동일한 계획서가 존재 하면 전체 DATA를</string>
+    <string name="dairytxt5">        삭제 후 새롭게 DB 테이블이 생성됩니다</string>
+    <string name="testText">화면전환...!!!!!</string>
+    <string name="cancel">취소</string>
+    <string name="ok">확인</string>
+    <string name="main_layout">메인 레이아웃</string>
+    <string name="mytraveldairy_beta">MyTravelDairy Beta Ver.</string>
+    <string name="maindrawerheader_planname">여행이름표시</string>
+    <string name="maindrawerheader_logo">logo</string>
+    <string name="menu_ic_setting">설정</string>
+    <string name="menu_ic_upload">업로드</string>
+    <string name="menu_ic_addplus">새로만들기</string>
+    <string name="menu_ic_backup">백업</string>
+    <string name="menu_ic_calender">년도별 계획</string>
+    <string name="menu_ic_world">국가별 계획</string>
+    <string name="menu_ic_detail">세부 일정</string>
+    <string name="menu_ic_route">전체 일정</string>
+    <string name="menu_ic_bell">오늘 일정</string>
+    <string name="menu_ic_dashboard">Dash Board</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+
+</resources>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <EditText
+            android:id="@+id/editplanname"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="80dp"
+            android:background="@color/blackColor"
+            android:gravity="center"
+            android:hint="@string/editplanname"
+            android:inputType="textPersonName|text"
+            android:maxLength="18"
+            android:privateImeOptions="korean"
+            android:singleLine="true"
+            android:textColor="@color/whiteColor"
+            android:textColorHint="@color/hintColor"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/editplandepartday"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/blackColor"
+            android:gravity="center"
+            android:hint="@string/editdepart"
+            android:inputType="numberDecimal"
+            android:maxLength="8"
+            android:textColor="@color/whiteColor"
+            android:textColorHint="@color/hintColor"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/editplandays"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/blackColor"
+            android:gravity="center"
+            android:hint="@string/days"
+            android:inputType="numberDecimal"
+            android:maxLength="3"
+            android:privateImeOptions="english"
+            android:textColor="@color/whiteColor"
+            android:textColorHint="@color/hintColor"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:id="@+id/diarytext1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/dairytxt1"
+            android:textColor="@color/hintColor"
+            android:textSize="12sp"
+            app:layout_constraintTop_toBottomOf="@+id/editplandays"
+            app:layout_constraintVertical_bias="0.062" />
+
+        <TextView
+            android:id="@+id/diarytext2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/dairytxt2"
+            android:textColor="@color/hintColor"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/diarytext3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/dairytxt3"
+            android:textColor="@color/hintColor"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/diarytext2" />
+
+        <TextView
+            android:id="@+id/diarytext5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/dairytxt4"
+            android:textColor="@color/yellowColor"
+            android:textSize="12sp"
+            android:gravity="center_horizontal"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/diarytext4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/dairytxt5"
+            android:textColor="@color/yellowColor"
+            android:textSize="12sp"
+            android:gravity="center_horizontal"
+            android:textStyle="italic"/>
+
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/createplanbtn"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="84dp"
+        android:background="@drawable/background"
+        android:text="@string/createbtn"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+ />
+
+
+</LinearLayout>

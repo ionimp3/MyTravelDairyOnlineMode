@@ -1,0 +1,2 @@
+rootProject.name='MyTravelDairyJava'
+include ':app'

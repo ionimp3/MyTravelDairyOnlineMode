@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp">
+
+        <ImageView
+            android:id="@+id/viewbetalogo"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:contentDescription="@string/viewbetalogo"
+            app:srcCompat="@drawable/logobeta" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:text="MyTravelDairyBeta"
+            android:textColor="@color/whiteColor"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnnewplan"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@color/colorPrimary"
+            android:contentDescription="@string/btnnewplan"
+            app:srcCompat="@drawable/btnnewplan" />
+
+        <ImageButton
+            android:id="@+id/btnviewplan"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="#00000000"
+            android:contentDescription="@string/btnviewplan"
+            app:srcCompat="@drawable/btnviewplan" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/betatext1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:contentDescription="@string/betatext1"
+        android:gravity="center_horizontal"
+        android:text="@string/betatext1"
+        android:textColor="#FFFFFF" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/dnattfileicon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="#00000000"
+            android:contentDescription="@string/dnattfileicon"
+            app:srcCompat="@drawable/dnattfileicon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Import 양식 파일 다운로드"
+            android:textColor="@color/hintColor"
+            android:textSize="10sp"
+            android:textStyle="italic"
+            android:gravity="bottom"/>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="압축파일을 다운 후 작성요령에 대한 내용을 필독해 주세요"
+        android:textColor="@color/hintColor"
+        android:textSize="10sp"
+        android:textStyle="italic"
+        android:gravity="center"/>
+
+</LinearLayout>
+
+
