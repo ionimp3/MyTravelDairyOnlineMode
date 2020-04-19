@@ -12,7 +12,6 @@ import android.widget.ImageButton;
 
 public class StartActivity extends AppCompatActivity {
 
-//테스트\\\
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
