@@ -38,8 +38,7 @@
             android:background="@color/blackColor"
             android:gravity="center"
             android:hint="@string/editdepart"
-            android:inputType="numberDecimal"
-            android:maxLength="8"
+            android:inputType="date"
             android:textColor="@color/whiteColor"
             android:textColorHint="@color/hintColor"
             android:textSize="16sp" />
@@ -52,7 +51,7 @@
             android:background="@color/blackColor"
             android:gravity="center"
             android:hint="@string/days"
-            android:inputType="numberDecimal"
+            android:inputType="number"
             android:maxLength="3"
             android:privateImeOptions="english"
             android:textColor="@color/whiteColor"

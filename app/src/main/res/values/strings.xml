@@ -9,7 +9,7 @@
     <string name="testtextview2">testtextView2</string>
     <string name="test">화면전환 test</string>
     <string name="days">기간(Days)</string>
-    <string name="editdepart">출발일:YYYYMMDD</string>
+    <string name="editdepart">출발일:DD/MM/YYYY</string>
     <string name="editplanname">여행계획서 이름 입력</string>
     <string name="backbtn">backbtn</string>
     <string name="logotext">MyTravelDairy</string>
@@ -40,5 +40,8 @@
     <string name="menu_ic_dashboard">Dash Board</string>
     <string name="open">open</string>
     <string name="close">close</string>
+    <string name="invalidplanname">4~20자,특수문자 공백과 \"_\" 만 허용합니다</string>
+    <string name="invalidplandepartday">날짜가 잘 못 입력되었읍니다..</string>
+    <string name="invaliddays">3~999일까지 입력이 가능합니다..</string>
 
 </resources>
