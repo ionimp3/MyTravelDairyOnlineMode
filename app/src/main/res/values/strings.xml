@@ -9,7 +9,7 @@
     <string name="testtextview2">testtextView2</string>
     <string name="test">화면전환 test</string>
     <string name="days">기간(Days)</string>
-    <string name="editdepart">출발일:DD/MM/YYYY</string>
+    <string name="editdepart">출발일:YYYY-MM-DD</string>
     <string name="editplanname">여행계획서 이름 입력</string>
     <string name="backbtn">backbtn</string>
     <string name="logotext">MyTravelDairy</string>
