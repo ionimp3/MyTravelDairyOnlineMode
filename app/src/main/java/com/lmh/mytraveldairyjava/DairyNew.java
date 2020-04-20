@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.google.common.collect.Range;
 
 import java.util.concurrent.Callable;
@@ -47,7 +48,10 @@ public class DairyNew extends AppCompatActivity {
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
         // 항목별 validation 정의
+        // 정규표현식에 표현된 문자가 한개라도 있으면 true
         awesomeValidation.addValidation(this, R.id.editplanname, "^[a-zA-Z0-9ㄱ-ㅎ가-힣_ ]+$", R.string.invalidplanname);
+        // 공백만 존재할경우 false...NOT_EMPTY 표현식 유용할듯
+        awesomeValidation.addValidation(this, R.id.editplanname, RegexTemplate.NOT_EMPTY, R.string.invalidplanname);
 
         // yyyy-MM-dd
         awesomeValidation.addValidation(this, R.id.editplandepartday, "^((2000|2400|2800|(19|2[0-9](0[48]|[2468][048]|[13579][26])))-02-29)$"
@@ -63,7 +67,6 @@ public class DairyNew extends AppCompatActivity {
 
         awesomeValidation.addValidation(this, R.id.editplandays, Range.closed(3, 365), R.string.invaliddays);
 
-        //
 
         //신규생성버튼클릭시
         _createplanbtn = findViewById(R.id.createplanbtn);
@@ -102,8 +105,6 @@ public class DairyNew extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
 
-                            Toast.makeText(DairyNew.this
-                                    , "실패!!!!!!!!!!", Toast.LENGTH_SHORT).show();
                             alertDialog.dismiss();
 
 
