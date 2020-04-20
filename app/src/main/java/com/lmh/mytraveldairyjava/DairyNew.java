@@ -119,7 +119,7 @@ public class DairyNew extends AppCompatActivity {
                             // db 테이블 업데이트
                             // 설정 액티비티로 이동..개발후 변경
                             Toast.makeText(DairyNew.this
-                                    , "DB table에 신규로 계획은 생성합니다...!!!", Toast.LENGTH_SHORT).show();
+                                    , "DB 에 신규로 여행계획을 생성합니다...!!!", Toast.LENGTH_SHORT).show();
                             alertDialog.dismiss();
 
 
