@@ -18,6 +18,8 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.google.common.collect.Range;
 
+import java.util.concurrent.Callable;
+
 
 public class DairyNew extends AppCompatActivity {
 
@@ -29,16 +31,15 @@ public class DairyNew extends AppCompatActivity {
     AwesomeValidation awesomeValidation;
 
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dairy_new);
 
         // 변수에 맞는 항목 할당(xml에 등록한거) //
-        EditText _planname = findViewById(R.id.editplanname);
-        EditText _plandepartday = findViewById(R.id.editplandepartday);
-        EditText _plandays = findViewById(R.id.editplandays);
+        final EditText _planname = findViewById(R.id.editplanname);
+        final EditText _plandepartday = findViewById(R.id.editplandepartday);
+        final EditText _plandays = findViewById(R.id.editplandays);
         Button _createplanbtn = findViewById(R.id.createplanbtn);
 
 
@@ -59,91 +60,104 @@ public class DairyNew extends AppCompatActivity {
         //awesomeValidation.addValidation(this, R.id.editplandepartday, "^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)" +
         //        "(?:0?[1,3-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])" +
         //       "|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$",R.string.invalidplandepartday);
-        awesomeValidation.addValidation(this, R.id.editplandays, Range.closed(3, 999), R.string.invaliddays);
 
-        //버튼을 눌렀을때
+        awesomeValidation.addValidation(this, R.id.editplandays, Range.closed(3, 365), R.string.invaliddays);
+
+        //
+
+        //신규생성버튼클릭시
+        _createplanbtn = findViewById(R.id.createplanbtn);
 
         _createplanbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 //Validation 실행
-
                 if (awesomeValidation.validate()) {
-                    //성공
-                    Toast.makeText(getApplicationContext()
-                            , "성공!!!!!!!!!", Toast.LENGTH_SHORT).show();
+                    // validation 성공시
+                    // 다이얼로그 화면
+
+                    TextView alertmessage;
+
+                    AlertDialog.Builder alert = new AlertDialog.Builder(DairyNew.this);
+                    View mView = getLayoutInflater().inflate(R.layout.alert_dialog, null);
+                    alert.setView(mView);
+
+                    alertmessage = (TextView) mView.findViewById(R.id.alert_message);
+
+                    final CheckBox alertcheckbox = (CheckBox) mView.findViewById(R.id.alert_check_box);
+                    Button btalertcancel = (Button) mView.findViewById(R.id.bt_alertcancel);
+                    final Button btalertok = (Button) mView.findViewById(R.id.bt_alertok);
 
 
-                    // 경고창화면
-                    showAlertDialog();
+                    final AlertDialog alertDialog = alert.create();
+                    alertDialog.setCanceledOnTouchOutside(false);
+                    alertmessage.setText(_planname.getText().toString() + "\n출발일 : " + _plandepartday.getText().toString() + "\n 여행기간은 " + _plandays.getText().toString() + " 일 일정입니다.\n");
+
+
+                    //버튼 액션
+
+                    //Cancel클릭시
+                    btalertcancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            Toast.makeText(DairyNew.this
+                                    , "실패!!!!!!!!!!", Toast.LENGTH_SHORT).show();
+                            alertDialog.dismiss();
+
+
+                        }
+                    });
+
+
+                    //OK버튼클릭
+                    btalertok.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            // db 테이블 업데이트
+                            // 설정 액티비티로 이동..개발후 변경
+                            Toast.makeText(DairyNew.this
+                                    , "DB table에 신규로 계획은 생성합니다...!!!", Toast.LENGTH_SHORT).show();
+                            alertDialog.dismiss();
+
+
+                        }
+                    });
+
+
+                    alertcheckbox.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            if (alertcheckbox.isChecked()) {
+
+                                btalertok.setEnabled(true);
+                                // 버튼 사용가될때 버튼배경색 바꾸기
+                                btalertok.setBackgroundColor(getResources().getColor(android.R.color.black));
+
+
+                            } else {
+
+                                btalertok.setEnabled(false);
+                                btalertok.setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
+                            }
+
+                        }
+                    });
+
+                    alertDialog.show();
 
                 } else {
-                    Toast.makeText(getApplicationContext()
-                            , "실패!!!!!!!!!", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });
-
-
-    }
-
-    private void showAlertDialog() {
-
-
-        final Dialog dialog = new Dialog(DairyNew.this);
-        dialog.setContentView(R.layout.alert_dialog);
-
-
-        final CheckBox checkBox = dialog.findViewById(R.id.alert_check_box);
-        final Button btalertok = dialog.findViewById(R.id.bt_alertok);
-        Button btalertcancel = dialog.findViewById(R.id.bt_alertcancel);
-
-
-
-        btalertcancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                dialog.cancel();
-
-            }
-        });
-
-        btalertok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-             dialog.dismiss();
-
-            }
-        });
-
-        checkBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-
-                if (checkBox.isChecked()) {
-
-                    btalertok.setEnabled(true);
-                    // 버튼 사용가될때 버튼배경색 바꾸기
-                    btalertok.setBackgroundColor(getResources().getColor(android.R.color.black));
-
+                    // validation 실패시
+                    Toast.makeText(DairyNew.this
+                            , "실패...입력된 값을 재확인 해주 세요", Toast.LENGTH_SHORT).show();
 
                 }
-                else {
-
-                    btalertok.setEnabled(false);
-                    btalertok.setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
-                }
-
-
             }
         });
-        dialog.show();
+
 
     }
 

@@ -42,6 +42,6 @@
     <string name="close">close</string>
     <string name="invalidplanname">4~20자,특수문자 공백과 \"_\" 만 허용합니다</string>
     <string name="invalidplandepartday">날짜가 잘 못 입력되었읍니다..</string>
-    <string name="invaliddays">3~999일까지 입력이 가능합니다..</string>
+    <string name="invaliddays">3~365일까지 입력이 가능합니다..</string>
 
 </resources>

@@ -23,10 +23,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="확인"
+            android:text=" Confirm"
             android:textStyle="bold"
             android:textColor="@color/warningColor"
-            android:textSize="30sp"
+            android:textSize="26sp"
             android:layout_gravity="center_vertical"
             />
     </LinearLayout>
@@ -35,9 +35,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/alert_message"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:textStyle="bold"
-        android:text="test"
+        android:text="신규여행계획"
         android:gravity="center_horizontal"
         android:textColor="@color/redColor"
         android:layout_marginTop="20dp"
@@ -48,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/alert_check_box"
-        android:text="위 내용대로 신규여행 계획을 생성합니다..."
+        android:text="입력한 제목, 출발일 , 기간이 맞읍니다...."
         android:textSize="12sp"
         android:textStyle="italic"
         android:layout_gravity="center_horizontal"
