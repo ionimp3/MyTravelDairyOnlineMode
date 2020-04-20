@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Welcome !!! My Travel Dairy"
-        android:textColor="@color/warningColor"
+        android:textColor="@color/whiteColor"
         android:textSize="14sp"
         android:textStyle="italic"
         android:gravity="center_horizontal"
