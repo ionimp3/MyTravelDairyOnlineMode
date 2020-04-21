@@ -18,13 +18,21 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.google.common.collect.Range;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.concurrent.Callable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 public class DairyNew extends AppCompatActivity {
 
+
+
     //변수초기화
+    FirebaseDatabase rootNode;
+    DatabaseReference reference;
+
     EditText _planname, _plandepartday, _plandays;
     Button _createplanbtn;
 
@@ -114,17 +122,50 @@ public class DairyNew extends AppCompatActivity {
 
                     //OK버튼클릭
                     btalertok.setOnClickListener(new View.OnClickListener() {
+                        @RequiresApi(api = Build.VERSION_CODES.O)
                         @Override
                         public void onClick(View v) {
 
+
+                            // 다음 액티비로 넘겨줄 data 초기화 및 세팅
+                            //this.Initdata();
                             // db 테이블 업데이트
+
+                            //데이터베이스에서 data 모두불러오기
+                            rootNode = FirebaseDatabase.getInstance();
+                            //테이터베이스의 noder지정(첫벗재컬럼이 node 인데, 테이블개념)
+                            reference = rootNode.getReference("basic_info");
+
+                            //data 가져오기
+                            //앞에서 미리 처리됨,더 필요한건 여기에 추가
+                            //
+                            //
+
+                            String aplanname = _planname.getEditableText().toString();
+                            String aplandepartday = _plandepartday.getEditableText().toString();
+                            String aplandays = _plandays.getEditableText().toString();
+                            String update_timestamp = LocalDateTime.now().toString();
+                            String create_timestamp = LocalDateTime.now().toString();
+
+
+                            BaiscinfoHelper baiscinfoHelper = new BaiscinfoHelper(aplanname, aplandepartday, aplandays, update_timestamp, create_timestamp);
+
+                            reference.child(aplanname).setValue(baiscinfoHelper);
+
+
                             // 설정 액티비티로 이동..개발후 변경
-                            Toast.makeText(DairyNew.this
-                                    , "DB 에 신규로 여행계획을 생성합니다...!!!", Toast.LENGTH_SHORT).show();
+
+                            //Toast.makeText(DairyNew.this
+                            //        , "DB 에 신규로 여행계획을 생성합니다...!!!", Toast.LENGTH_SHORT).show();
                             alertDialog.dismiss();
 
 
                         }
+
+                        // 다음액티비티로 넘겨줄  data 초기화 및 설정
+                        //private void Initdata() {
+
+                        //}
                     });
 
 
