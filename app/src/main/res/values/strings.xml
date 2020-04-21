@@ -45,6 +45,6 @@
     <string name="invaliddays">3~365일까지 입력이 가능합니다..</string>
     <string name="usrId">Email ID</string>
     <string name="password">Password</string>
-    <string name="newregist">등록??</string>
+    <string name="newregist">신규사용자?</string>
 
 </resources>

@@ -1,6 +1,5 @@
 package com.lmh.mytraveldairyjava;
 
-import android.app.Dialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -21,8 +20,9 @@ import com.google.common.collect.Range;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+
+import static com.lmh.mytraveldairyjava.LoginEmail.logininemail;
 
 
 public class DairyNew extends AppCompatActivity {
@@ -50,6 +50,10 @@ public class DairyNew extends AppCompatActivity {
         final EditText _plandepartday = findViewById(R.id.editplandepartday);
         final EditText _plandays = findViewById(R.id.editplandays);
         Button _createplanbtn = findViewById(R.id.createplanbtn);
+
+        //로그인 사용자
+        Toast.makeText(DairyNew.this
+                , "접속한 사용자 : " + logininemail , Toast.LENGTH_SHORT).show();
 
 
         // AwesomeValidation 에서 제공하는 style 설정
@@ -155,8 +159,8 @@ public class DairyNew extends AppCompatActivity {
 
                             // 설정 액티비티로 이동..개발후 변경
 
-                            //Toast.makeText(DairyNew.this
-                            //        , "DB 에 신규로 여행계획을 생성합니다...!!!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(DairyNew.this
+                                    , "DB 에 신규로 여행계획을 생성합니다...!!!", Toast.LENGTH_SHORT).show();
                             alertDialog.dismiss();
 
 

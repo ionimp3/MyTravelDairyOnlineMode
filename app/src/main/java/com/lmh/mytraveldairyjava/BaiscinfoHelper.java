@@ -2,7 +2,12 @@ package com.lmh.mytraveldairyjava;
 
 public class BaiscinfoHelper {
 
-    String aplanname, aplandepartday, aplandays, update_timestamp, create_timestamp ;
+    String aplanname;
+    String aplandepartday;
+    String aplandays;
+    String update_timestamp;
+    String create_timestamp;
+    String aloginemail ;
 
     public BaiscinfoHelper() {
 
@@ -14,6 +19,7 @@ public class BaiscinfoHelper {
         this.aplandays = aplandays;
         this.update_timestamp = update_timestamp;
         this.create_timestamp = create_timestamp;
+        this.aloginemail = aloginemail;
     }
 
     public String getAplanname() {
@@ -54,5 +60,13 @@ public class BaiscinfoHelper {
 
     public void setCreate_timestamp(String create_timestamp) {
         this.create_timestamp = create_timestamp;
+    }
+
+    public String getAloginemail() {
+        return aloginemail;
+    }
+
+    public void setAloginemail(String aloginemail) {
+        this.aloginemail = aloginemail;
     }
 }

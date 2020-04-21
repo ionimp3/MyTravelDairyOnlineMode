@@ -16,6 +16,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginEmail extends AppCompatActivity{
+    static String logininemail;
     private Button join;
     private Button login;
     private EditText email_login;
@@ -39,7 +40,7 @@ public class LoginEmail extends AppCompatActivity{
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = email_login.getText().toString().trim();
+                final String email = email_login.getText().toString().trim();
                 String pwd = pwd_login.getText().toString().trim();
 
                 firebaseAuth.signInWithEmailAndPassword(email, pwd)
@@ -48,6 +49,10 @@ public class LoginEmail extends AppCompatActivity{
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     Intent intent = new Intent(LoginEmail.this, StartActivity.class);
+                                    //여기서 로그인한 메일아이디를 다른 액티비티로 넘겨줘야함..화면에 표시하기위해
+                                    //DB상에는 메일과패스워드 정보없음..나중에 자기가 쓴글만 서로 읽고,쓰기 가능하도록
+                                    //관리자도 내용확인 불가.(FIREBASE DB RULE 작성자만 읽고 쓰도록 설정
+                                    logininemail = ""+ email;
                                     startActivity(intent);
                                 } else {
                                     Toast.makeText(LoginEmail.this, "로그인 오류", Toast.LENGTH_SHORT).show();
