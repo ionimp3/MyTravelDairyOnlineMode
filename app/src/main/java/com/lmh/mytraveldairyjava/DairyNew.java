@@ -1,8 +1,11 @@
 package com.lmh.mytraveldairyjava;
 
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -54,8 +57,6 @@ public class DairyNew extends AppCompatActivity {
         //로그인 사용자
         Toast.makeText(DairyNew.this
                 , "접속한 사용자 : " + logininemail , Toast.LENGTH_SHORT).show();
-
-        CloseKeyboard();
 
 
         // AwesomeValidation 에서 제공하는 style 설정
@@ -209,11 +210,11 @@ public class DairyNew extends AppCompatActivity {
 
     }
 
-    public static void CloseKeyboard(Context context, EditText editText) {
-
-        InputMethodManager mInputMethodManager = (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
-        mInputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
-
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        return true;
     }
 
 

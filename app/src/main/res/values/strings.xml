@@ -43,9 +43,9 @@
     <string name="invalidplanname">한영:최소1자이상, 특수문자: \"\_\"\ , 띄어쓰기만 허용합니다</string>
     <string name="invalidplandepartday">날짜가 잘못 입력되었읍니다..</string>
     <string name="invaliddays">3~365일까지 입력이 가능합니다..</string>
-    <string name="emailid">Email ID</string>
-    <string name="password">Password</string>
-    <string name="newregist">신규사용자? 가입..</string>
+    <string name="emailid">메일아이디</string>
+    <string name="password">패스워드 6자이상</string>
+    <string name="newregist">New? 구글 FireBase 메일인증방식 가입..</string>
     <string name="beta_version">Beta Version</string>
     <string name="welcome">Welcome , 여행계획짜기앱(개인용)</string>
 </resources>
