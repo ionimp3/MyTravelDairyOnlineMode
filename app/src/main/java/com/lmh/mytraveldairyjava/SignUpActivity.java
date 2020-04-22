@@ -17,7 +17,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 
-
 public class SignUpActivity extends AppCompatActivity {
     private EditText email_join;
     private EditText pwd_join;
@@ -62,26 +61,27 @@ public class SignUpActivity extends AppCompatActivity {
 
                 if (email.isEmpty()) {
                     signup_ok.setEnabled(false);
+                    signup_checkbox.setChecked(false);
                     Toast.makeText(SignUpActivity.this, "메일아이디 확인해주세요", Toast.LENGTH_SHORT).show();
-                }else
-                {
-                    if  (pwd.isEmpty()) {
+                } else {
+                    if (pwd.isEmpty()) {
                         signup_ok.setEnabled(false);
+                        signup_checkbox.setChecked(false);
                         Toast.makeText(SignUpActivity.this, "패스워드 확인해주세요", Toast.LENGTH_SHORT).show();
-                    }else {
+                    } else {
                         firebaseAuth.createUserWithEmailAndPassword(email, pwd)
                                 .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                                         if (task.isSuccessful()) {
-                                            Toast.makeText(SignUpActivity.this, "등록 성공", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(SignUpActivity.this, "등록 성공!!!!!", Toast.LENGTH_SHORT).show();
                                             Intent intent = new Intent(SignUpActivity.this, LoginEmail.class);
                                             startActivity(intent);
                                             finish();
                                         } else {
-
-                                            Toast.makeText(SignUpActivity.this, "등록 에러", Toast.LENGTH_SHORT).show();
+                                            signup_checkbox.setChecked(false);
+                                            Toast.makeText(SignUpActivity.this, "등록 실패!!! 메일아이디와 패스워드를 재확인해주세요", Toast.LENGTH_SHORT).show();
                                             return;
                                         }
                                     }
@@ -90,6 +90,7 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             }
         });
+
 
     }
 

@@ -48,5 +48,5 @@
     <string name="newregist">New? 구글 FireBase 메일인증방식 가입..</string>
     <string name="beta_version">Beta Version</string>
     <string name="welcome">Welcome , 여행계획짜기앱(개인용)</string>
-    <string name="caution_massage">[주의] : 구글에서 제공하는 FireBase DB 접속을 위해 메일인증 서비스에 가입합니다. 패스워드분실시 FireBase로 요청되여 가입된 메일로 변경요청됩니다. DB에는 메일아이디만 저장되며.패스워드는 구글 FireBase 에서 암호화 관리됩니다.</string>
+    <string name="caution_massage">[확인] : 구글에서 제공하는 FireBase DB 접속을 위해 메일인증 서비스에 가입합니다. 패스워드분실시 FireBase로 요청되여 가입된 메일로 변경요청됩니다. DB에는 메일아이디만 저장되며.패스워드는 구글 FireBase 에서 암호화 관리됩니다.</string>
 </resources>
