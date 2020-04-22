@@ -30,8 +30,6 @@ import static com.lmh.mytraveldairyjava.LoginEmail.logininemail;
 
 public class DairyNew extends AppCompatActivity {
 
-
-
     //변수초기화
     FirebaseDatabase rootNode;
     DatabaseReference reference;

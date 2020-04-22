@@ -50,7 +50,7 @@
             android:background="@drawable/edit_text"
             android:gravity="center"
             android:hint="@string/emailid"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:textColor="@color/whiteColor"
             android:textColorHint="@color/hintColor"
             android:textSize="18sp" />
@@ -90,6 +90,8 @@
             android:layout_marginTop="50dp"
             android:background="@color/whiteColor"
             android:text="로그인"
+            android:textSize="18sp"
+            android:textStyle="bold"
             android:textColor="@color/blackColor"
             />
 
