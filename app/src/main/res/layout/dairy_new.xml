@@ -28,7 +28,8 @@
             android:singleLine="true"
             android:textColor="@color/whiteColor"
             android:textColorHint="@color/hintColor"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:imeOptions="actionDone"/>
 
         <EditText
             android:id="@+id/editplandepartday"
@@ -41,7 +42,8 @@
             android:inputType="datetime"
             android:textColor="@color/whiteColor"
             android:textColorHint="@color/hintColor"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:imeOptions="actionDone"/>
 
         <EditText
             android:id="@+id/editplandays"
@@ -56,7 +58,8 @@
             android:privateImeOptions="english"
             android:textColor="@color/whiteColor"
             android:textColorHint="@color/hintColor"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:imeOptions="actionDone"/>
 
     </LinearLayout>
 

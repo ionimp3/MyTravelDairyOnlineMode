@@ -63,7 +63,8 @@
             android:inputType="text"
             android:textColor="@color/whiteColor"
             android:textColorHint="@color/hintColor"
-            android:textSize="18sp" />
+            android:textSize="16sp"
+            android:imeOptions="actionDone"/>
 
         <EditText
             android:id="@+id/your_password"
@@ -76,13 +77,14 @@
             android:inputType="textPassword"
             android:textColor="@color/whiteColor"
             android:textColorHint="@color/hintColor"
-            android:textSize="18sp"
+            android:textSize="16sp"
+            android:imeOptions="actionDone"
             />
 
         <Button
             android:layout_width="250dp"
             android:layout_height="20dp"
-            android:text="Forgot to password? "
+            android:text=" Forgot to password ? "
             android:background="#00ffffff"
             android:gravity="right"
             android:textSize="12sp"
@@ -90,6 +92,8 @@
             android:textAllCaps="false"
             android:layout_gravity="end"
             android:layout_marginTop="5dp"
+            android:id="@+id/bt_findpassword"
+            android:textStyle="italic"
             />
 
     </LinearLayout>

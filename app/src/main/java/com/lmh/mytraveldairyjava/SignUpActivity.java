@@ -37,7 +37,6 @@ public class SignUpActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-
         signup_checkbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,5 +92,6 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     }
+
 
 }

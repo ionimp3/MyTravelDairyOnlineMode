@@ -25,7 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.time.LocalDateTime;
 
-import static com.lmh.mytraveldairyjava.LoginEmail.logininemail;
+import static com.lmh.mytraveldairyjava.LoginEmail.loginuseremail;
 
 
 public class DairyNew extends AppCompatActivity {
@@ -54,7 +54,7 @@ public class DairyNew extends AppCompatActivity {
 
         //로그인 사용자
         Toast.makeText(DairyNew.this
-                , "접속한 사용자 : " + logininemail , Toast.LENGTH_SHORT).show();
+                , "접속한 사용자 : " + loginuseremail , Toast.LENGTH_SHORT).show();
 
 
         // AwesomeValidation 에서 제공하는 style 설정
