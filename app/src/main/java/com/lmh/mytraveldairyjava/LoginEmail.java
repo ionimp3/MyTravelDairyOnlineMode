@@ -31,8 +31,8 @@ public class LoginEmail extends AppCompatActivity{
 
         join = (Button) findViewById(R.id.new_regist);
         login = (Button) findViewById(R.id.login_ok);
-        email_login = (EditText) findViewById(R.id.youremail);
-        pwd_login = (EditText) findViewById(R.id.yourpassword);
+        email_login = (EditText) findViewById(R.id.your_email);
+        pwd_login = (EditText) findViewById(R.id.your_password);
 
         //초기화
         firebaseAuth = firebaseAuth.getInstance();
