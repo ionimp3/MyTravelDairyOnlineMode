@@ -55,6 +55,8 @@ public class DairyNew extends AppCompatActivity {
         Toast.makeText(DairyNew.this
                 , "접속한 사용자 : " + logininemail , Toast.LENGTH_SHORT).show();
 
+        CloseKeyboard();
+
 
         // AwesomeValidation 에서 제공하는 style 설정
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
@@ -204,6 +206,13 @@ public class DairyNew extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    public static void CloseKeyboard(Context context, EditText editText) {
+
+        InputMethodManager mInputMethodManager = (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        mInputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
 
     }
 

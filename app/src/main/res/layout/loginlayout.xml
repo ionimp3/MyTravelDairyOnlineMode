@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorPrimary"
     android:gravity="center"
     android:orientation="vertical"
@@ -14,14 +14,14 @@
         android:layout_height="80dp"
         android:layout_gravity="start"
         android:src="@drawable/logo1"
-        tools:ignore="ContentDescription"
-        android:layout_marginStart="60dp" />
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp" />
 
     <TextView
         android:layout_width="215dp"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
-        android:text="Welcome ,                   Visit to My Travel Dairy"
+        android:text="Welcome ,                     여행계획짜기[개인용]"
         android:textColor="@color/whiteColor"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -53,8 +53,7 @@
             android:inputType="textEmailAddress"
             android:textColor="@color/whiteColor"
             android:textColorHint="@color/hintColor"
-            android:textSize="18sp"
-            tools:ignore="Autofill" />
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/your_password"
@@ -68,7 +67,7 @@
             android:textColor="@color/whiteColor"
             android:textColorHint="@color/hintColor"
             android:textSize="18sp"
-            tools:ignore="Autofill,TextFields" />
+            />
 
         <Button
             android:layout_width="250dp"
@@ -98,16 +97,17 @@
             android:layout_height="20dp"
             android:layout_marginTop="30dp"
             android:background="@drawable/ic_login"
-            tools:ignore="ButtonStyle,ContentDescription" />
+            />
 
         <Button
             android:id="@+id/login_cancel"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginStart="80dp"
+            android:layout_marginLeft="80dp"
             android:layout_marginTop="30dp"
             android:background="@drawable/ic_cancel"
-            tools:ignore="ButtonStyle,ContentDescription" />
+            />
 
     </LinearLayout>
 

@@ -47,5 +47,5 @@
     <string name="password">Password</string>
     <string name="newregist">신규사용자? 가입..</string>
     <string name="beta_version">Beta Version</string>
-
+    <string name="welcome">Welcome , 여행계획짜기앱(개인용)</string>
 </resources>
