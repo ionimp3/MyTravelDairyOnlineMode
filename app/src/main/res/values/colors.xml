@@ -10,4 +10,5 @@
     <color name="redColor">#FF334B</color>
     <color name="warningColor">#3EB6EC</color>
     <color name="alrterColor">#ffffff</color>
+    <color name="grayColor">#8F8E8E</color>
 </resources>

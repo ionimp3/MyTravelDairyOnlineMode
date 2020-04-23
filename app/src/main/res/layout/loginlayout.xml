@@ -1,37 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorPrimary"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".LoginEmail">
 
-<LinearLayout
-    android:layout_width="250dp"
-    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
-    <ImageView
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:layout_gravity="start"
-        android:src="@drawable/logo1" />
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
 
-</LinearLayout>
+        <ImageView
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_gravity="start"
+            android:src="@drawable/logo1" />
+
+    </LinearLayout>
+
     <TextView
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:text="Welcome ,"
+        android:fontFamily="@font/title_han_eng_notosanskr_black"
+        android:text="MyTravelDairy"
         android:textColor="@color/whiteColor"
-        android:textSize="20sp"
+        android:textSize="28sp"
         android:textStyle="bold" />
+
     <TextView
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:text="여행계획짜기[개인용]"
+        android:fontFamily="@font/title_han_blackhansans"
+        android:text="여행일정만들기[개인용]"
         android:textColor="@color/whiteColor"
         android:textSize="20sp"
         android:textStyle="normal" />
@@ -39,14 +48,14 @@
     <TextView
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-light"
+        android:fontFamily="@font/titlemain_handwrite_inklipquid"
         android:text="@string/beta_version"
         android:textColor="@color/hintColor"
         android:textSize="12sp"
         android:textStyle="italic" />
 
     <LinearLayout
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="5dp"
@@ -55,73 +64,91 @@
 
         <EditText
             android:id="@+id/your_email"
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:background="@drawable/edit_text"
+            android:fontFamily="@font/main_han_eng_notosanskr_regular"
             android:gravity="center"
             android:hint="@string/emailid"
+            android:imeOptions="actionDone"
             android:inputType="text"
             android:textColor="@color/whiteColor"
             android:textColorHint="@color/hintColor"
             android:textSize="16sp"
-            android:imeOptions="actionDone"/>
+            android:autofillHints=""
+            tools:ignore="TextFields" />
 
         <EditText
             android:id="@+id/your_password"
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
             android:background="@drawable/edit_text"
+            android:fontFamily="@font/main_han_eng_notosanskr_regular"
             android:gravity="center"
             android:hint="@string/password"
+            android:imeOptions="actionDone"
             android:inputType="textPassword"
             android:textColor="@color/whiteColor"
             android:textColorHint="@color/hintColor"
             android:textSize="16sp"
-            android:imeOptions="actionDone"
-            />
+            android:autofillHints="" />
 
         <Button
-            android:layout_width="250dp"
-            android:layout_height="20dp"
-            android:text=" Forgot to password ? "
-            android:background="#00ffffff"
-            android:gravity="right"
-            android:textSize="12sp"
-            android:textColor="@color/whiteColor"
-            android:textAllCaps="false"
-            android:layout_gravity="end"
-            android:layout_marginTop="5dp"
             android:id="@+id/bt_findpassword"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_gravity="end"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#00ffffff"
+            android:fontFamily="@font/mainsub_han_eng_notosanskr_light"
+            android:gravity="right"
+            android:text=" Forgot to password ? "
+            android:textAllCaps="false"
+            android:textColor="@color/whiteColor"
+            android:textSize="12sp"
             android:textStyle="italic"
-            />
+            android:onClick="passwordFindStart"/>
 
     </LinearLayout>
+
         <Button
             android:id="@+id/login_ok"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
             android:layout_marginTop="50dp"
-            android:background="@color/whiteColor"
-            android:text="로그인"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/custum_blackborder1"
+            android:fontFamily="@font/title_han_eng_notosanskr_bold"
+            android:onClick="loginStart"
+            android:text="@string/loginbtn"
             android:textColor="@color/blackColor"
-            />
+            android:textSize="18sp" />
 
     <Button
         android:id="@+id/new_regist"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:background="#00ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:fontFamily="@font/title_han_eng_notosanskr_bold"
         android:text="@string/newregist"
-        android:textColor="@color/whiteColor"
+        android:background="@color/grayColor"
+        android:textAllCaps="false"
+        android:textColor="@color/blackColor"
         android:textSize="12sp"
         android:textStyle="italic"
-        android:stateListAnimator="@null"
-        android:textAllCaps="false"
-        />
+        android:onClick="joinStart"/>
+
+    </LinearLayout>
 
 
-</LinearLayout>
+</ScrollView>

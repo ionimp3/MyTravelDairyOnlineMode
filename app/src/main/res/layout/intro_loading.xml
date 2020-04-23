@@ -23,9 +23,9 @@
         android:layout_height="wrap_content"
         android:text="Welcome !!! My Travel Dairy"
         android:textColor="@color/whiteColor"
-        android:textSize="14sp"
-        android:textStyle="italic"
+        android:textSize="26sp"
+        android:fontFamily="@font/titlemain_handwrite_inklipquid"
         android:gravity="center_horizontal"
-        android:padding="10dp"
+        android:padding="50dp"
     />
 </LinearLayout>
