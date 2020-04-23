@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,6 +36,10 @@ public class LoginEmail extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loginlayout);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
 
         join = (Button) findViewById(R.id.new_regist);
         login = (Button) findViewById(R.id.login_ok);

@@ -8,131 +8,139 @@
     android:orientation="vertical"
     tools:context=".SignUpActivity">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_horizontal">
-
-    <ImageView
-        android:layout_marginTop="30dp"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/ic_firebase" />
-
-    <TextView
-        android:layout_width="215dp"
-        android:layout_height="30dp"
-        android:fontFamily="@font/notosanskrblackttf"
-        android:text="FireBase 메일인증"
-        android:textColor="@color/whiteColor"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginTop="10dp"/>
-    <TextView
-        android:layout_width="215dp"
-        android:layout_height="30dp"
-        android:fontFamily="@font/notosanskrblackttf"
-        android:text="서비스 회원가입"
-        android:textColor="@color/whiteColor"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:gravity="center"
-       />
-
-
     <LinearLayout
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
 
-        <EditText
-            android:id="@+id/signup_email"
-            android:layout_width="250dp"
-            android:layout_height="45dp"
-            android:background="@drawable/edit_text"
-            android:gravity="center"
-            android:hint="@string/emailid"
-            android:inputType="text"
-            android:textColor="@color/whiteColor"
-            android:textColorHint="@color/hintColor"
-            android:textSize="16sp"
-            android:imeOptions="actionDone"
-            android:fontFamily="@font/main_han_eng_notosanskr_regular"/>
-
-        <EditText
-            android:id="@+id/signup_password"
-            android:layout_width="250dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/edit_text"
-            android:gravity="center"
-            android:hint="@string/password"
-            android:inputType="textPassword"
-            android:textColor="@color/whiteColor"
-            android:textColorHint="@color/hintColor"
-            android:textSize="16sp"
-            android:imeOptions="actionDone"
-            android:fontFamily="@font/main_han_eng_notosanskr_regular"
-            />
-
-        <EditText
-            android:id="@+id/re_password"
-            android:layout_width="250dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/edit_text"
-            android:gravity="center"
-            android:hint="@string/re_password"
-            android:inputType="textPassword"
-            android:textColor="@color/whiteColor"
-            android:textColorHint="@color/hintColor"
-            android:textSize="16sp"
-            android:imeOptions="actionDone"
-            android:fontFamily="@font/main_han_eng_notosanskr_regular"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/ic_firebase" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/caution_massage"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/notosanskrblackttf"
+            android:gravity="center"
+            android:text="FireBase 메일인증"
+            android:textColor="@color/whiteColor"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notosanskrblackttf"
+            android:gravity="center"
+            android:text="서비스 회원가입"
+            android:textColor="@color/whiteColor"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/signup_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_edblackborder1"
+                android:fontFamily="@font/main_han_eng_notosanskr_regular"
+                android:gravity="center"
+                android:hint="@string/emailid"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/whiteColor"
+                android:textColorHint="@color/hintColor"
+                android:textSize="16sp"
+                android:layout_marginBottom="5dp"/>
+
+            <EditText
+                android:id="@+id/signup_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_edblackborder1"
+                android:fontFamily="@font/main_han_eng_notosanskr_regular"
+                android:gravity="center"
+                android:hint="@string/password"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/whiteColor"
+                android:textColorHint="@color/hintColor"
+                android:textSize="16sp"
+                android:layout_marginBottom="5dp"
+                />
+
+            <EditText
+                android:id="@+id/re_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_edblackborder1"
+                android:fontFamily="@font/main_han_eng_notosanskr_regular"
+                android:gravity="center"
+                android:hint="@string/re_password"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/whiteColor"
+                android:textColorHint="@color/hintColor"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:fontFamily="@font/mainsub_han_eng_notosanskr_light"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:text="@string/caution_massage"
+                android:textAllCaps="false"
+                android:textColor="@color/yellowColor"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/signupok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/custum_blackborder2"
+            android:enabled="true"
+            android:onClick="joinstart"
+            android:text="회원가입"
             android:textAllCaps="false"
-            android:textColor="@color/yellowColor"
-            android:textSize="10sp"
-            android:layout_gravity="start"
-            android:paddingLeft="10dp"
-            android:fontFamily="@font/mainsub_han_eng_notosanskr_light"
-            />
+            android:textColor="@color/blackColor"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
     </LinearLayout>
-
-
-    <Button
-        android:id="@+id/signupok"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/custum_blackborder2"
-        android:text="회원가입"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:textAllCaps="false"
-        android:textColor="@color/blackColor"
-        android:enabled="true"
-        android:onClick="joinstart"/>
-
-</LinearLayout>
 </ScrollView>
