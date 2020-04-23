@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "895992016301",
+    "firebase_url": "https://mycodelearn.firebaseio.com",
+    "project_id": "mycodelearn",
+    "storage_bucket": "mycodelearn.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:895992016301:android:be0147d2e15603f1530524",
+        "android_client_info": {
+          "package_name": "com.lmh.mytraveldairyjava"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "895992016301-bm7irc6irhr0fm8bjr4cqsgiuunopd0p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjGBC0Wyv_TgGJ41DNA2ca8Zb74hQIElA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "895992016301-bm7irc6irhr0fm8bjr4cqsgiuunopd0p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
