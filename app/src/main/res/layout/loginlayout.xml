@@ -8,145 +8,148 @@
     android:orientation="vertical"
     tools:context=".LoginEmail">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center_horizontal">
-
-    <LinearLayout
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
-
-        <ImageView
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_gravity="start"
-            android:src="@drawable/logo1" />
-
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/title_han_eng_notosanskr_black"
-        android:text="MyTravelDairy"
-        android:textColor="@color/whiteColor"
-        android:textSize="28sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/title_han_blackhansans"
-        android:text="여행일정만들기[개인용]"
-        android:textColor="@color/whiteColor"
-        android:textSize="20sp"
-        android:textStyle="normal" />
-
-    <TextView
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/titlemain_handwrite_inklipquid"
-        android:text="@string/beta_version"
-        android:textColor="@color/hintColor"
-        android:textSize="12sp"
-        android:textStyle="italic" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="5dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
 
-        <EditText
-            android:id="@+id/your_email"
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="20dp">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="start"
+                android:scaleType="centerCrop"
+                android:src="@drawable/logo1" />
+
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/title_notosanskr_black"
+                android:text="MyTravelDairy"
+                android:textColor="@color/whiteColor"
+                android:textSize="24sp"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/title_han_blackhansans"
+                android:text="여행일정만들기[개인용]"
+                android:textColor="@color/whiteColor"
+                android:textSize="18sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/titlemain_handwrite_inklipquid"
+                android:text="@string/beta_version"
+                android:textColor="@color/hintColor"
+                android:textSize="12sp"
+                android:textStyle="italic" />
+        </LinearLayout>
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:background="@drawable/edit_text"
-            android:fontFamily="@font/main_han_eng_notosanskr_regular"
-            android:gravity="center"
-            android:hint="@string/emailid"
-            android:imeOptions="actionDone"
-            android:inputType="text"
-            android:textColor="@color/whiteColor"
-            android:textColorHint="@color/hintColor"
-            android:textSize="16sp"
-            android:autofillHints=""
-            tools:ignore="TextFields" />
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/your_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="5dp"
-            android:background="@drawable/edit_text"
-            android:fontFamily="@font/main_han_eng_notosanskr_regular"
-            android:gravity="center"
-            android:hint="@string/password"
-            android:imeOptions="actionDone"
-            android:inputType="textPassword"
-            android:textColor="@color/whiteColor"
-            android:textColorHint="@color/hintColor"
-            android:textSize="16sp"
-            android:autofillHints="" />
+            <EditText
+                android:id="@+id/your_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:background="@drawable/custom_edblackborder1"
+                android:fontFamily="@font/main_han_eng_notosanskr_regular"
+                android:gravity="center"
+                android:hint="@string/emailid"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:textColor="@color/whiteColor"
+                android:textColorHint="@color/hintColor"
+                android:textSize="16sp"
+                tools:ignore="TextFields"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"/>
 
-        <Button
-            android:id="@+id/bt_findpassword"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_gravity="end"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
-            android:background="#00ffffff"
-            android:fontFamily="@font/mainsub_han_eng_notosanskr_light"
-            android:gravity="right"
-            android:text=" Forgot to password ? "
-            android:textAllCaps="false"
-            android:textColor="@color/whiteColor"
-            android:textSize="12sp"
-            android:textStyle="italic"
-            android:onClick="passwordFindStart"/>
+            <EditText
+                android:id="@+id/your_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:autofillHints=""
+                android:background="@drawable/custom_edblackborder1"
+                android:fontFamily="@font/main_han_eng_notosanskr_regular"
+                android:gravity="center"
+                android:hint="@string/password"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:textColor="@color/whiteColor"
+                android:textColorHint="@color/hintColor"
+                android:textSize="16sp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"/>
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/bt_findpassword"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/custum_blackborder3"
+                android:fontFamily="@font/mainsub_han_eng_notosanskr_light"
+                android:gravity="right"
+                android:onClick="passwordFindStart"
+                android:text=" Forgot to password ? "
+                android:textAllCaps="false"
+                android:textColor="@color/whiteColor"
+                android:textSize="12sp"
+                android:textStyle="italic" />
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/login_ok"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="50dp"
             android:layout_marginRight="5dp"
             android:background="@drawable/custum_blackborder1"
-            android:fontFamily="@font/title_han_eng_notosanskr_bold"
+            android:fontFamily="@font/titlesub_han_eng_notosanskr_bold"
             android:onClick="loginStart"
             android:text="@string/loginbtn"
             android:textColor="@color/blackColor"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
-    <Button
-        android:id="@+id/new_regist"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="5dp"
-        android:fontFamily="@font/title_han_eng_notosanskr_bold"
-        android:text="@string/newregist"
-        android:background="@color/grayColor"
-        android:textAllCaps="false"
-        android:textColor="@color/blackColor"
-        android:textSize="12sp"
-        android:textStyle="italic"
-        android:onClick="joinStart"/>
+        <Button
+            android:id="@+id/new_regist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/custum_blackborder2"
+            android:fontFamily="@font/titlesub_han_eng_notosanskr_bold"
+            android:onClick="joinStart"
+            android:text="@string/newregist"
+            android:textAllCaps="false"
+            android:textColor="@color/blackColor"
+            android:textSize="12sp"
+            android:textStyle="italic" />
 
     </LinearLayout>
 

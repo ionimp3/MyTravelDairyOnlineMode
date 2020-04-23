@@ -5,18 +5,18 @@
     <!-- 평상시 -->
     <item android:state_focused="false" android:state_pressed="false">
         <shape>
-            <stroke android:width="1dp" android:color="@color/whiteColor" />
+            <stroke android:width="1dp" android:color="@color/grayColor" />
             <corners android:radius="10dp" />
-            <solid android:color="@color/whiteColor" />
+            <solid android:color="@color/grayColor" />
         </shape>
     </item>
 
     <!-- 클릭시 -->
     <item android:state_focused="false" android:state_pressed="true">
         <shape>
-            <stroke android:width="1dp" android:color="@color/blackColor" />
+            <stroke android:width="1dp" android:color="@color/whiteColor" />
             <corners android:radius="10dp" />
-            <solid android:color="@color/grayColor" />
+            <solid android:color="@color/whiteColor" />
         </shape>
     </item>
 

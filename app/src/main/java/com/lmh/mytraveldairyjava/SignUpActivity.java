@@ -1,11 +1,13 @@
 package com.lmh.mytraveldairyjava;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,8 +23,12 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText email_join;
     private EditText pwd_join;
     private Button signup_ok;
-    CheckBox signup_checkbox;
+    private EditText repwd_join;
+    //CheckBox signup_checkbox;
+    ProgressBar progressBar1;
+    ProgressDialog dialog1;
     FirebaseAuth firebaseAuth;
+
 
 
     @Override
@@ -32,66 +38,135 @@ public class SignUpActivity extends AppCompatActivity {
 
         email_join = (EditText) findViewById(R.id.signup_email);
         pwd_join = (EditText) findViewById(R.id.signup_password);
+        repwd_join = (EditText) findViewById((R.id.re_password));
         signup_ok = (Button) findViewById(R.id.signupok);
-        signup_checkbox = (CheckBox) findViewById(R.id.signupcheck);
+
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        signup_checkbox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (signup_checkbox.isChecked()) {
-                    signup_ok.setEnabled(true);
-                    // 버튼 사용가될때 버튼배경색 바꾸기
-                    signup_ok.setBackgroundColor(getResources().getColor(android.R.color.white));
-
-                } else {
-                    signup_ok.setEnabled(false);
-                    signup_ok.setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
-                }
-            }
-        });
-
-        signup_ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = email_join.getText().toString().trim();
-                String pwd = pwd_join.getText().toString().trim();
-
-                if (email.isEmpty()) {
-                    signup_ok.setEnabled(false);
-                    signup_checkbox.setChecked(false);
-                    Toast.makeText(SignUpActivity.this, "메일아이디 확인해주세요", Toast.LENGTH_SHORT).show();
-                } else {
-                    if (pwd.isEmpty()) {
-                        signup_ok.setEnabled(false);
-                        signup_checkbox.setChecked(false);
-                        Toast.makeText(SignUpActivity.this, "패스워드 확인해주세요", Toast.LENGTH_SHORT).show();
-                    } else {
-                        firebaseAuth.createUserWithEmailAndPassword(email, pwd)
-                                .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<AuthResult> task) {
-
-                                        if (task.isSuccessful()) {
-                                            Toast.makeText(SignUpActivity.this, "등록 성공!!!!!", Toast.LENGTH_SHORT).show();
-                                            Intent intent = new Intent(SignUpActivity.this, LoginEmail.class);
-                                            startActivity(intent);
-                                            finish();
-                                        } else {
-                                            signup_checkbox.setChecked(false);
-                                            Toast.makeText(SignUpActivity.this, "등록 실패!!! 메일아이디와 패스워드를 재확인해주세요", Toast.LENGTH_SHORT).show();
-                                            return;
-                                        }
-                                    }
-                                });
-                    }
-                }
-            }
-        });
-
 
     }
+
+    //validation 메일
+    private Boolean validateSignUpEmailid() {
+        String joinvalidemail = email_join.getEditableText().toString().trim();
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]";
+
+        if (joinvalidemail.isEmpty()) {
+            email_join.setError("공백은 허용하지 않습니다.");
+            return false;
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(joinvalidemail).matches()) {
+            email_join.setError("메일형식이 잘 못 되었읍니다.");
+            return false;
+        } else {
+            email_join.setError(null);
+            return true;
+        }
+
+    }
+
+    //
+
+    //validation  패스워드
+    private Boolean validateSignUpPassword() {
+        String joinvalidPassword = pwd_join.getEditableText().toString().trim();
+        String passwordPattern = "^" +
+                //"(?=.*[0-9])" +         //at least 1 digit
+                //"(?=.*[a-z])" +         //at least 1 lower case letter
+                //"(?=.*[A-Z])" +         //at least 1 upper case letter
+                "(?=.*[a-zA-Z@#$%^&+=_~!])" +      //any letter
+                "(?=\\S+$)" +           //no white spaces
+                ".{6,}" +               //at least 6 characters
+                "$";
+
+        if (joinvalidPassword.isEmpty()) {
+            pwd_join.setError("공백은 허용하지 않습니다.");
+            return false;
+        } else if (!joinvalidPassword.matches(passwordPattern)) {
+            pwd_join.setError("패스워드는 최소6자리이상입니다..");
+            return false;
+        } else {
+            pwd_join.setError(null);
+            return true;
+        }
+
+    }
+    //
+
+    //validation 비밀번호재입력
+    public Boolean reSignUpPassword() {
+        String joinrePassword = repwd_join.getEditableText().toString().trim();
+        String passwordPattern = "^" +
+                //"(?=.*[0-9])" +         //at least 1 digit
+                //"(?=.*[a-z])" +         //at least 1 lower case letter
+                //"(?=.*[A-Z])" +         //at least 1 upper case letter
+                "(?=.*[a-zA-Z@#$%^&+=_~!])" +      //any letter
+                "(?=\\S+$)" +           //no white spaces
+                ".{6,}" +               //at least 6 characters
+                "$";
+
+        if (joinrePassword.isEmpty()) {
+            repwd_join.setError("공백은 허용하지 않습니다.");
+            return false;
+        } else if (!joinrePassword.matches(passwordPattern)) {
+            repwd_join.setError("패스워드는 최소6자리이상입니다..");
+            return false;
+        } else {
+            repwd_join.setError(null);
+            return true;
+        }
+
+    }
+
+    // 등록실행
+    public void joinstart(View view) {
+
+        if (!validateSignUpEmailid() | !validateSignUpPassword()| !reSignUpPassword())  {
+            return;
+        }
+        final String joinemail = email_join.getText().toString().trim();
+        String joinpwd = pwd_join.getText().toString().trim();
+        String repwd = repwd_join.getText().toString().trim();
+
+        if (!(joinpwd.equals(repwd))){
+            repwd_join.setError("비밀번호가 동일하지 않습니다...");
+            return;
+        }
+
+        showProcessDialog1();
+
+        firebaseAuth.createUserWithEmailAndPassword(joinemail, joinpwd)
+
+                .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        if (task.isSuccessful()) {
+                            Toast.makeText(SignUpActivity.this, "등록 성공!!!!!", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(SignUpActivity.this, LoginEmail.class);
+                            startActivity(intent);
+                            finish();
+                            dialog1.dismiss();
+                        } else {
+                            //signup_checkbox.setChecked(false);
+                            Toast.makeText(SignUpActivity.this, "기존사용자입니다..비밀번호 분실시는 초기화해주세요", Toast.LENGTH_SHORT).show();
+                            dialog1.dismiss();
+                        }
+                    }
+                });
+
+    }
+
+    //프로세스다이얼로그 start
+    private void showProcessDialog1() {
+
+        dialog1 = new ProgressDialog(SignUpActivity.this);
+        dialog1.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog1.setMessage("데이터를 확인하는 중입니다.");
+        dialog1.show();
+        //
+    }
+
 
 
 }

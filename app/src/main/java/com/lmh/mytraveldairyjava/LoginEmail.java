@@ -4,16 +4,15 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -26,6 +25,7 @@ public class LoginEmail extends AppCompatActivity {
     private Button passwordfind;
     private EditText email_login;
     private EditText pwd_login;
+
     ProgressBar progressBar;
     ProgressDialog dialog;
 
@@ -48,12 +48,6 @@ public class LoginEmail extends AppCompatActivity {
         //firebase 초기화
         firebaseAuth = firebaseAuth.getInstance();
 
-
-        //validation 메일,패스워드 호출
-        validateEmailid();
-        validatePassword();
-
-
     }
 
 
@@ -65,7 +59,7 @@ public class LoginEmail extends AppCompatActivity {
         if (validemail.isEmpty()) {
             email_login.setError("공백은 허용하지 않습니다.");
             return false;
-        } else if (!validemail.matches(emailPattern)) {
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(validemail).matches()) {
             email_login.setError("메일형식이 잘 못 되었읍니다.");
             return false;
         } else {
@@ -84,7 +78,7 @@ public class LoginEmail extends AppCompatActivity {
                 //"(?=.*[0-9])" +         //at least 1 digit
                 //"(?=.*[a-z])" +         //at least 1 lower case letter
                 //"(?=.*[A-Z])" +         //at least 1 upper case letter
-                "(?=.*[a-zA-Z])" +      //any letter
+                "(?=.*[a-zA-Z@#$%^&+=_~!])" +      //any letter
                 "(?=\\S+$)" +           //no white spaces
                 ".{6,}" +               //at least 6 characters
                 "$";
@@ -126,13 +120,14 @@ public class LoginEmail extends AppCompatActivity {
                             //여기서 로그인한 메일아이디를 다른 액티비티로 넘겨줘야함..화면에 표시하기위해
                             //DB상에는 메일과패스워드 정보없음..나중에 자기가 쓴글만 서로 읽고,쓰기 가능하도록
                             //관리자도 내용확인 불가.(FIREBASE DB RULE 작성자만 읽고 쓰도록 설정
-                            dialog.dismiss();
                             loginuseremail = "" + email;
                             Toast.makeText(LoginEmail.this, "로그인 성공!!!!", Toast.LENGTH_SHORT).show();
                             startActivity(intent);
+                            dialog.dismiss();
                         } else {
                             dialog.dismiss();
-                            Toast.makeText(LoginEmail.this, "로그인 오류!!!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginEmail.this, "등록되지 않은 사용자이거나, 메일아이디 또는 비밀번호가 틀렸읍니다.!!!", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
                         }
                     }
                 });
@@ -144,6 +139,7 @@ public class LoginEmail extends AppCompatActivity {
     public void joinStart(View view) {
         Intent intent = new Intent(LoginEmail.this, SignUpActivity.class);
         startActivity(intent);
+
     }
     //
 
