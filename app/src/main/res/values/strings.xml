@@ -51,4 +51,11 @@
     <string name="caution_massage">[확인] : 구글에서 제공하는 FireBase DB 접속을 위해 메일인증 서비스에 가입합니다. 패스워드분실시 FireBase로 요청되여 가입된 메일로 변경요청됩니다. DB에는 메일아이디만 저장되며.패스워드는 구글 FireBase 에서 암호화 관리됩니다.</string>
     <string name="loginbtn">로그인</string>
     <string name="re_password">패스워드재입력</string>
+    <!--StartMainScreen 액티비티용 -->
+    <string name="sms_Regist">회원가입</string>
+    <string name="sms_Login">로그인</string>
+    <!--intro_loading 액티비티용 -->
+    <string name="Intro_SecondMessage">Beta Ver : My First App</string>
+    <string name="Intro_FirstMessage">Welcome !!! My Travel Dairy</string>
+
 </resources>

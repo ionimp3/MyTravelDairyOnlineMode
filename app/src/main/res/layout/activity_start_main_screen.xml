@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StartMainScreen"
+    android:background="@drawable/onboarding_img9"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        android:paddingBottom="30dp">
+
+        <Button
+            android:id="@+id/mybt01"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:onClick="callLogin"
+            android:text="@string/sms_Login"
+            android:fontFamily="@font/main_han_eng_notosanskr_regular"
+            android:background="@drawable/custum_blackborder4"
+            android:textColor="@color/whiteColor"
+            android:textSize="12sp"
+            android:layout_marginRight="10dp"
+            />
+
+        <Button
+            android:id="@+id/mybt02"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:onClick="callRegist"
+            android:text="@string/sms_Regist"
+            android:fontFamily="@font/main_han_eng_notosanskr_regular"
+            android:background="@drawable/custum_blackborder4"
+            android:textColor="@color/whiteColor"
+            android:textSize="12sp"
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>
