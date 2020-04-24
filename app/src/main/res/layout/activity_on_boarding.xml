@@ -43,14 +43,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:id="@+id/dots">
 
             <Button
                 android:id="@+id/mybt01"
                 android:layout_width="150dp"
                 android:layout_height="40dp"
                 android:layout_marginEnd="10dp"
-                android:background="@drawable/custum_blackborder4"
+                android:background="@drawable/custum_blackborder5"
                 android:fontFamily="@font/main_han_eng_notosanskr_regular"
                 android:onClick="callLogin"
                 android:text="@string/sms_Login"
@@ -62,7 +63,7 @@
                 android:layout_width="150dp"
                 android:layout_height="40dp"
                 android:layout_gravity="right"
-                android:background="@drawable/custum_blackborder4"
+                android:background="@drawable/custum_blackborder5"
                 android:fontFamily="@font/main_han_eng_notosanskr_regular"
                 android:onClick="callRegist"
                 android:text="@string/sms_Regist"

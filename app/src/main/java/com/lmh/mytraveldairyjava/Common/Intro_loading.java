@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.lmh.mytraveldairyjava.OnBoarding;
 import com.lmh.mytraveldairyjava.R;
 import com.lmh.mytraveldairyjava.StartMainScreen;
 
@@ -60,7 +61,7 @@ public class Intro_loading extends AppCompatActivity {
                 tHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(Intro_loading.this, StartMainScreen.class);
+                        Intent intent = new Intent(Intro_loading.this, OnBoarding.class);
                         startActivity(intent);
                         finish();
                     }
