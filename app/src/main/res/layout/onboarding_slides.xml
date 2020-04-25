@@ -19,13 +19,16 @@
 
     <TextView
         android:id="@+id/slider_head"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="220dp"
         android:fontFamily="@font/title_han_blackhansans"
         android:text="1. 어디로 떠나가 볼까? "
         android:textColor="@color/whiteColor"
         android:textSize="18sp"
+        android:textAlignment="center"
+        android:background="@color/colorPrimary"
+        android:paddingTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.192"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,16 +36,19 @@
 
     <TextView
         android:id="@+id/slider_desc"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
         android:fontFamily="@font/main_han_eng_notosanskr_regular"
         android:text="여기에는 2~3줄 정도의  간단한 글을 입력한다. "
+        android:textAlignment="center"
         android:textColor="@color/whiteColor"
         android:textSize="10sp"
         android:textStyle="bold"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.319"
+        app:layout_constraintHorizontal_bias="0.192"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/slider_head" />
 </androidx.constraintlayout.widget.ConstraintLayout>

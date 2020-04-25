@@ -52,8 +52,8 @@ public class Intro_loading extends AppCompatActivity {
                 //애니메이션후 글자색,바탕색 변경
                 introLogo.setTextColor(Color.parseColor("#ffffff"));
                 introComment.setTextColor(Color.parseColor("#ffffff"));
-                introLogo.setBackgroundColor(Color.BLACK);
-                introComment.setBackgroundColor(Color.BLACK);
+                introLogo.setBackgroundColor(Color.parseColor("#2C2A2A"));
+                introComment.setBackgroundColor(Color.parseColor("#2C2A2A"));
                 //
 
                 //타이틀색상 변형 유지시간 핸들링

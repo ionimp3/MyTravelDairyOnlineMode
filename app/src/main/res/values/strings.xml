@@ -60,13 +60,13 @@
     <!--silder 용 문구 -->
     <!--제목-->
     <string name="first_Slide_Title">1. 어디로 떠나 볼까 ?</string>
-    <string name="second_Slide_Title">2. 먼저 여행루트를 만들어 본다</string>
-    <string name="third_Slide_Title">3. 여행하면서 기록을 남기자!</string>
+    <string name="second_Slide_Title">2. 먼저 여행루트를 만들자!</string>
+    <string name="third_Slide_Title">3. 여행중 기록을 남기자!</string>
     <string name="fourth_Slide_Title">4. 지출은 얼마? 빠짐없이 다녀 왔을까 ?</string>
     <!--간단설명-->
-    <string name="first_Description">여행을 할 국가와 여행지를 정하고, 여행목적이 무엇인지 고민하고 간단한 목표를 작성, 경비계산을 위해 환율정보,기본정보를(항공권,여권,비자..) 기록하자?</string>
+    <string name="first_Description">여행을 할 국가와 여행지를 정하고, 여행목적이 무엇인지 고민하고 간단한 목표를 작성, 경비계산을 위해 환율정보,기본정보를(항공권,여권,비자..) 기록하자</string>
     <string name="second_Description">여행지가 정해졌으니, 나만의 여행루트를 만들자. 방문할 도시,체류일, 꼭 보아야 할 거리, 해봐야 할 거리를 정하자</string>
-    <string name="third_Description">3. 여행도중에 계획은 언제나 변경되고, 더 해지거나 빠진다. 고민 말고 다시 계획하고, 기록을 남기자! 다음 여행자를 위한 정보는 메모나 사진으로 남기도록</string>
-    <string name="fourth_Description">4. 이젠 집으로.. 얼마나 지출을까? 정산을 해보자..여행을 마치면 사진 뿐이니 사진도 정리해 두자.. </string>
+    <string name="third_Description">여행도중에 계획은 언제나 변경되고, 더 해지거나 빠진다. 고민 말고 다시 계획하고, 기록을 남기자! 다음 여행자를 위한 정보는 메모나 사진으로 남기도록 하자</string>
+    <string name="fourth_Description">이젠 집으로.. 얼마나 지출을까? 정산을 해보자..여행을 마치면 사진 뿐이니 사진도 정리해 두자..미루면 영원히 미뤄진다 </string>
 
 </resources>
