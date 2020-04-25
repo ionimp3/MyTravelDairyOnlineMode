@@ -60,6 +60,7 @@ public class OnBoarding extends AppCompatActivity {
         //SKIP 시 로그인 화면으로
         Intent intent = new Intent(this, LoginEmail.class);
         startActivity(intent);
+        finish();
     }
 
     public void playon(View view) {
