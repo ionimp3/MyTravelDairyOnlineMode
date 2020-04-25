@@ -3,7 +3,9 @@ package com.lmh.mytraveldairyjava;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Html;
 import android.view.View;
 import android.view.WindowManager;
@@ -13,17 +15,20 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.lmh.mytraveldairyjava.Common.Intro_loading;
 import com.lmh.mytraveldairyjava.HelperClasses.SliderAdapter;
 
 public class OnBoarding extends AppCompatActivity {
 
     ViewPager viewPager;
     LinearLayout dotsLayout;
-    Button bt_my01, bt_my02, play_Onboarding;
+    Button bt_my01, bt_my02, play_Onboarding, skip_Onboarding;
 
     SliderAdapter sliderAdapter;
     TextView[] dots;
     Animation animation;
+
+    int currentPos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +41,7 @@ public class OnBoarding extends AppCompatActivity {
         dotsLayout = findViewById(R.id.dots);
         bt_my01 = findViewById(R.id.mybtLogin);
         bt_my02 = findViewById(R.id.mybtRegist);
+        skip_Onboarding = findViewById(R.id.onBoarding_Skip);
         play_Onboarding = findViewById(R.id.onBoarding_play);
 
 
@@ -43,10 +49,25 @@ public class OnBoarding extends AppCompatActivity {
         sliderAdapter = new SliderAdapter(this);
         viewPager.setAdapter(sliderAdapter);
 
+        //dots
         addDots(0);
-        ;
         viewPager.addOnPageChangeListener(changeListener);
     }
+
+    //skip 버튼
+
+    public void skip(View view) {
+        //SKIP 시 로그인 화면으로
+        Intent intent = new Intent(this, LoginEmail.class);
+        startActivity(intent);
+    }
+
+    public void playon(View view) {
+
+        viewPager.setCurrentItem(currentPos + 1);
+
+    }
+
 
     private void addDots(int position) {
 
@@ -81,23 +102,25 @@ public class OnBoarding extends AppCompatActivity {
 
             addDots(position);
 
+            currentPos = position;
+
             if (position == 0) {
-                animation = AnimationUtils.loadAnimation(OnBoarding.this,R.anim.an2_bottom_animation);
+                animation = AnimationUtils.loadAnimation(OnBoarding.this, R.anim.an2_bottom_animation);
                 bt_my01.setAnimation(animation);
                 bt_my02.setAnimation(animation);
                 play_Onboarding.setVisibility(View.VISIBLE);
                 bt_my01.setVisibility(View.VISIBLE);
                 bt_my02.setVisibility(View.VISIBLE);
             } else if (position == 1) {
-                play_Onboarding.setVisibility(View.INVISIBLE);
+                play_Onboarding.setVisibility(View.VISIBLE);
                 bt_my01.setVisibility(View.INVISIBLE);
                 bt_my02.setVisibility(View.INVISIBLE);
             } else if (position == 2) {
-                play_Onboarding.setVisibility(View.INVISIBLE);
+                play_Onboarding.setVisibility(View.VISIBLE);
                 bt_my01.setVisibility(View.INVISIBLE);
                 bt_my02.setVisibility(View.INVISIBLE);
             } else {
-                animation = AnimationUtils.loadAnimation(OnBoarding.this,R.anim.an2_side_animation);
+                animation = AnimationUtils.loadAnimation(OnBoarding.this, R.anim.an2_side_animation);
                 bt_my01.setAnimation(animation);
                 bt_my02.setAnimation(animation);
 
@@ -109,11 +132,11 @@ public class OnBoarding extends AppCompatActivity {
         }
 
 
-    @Override
-    public void onPageScrollStateChanged(int state) {
+        @Override
+        public void onPageScrollStateChanged(int state) {
 
-    }
-};
+        }
+    };
 
 
 }

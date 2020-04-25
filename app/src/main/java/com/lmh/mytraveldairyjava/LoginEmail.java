@@ -37,9 +37,6 @@ public class LoginEmail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loginlayout);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
-
 
         join = (Button) findViewById(R.id.new_regist);
         login = (Button) findViewById(R.id.login_ok);

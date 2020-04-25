@@ -17,6 +17,22 @@
     </androidx.viewpager.widget.ViewPager>
 
 
+    <Button
+        android:id="@+id/onBoarding_Skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SKIP"
+        android:textColor="@color/whiteColor"
+        android:fontFamily="@font/main_han_eng_notosanskr_regular"
+        android:textSize="12sp"
+        android:background="#00ffffff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="30dp"
+        android:onClick="skip"/>
+        <!--android:drawableEnd="@drawable/ic_nav_next"-->
+
+
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"

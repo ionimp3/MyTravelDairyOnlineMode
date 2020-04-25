@@ -2,6 +2,7 @@ package com.lmh.mytraveldairyjava.Common;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,8 +23,14 @@ public class Intro_loading extends AppCompatActivity {
 
     //animation : ani1
     Animation ani1_topAnim, ani1_bottomAnim;
+
+    //변수
     ImageView introlmage;
     TextView introLogo, introComment;
+
+    SharedPreferences OnBoardingScreen;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +68,26 @@ public class Intro_loading extends AppCompatActivity {
                 tHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(Intro_loading.this, OnBoarding.class);
-                        startActivity(intent);
-                        finish();
+
+                        OnBoardingScreen = getSharedPreferences("OnBoardingScreen",MODE_PRIVATE);
+                        boolean isFirstTime = OnBoardingScreen.getBoolean("firstTime",true);
+
+                        if (isFirstTime){
+
+                            SharedPreferences.Editor editor = OnBoardingScreen.edit();
+                            editor.putBoolean("firstTime",false);
+                            editor.commit();
+
+                            Intent intent = new Intent(Intro_loading.this, OnBoarding.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                        else {
+                            Intent intent = new Intent(Intro_loading.this, OnBoarding.class);
+                            startActivity(intent);
+                            finish();
+                        }
+
                     }
                 },1000);
 

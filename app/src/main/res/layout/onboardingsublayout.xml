@@ -10,6 +10,7 @@
         android:id="@+id/onBoarding_play"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:background="@drawable/ic_play_onboarding"
-        android:visibility="visible"/>
+        android:background="@drawable/ic_nav_next"
+        android:onClick="playon"
+        />
 </LinearLayout>
