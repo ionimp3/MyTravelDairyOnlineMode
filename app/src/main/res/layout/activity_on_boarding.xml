@@ -20,37 +20,20 @@
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="60dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/dots"
-            android:paddingStart="20dp"
-           >
-
-
-        </LinearLayout>
-
-        <include layout="@layout/onboardingsublayout"/>
+        app:layout_constraintBottom_toTopOf="@id/relativeLayout2">
 
         <LinearLayout
             android:id="@+id/loginBtLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:layout_alignParentBottom="true"
-            android:paddingBottom="45dp">
+            android:orientation="horizontal">
 
             <Button
-                android:id="@+id/mybt01"
+                android:id="@+id/mybtLogin"
                 android:layout_width="150dp"
                 android:layout_height="40dp"
                 android:layout_marginEnd="10dp"
@@ -59,10 +42,11 @@
                 android:onClick="callLogin"
                 android:text="@string/sms_Login"
                 android:textColor="@color/whiteColor"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:visibility="visible" />
 
             <Button
-                android:id="@+id/mybt02"
+                android:id="@+id/mybtRegist"
                 android:layout_width="150dp"
                 android:layout_height="40dp"
                 android:layout_gravity="right"
@@ -71,11 +55,34 @@
                 android:onClick="callRegist"
                 android:text="@string/sms_Regist"
                 android:textColor="@color/whiteColor"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:visibility="visible" />
+        </LinearLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/dots"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:layout_toEndOf="@id/loginBtLayout"
+            >
 
         </LinearLayout>
 
+        <include layout="@layout/onboardingsublayout" />
 
     </RelativeLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

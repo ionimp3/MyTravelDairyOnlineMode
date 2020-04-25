@@ -7,8 +7,9 @@
     android:paddingEnd="20dp">
 
     <Button
-        android:id="@+id/onBoarding_Next"
+        android:id="@+id/onBoarding_play"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:background="@drawable/ic_nav_next" />
+        android:background="@drawable/ic_play_onboarding"
+        android:visibility="visible"/>
 </LinearLayout>
