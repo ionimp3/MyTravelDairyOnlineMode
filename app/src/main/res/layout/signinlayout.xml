@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightGrayColor"
+    android:orientation="vertical"
+    android:padding="15dp"
+    tools:context=".Common.SignInActivity">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/main_han_eng_notosanskr_regular"
+        android:text="이메일로그인(구글 FireBase 암호화 인증)"
+        android:textColor="@color/grayColor"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/lightWhiteColor"
+            android:orientation="horizontal"
+            android:layout_marginBottom="3dp">
+
+            <EditText
+                android:id="@+id/etEmailId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/main_han_eng_notosanskr_regular"
+                android:hint="이메일"
+                android:inputType="text"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:imeOptions="actionDone"
+                android:paddingStart="20dp"
+                android:background="#00ffffff"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/lightWhiteColor"
+            android:orientation="horizontal"
+            >
+
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/main_han_eng_notosanskr_regular"
+                android:gravity="center_vertical"
+                android:hint="패스워드"
+                android:inputType="textPassword"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:passwordToggleEnabled="true"
+                android:imeOptions="actionDone"
+                android:paddingStart="20dp"
+                android:background="#00ffffff"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/main_han_eng_notosanskr_regular"
+        android:text="소셜계정으로 로그인(미구현)"
+        android:textColor="@color/grayColor"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginBottom="10dp"
+            android:background="#4CAF50"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/naverSignIn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:background="#4CAF50"
+                android:fontFamily="@font/main_han_eng_notosanskr_regular"
+                android:gravity="center"
+                android:onClick="naverLoginStart"
+                android:text="네이버로 로그인"
+                android:textColor="@color/lightWhiteColor"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#E44155"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/googleSignIn"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_gravity="center_vertical"
+                android:background="#E44155"
+                android:fontFamily="@font/main_han_eng_notosanskr_regular"
+                android:gravity="center"
+                android:onClick="googleLoginStart"
+                android:text="구글로 로그인"
+                android:textColor="@color/lightWhiteColor"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/callSignIn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="50dp"
+        android:fontFamily="@font/main_han_eng_notosanskr_regular"
+        android:onClick="loginStart"
+        android:text="로그인"
+        android:textColor="@color/lightWhiteColor"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:background="@color/warningColor"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        >
+
+        <Button
+            android:id="@+id/callPasswordFind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/main_han_eng_notosanskr_regular"
+            android:onClick="passwordFindStart"
+            android:text="비밀번호를 잊으셨나요?"
+            android:textColor="@color/colorPrimary"
+            android:background="#00ffffff"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

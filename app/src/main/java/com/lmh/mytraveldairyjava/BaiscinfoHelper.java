@@ -1,4 +1,4 @@
-package com.lmh.mytraveldairyjava.HelperClasses;
+package com.lmh.mytraveldairyjava;
 
 public class BaiscinfoHelper {
 

@@ -1,6 +1,7 @@
 package com.lmh.mytraveldairyjava;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -22,11 +23,8 @@ import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.google.common.collect.Range;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.lmh.mytraveldairyjava.HelperClasses.BaiscinfoHelper;
 
 import java.time.LocalDateTime;
-
-import static com.lmh.mytraveldairyjava.LoginEmail.loginuseremail;
 
 
 public class DairyNew extends AppCompatActivity {
@@ -41,11 +39,19 @@ public class DairyNew extends AppCompatActivity {
     //awesome validation 라이브러리
     AwesomeValidation awesomeValidation;
 
+    static String loginuseremail;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dairy_new);
+
+
+        // 임시로그인사용자 메일아이디 받기
+        Intent intent = getIntent();
+        String loginuseremail = intent.getExtras().getString("sendemailid");
+        //
 
         // 변수에 맞는 항목 할당(xml에 등록한거) //
         final EditText _planname = findViewById(R.id.editplanname);

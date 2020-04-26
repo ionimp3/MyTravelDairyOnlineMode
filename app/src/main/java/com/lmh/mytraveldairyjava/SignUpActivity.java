@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -20,15 +21,15 @@ import com.google.firebase.auth.FirebaseAuth;
 
 
 public class SignUpActivity extends AppCompatActivity {
+    static String loginuseremail;
     private EditText email_join;
     private EditText pwd_join;
-    private Button signup_ok;
+    private Button regist_CallStart;
     private EditText repwd_join;
-    //CheckBox signup_checkbox;
+    public CheckBox signup_checkbox;
     ProgressBar progressBar1;
     ProgressDialog dialog1;
     FirebaseAuth firebaseAuth;
-
 
 
     @Override
@@ -36,16 +37,21 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signuplayout);
 
-        email_join = (EditText) findViewById(R.id.signup_email);
-        pwd_join = (EditText) findViewById(R.id.signup_password);
-        repwd_join = (EditText) findViewById((R.id.re_password));
-        signup_ok = (Button) findViewById(R.id.signupok);
+        email_join = (EditText) findViewById(R.id.regEmailId);
+        pwd_join = (EditText) findViewById(R.id.regPassword);
+        repwd_join = (EditText) findViewById((R.id.regRePassword));
+        regist_CallStart = (Button) findViewById(R.id.callSignUp);
+        //signup_checkbox = (CheckBox) findViewById(R.id.checkbox_agree);
+
+
 
 
         firebaseAuth = FirebaseAuth.getInstance();
 
 
+
     }
+
 
     //validation 메일
     private Boolean validateSignUpEmailid() {
@@ -119,7 +125,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     // 등록실행
-    public void joinstart(View view) {
+    public void regStart(View view) {
 
         if (!validateSignUpEmailid() | !validateSignUpPassword()| !reSignUpPassword())  {
             return;
@@ -142,15 +148,19 @@ public class SignUpActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if (task.isSuccessful()) {
+
+                            loginuseremail = String.format("%s", joinemail);
                             Toast.makeText(SignUpActivity.this, "등록 성공!!!!!", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(SignUpActivity.this, LoginEmail.class);
+                            Intent intent = new Intent(SignUpActivity.this,DairyNew.class);
+                            intent.putExtra("sendemailid", loginuseremail);
                             startActivity(intent);
                             finish();
                             dialog1.dismiss();
                         } else {
-                            //signup_checkbox.setChecked(false);
-                            Toast.makeText(SignUpActivity.this, "기존사용자입니다..비밀번호 분실시는 초기화해주세요", Toast.LENGTH_SHORT).show();
+
+                            Toast.makeText(SignUpActivity.this, "기존사용자입니다..비밀번호 분실시는 초기화해주세요", Toast.LENGTH_LONG).show();
                             dialog1.dismiss();
+
                         }
                     }
                 });
@@ -168,5 +178,13 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
+    public void naverSignUpStart(View view) {
 
+        Toast.makeText(SignUpActivity.this, "아직 미구현!!!!", Toast.LENGTH_SHORT).show();
+    }
+
+    public void googleSignUpStart(View view) {
+        Toast.makeText(SignUpActivity.this, "아직 미구현!!!!", Toast.LENGTH_SHORT).show();
+
+    }
 }

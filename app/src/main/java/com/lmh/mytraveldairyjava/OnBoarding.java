@@ -1,11 +1,11 @@
 package com.lmh.mytraveldairyjava;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.Html;
 import android.view.View;
 import android.view.WindowManager;
@@ -15,8 +15,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.lmh.mytraveldairyjava.Common.Intro_loading;
-import com.lmh.mytraveldairyjava.HelperClasses.SliderAdapter;
+import com.lmh.mytraveldairyjava.SignInActivity;
 
 public class OnBoarding extends AppCompatActivity {
 
@@ -34,7 +33,10 @@ public class OnBoarding extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_on_boarding);
+        setContentView(R.layout.onboardinglayout);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         // hook
         viewPager = findViewById(R.id.onBoarding_ViewPager);
@@ -58,9 +60,8 @@ public class OnBoarding extends AppCompatActivity {
 
     public void skip(View view) {
         //SKIP 시 로그인 화면으로
-        Intent intent = new Intent(this, LoginEmail.class);
+        Intent intent = new Intent(OnBoarding.this, SignInActivity.class);
         startActivity(intent);
-        finish();
     }
 
     public void playon(View view) {
@@ -139,5 +140,18 @@ public class OnBoarding extends AppCompatActivity {
         }
     };
 
+    //회원가입버튼 클릭
+    public void callRegist(View view) {
 
+        Intent intent = new Intent(OnBoarding.this, SignUpActivity.class);
+        startActivity(intent);
+
+    }
+
+    //로그인버튼 클릭시
+    public void callLogin(View view) {
+        Intent intent = new Intent(OnBoarding.this, SignInActivity.class);
+        startActivity(intent);
+
+    }
 }

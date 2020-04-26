@@ -13,14 +13,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class LoginEmail extends AppCompatActivity {
+
+
+public class SignInActivity extends AppCompatActivity {
     static String loginuseremail;
-    private Button join;
+    static  String email;
     private Button login;
     private Button passwordfind;
     private EditText email_login;
@@ -29,25 +32,25 @@ public class LoginEmail extends AppCompatActivity {
     ProgressBar progressBar;
     ProgressDialog dialog;
 
+
     FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.loginlayout);
+        setContentView(R.layout.signinlayout);
 
 
-        join = (Button) findViewById(R.id.new_regist);
-        login = (Button) findViewById(R.id.login_ok);
-        passwordfind = (Button) findViewById(R.id.bt_findpassword);
+        login = (Button) findViewById(R.id.callSignIn);
+        passwordfind = (Button) findViewById(R.id.callPasswordFind);
         // 버튼텍스트에 밑줄긋기
-        passwordfind.setPaintFlags(passwordfind.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        //passwordfind.setPaintFlags(passwordfind.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         //
-        email_login = (EditText) findViewById(R.id.your_email);
-        pwd_login = (EditText) findViewById(R.id.your_password);
+        email_login = (EditText) findViewById(R.id.etEmailId);
+        pwd_login = (EditText) findViewById(R.id.etPassword);
 
         //firebase 초기화
-        firebaseAuth = firebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
 
     }
 
@@ -55,7 +58,7 @@ public class LoginEmail extends AppCompatActivity {
     //validation 메일
     private Boolean validateEmailid() {
         String validemail = email_login.getEditableText().toString().trim();
-        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]";
+        //String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]";
 
         if (validemail.isEmpty()) {
             email_login.setError("공백은 허용하지 않습니다.");
@@ -111,23 +114,26 @@ public class LoginEmail extends AppCompatActivity {
         showProcessDialog();
 
         firebaseAuth.signInWithEmailAndPassword(email, pwd)
-                .addOnCompleteListener(LoginEmail.this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(SignInActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
 
                         if (task.isSuccessful()) {
-                            Intent intent = new Intent(LoginEmail.this, StartActivity.class);
+                            Intent intent = new Intent(SignInActivity.this, DairyNew.class);
                             //여기서 로그인한 메일아이디를 다른 액티비티로 넘겨줘야함..화면에 표시하기위해
                             //DB상에는 메일과패스워드 정보없음..나중에 자기가 쓴글만 서로 읽고,쓰기 가능하도록
                             //관리자도 내용확인 불가.(FIREBASE DB RULE 작성자만 읽고 쓰도록 설정
-                            loginuseremail = "" + email;
-                            Toast.makeText(LoginEmail.this, "로그인 성공!!!!", Toast.LENGTH_SHORT).show();
+                            loginuseremail = String.format("%s", email);
+                            Toast.makeText(SignInActivity.this, "로그인 성공!!!!", Toast.LENGTH_SHORT).show();
+                            //메일 아이뒤 임시 전달
+                            intent.putExtra("sendemailid", loginuseremail);
+                            //
                             startActivity(intent);
                             dialog.dismiss();
                         } else {
                             dialog.dismiss();
-                            Toast.makeText(LoginEmail.this, "등록되지 않은 사용자이거나, 메일아이디 또는 비밀번호가 틀렸읍니다.!!!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignInActivity.this, "등록되지 않은 사용자이거나, 메일아이디 또는 비밀번호가 틀렸읍니다.!!!", Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                         }
                     }
@@ -136,20 +142,13 @@ public class LoginEmail extends AppCompatActivity {
     }
     //
 
-    // 등록버튼  클릭 이벤트 발생시
-    public void joinStart(View view) {
-        Intent intent = new Intent(LoginEmail.this, SignUpActivity.class);
-        startActivity(intent);
-
-    }
-    //
 
 
     //패스워드 리셋 요청화면 다이얼로그
     public void passwordFindStart(View view) {
 
         // 다이얼로그 띄우기
-        AlertDialog.Builder alertpassword = new AlertDialog.Builder(LoginEmail.this);
+        AlertDialog.Builder alertpassword = new AlertDialog.Builder(SignInActivity.this);
         View sView = getLayoutInflater().inflate(R.layout.alert_password_find, null);
         alertpassword.setView(sView);
 
@@ -175,9 +174,9 @@ public class LoginEmail extends AppCompatActivity {
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
                                     passwordDialog.dismiss();
-                                    Toast.makeText(LoginEmail.this, "비밀번호재설정메일을 발송하였읍니다....", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SignInActivity.this, "비밀번호재설정메일을 발송하였읍니다....", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(LoginEmail.this, "존재하지 않는 사용자 메일입니다...", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SignInActivity.this, "존재하지 않는 사용자 메일입니다...", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
@@ -194,13 +193,30 @@ public class LoginEmail extends AppCompatActivity {
     //프로세스다이얼로그 start
     private void showProcessDialog() {
 
-        dialog = new ProgressDialog(LoginEmail.this);
+        dialog = new ProgressDialog(SignInActivity.this);
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         dialog.setMessage("데이터를 확인하는 중입니다.");
         dialog.show();
 
     }
+
+
+
+    //네이버로 로그인 미구현
+    public void naverLoginStart(View view) {
+
+        Toast.makeText(SignInActivity.this, "아직 지원하지 않습니다....", Toast.LENGTH_SHORT).show();
+
+    }
+
+    //구글로 로그인 미구현
+    public void googleLoginStart(View view) {
+
+        Toast.makeText(SignInActivity.this, "아직 지원하지 않습니다....", Toast.LENGTH_SHORT).show();
+
+    }
     //
+
 
 
 }

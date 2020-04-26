@@ -1,4 +1,4 @@
-package com.lmh.mytraveldairyjava.Common;
+package com.lmh.mytraveldairyjava;
 
 
 import android.content.Intent;
@@ -12,11 +12,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.lmh.mytraveldairyjava.OnBoarding;
-import com.lmh.mytraveldairyjava.R;
-import com.lmh.mytraveldairyjava.StartMainScreen;
 
 public class Intro_loading extends AppCompatActivity {
     private static int SPLASH_SCREEN = 2000;
@@ -38,6 +35,9 @@ public class Intro_loading extends AppCompatActivity {
         //화면전체를 사용한다고 정의, 액션바설정은 표시 그러므로 액션바 부분까지 표시할려면 STYLE에서 NOACTIONBAR 테마로
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.intro_loading);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         //animation
         ani1_topAnim = AnimationUtils.loadAnimation(this, R.anim.ani1_top_animation);

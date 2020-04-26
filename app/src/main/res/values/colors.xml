@@ -11,4 +11,6 @@
     <color name="warningColor">#3EB6EC</color>
     <color name="alrterColor">#ffffff</color>
     <color name="grayColor">#8F8E8E</color>
+    <color name="lightGrayColor">#CCCCCC</color>
+    <color name="lightWhiteColor">#F4F4F4</color>
 </resources>
