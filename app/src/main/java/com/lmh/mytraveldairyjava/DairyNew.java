@@ -21,15 +21,21 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.google.common.collect.Range;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.time.LocalDateTime;
 
+import static com.lmh.mytraveldairyjava.SignInActivity.email;
+
 
 public class DairyNew extends AppCompatActivity {
 
     //변수초기화
+    FirebaseAuth mAuth;
+
     FirebaseDatabase rootNode;
     DatabaseReference reference;
 
@@ -40,6 +46,8 @@ public class DairyNew extends AppCompatActivity {
     AwesomeValidation awesomeValidation;
 
     static String loginuseremail;
+    private String  useremailinfo;
+
 
 
     @Override
@@ -50,7 +58,7 @@ public class DairyNew extends AppCompatActivity {
 
         // 임시로그인사용자 메일아이디 받기
         Intent intent = getIntent();
-        String loginuseremail = intent.getExtras().getString("sendemailid");
+        final String loginuseremail = intent.getExtras().getString("sendemailid");
         //
 
         // 변수에 맞는 항목 할당(xml에 등록한거) //
@@ -59,9 +67,27 @@ public class DairyNew extends AppCompatActivity {
         final EditText _plandays = findViewById(R.id.editplandays);
         Button _createplanbtn = findViewById(R.id.createplanbtn);
 
+        //db에 사용할 키 아이디 만들기
+
         //로그인 사용자
-        Toast.makeText(DairyNew.this
-                , "접속한 사용자 : " + loginuseremail , Toast.LENGTH_SHORT).show();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+
+            email = user.getEmail();
+            String test1 = email.replaceAll("[.]","");
+            String email = test1.replaceAll("[@]","");
+
+
+            Toast.makeText(DairyNew.this
+                    , "접속중...."+ email, Toast.LENGTH_SHORT).show();
+
+
+        }else {
+            Toast.makeText(DairyNew.this
+                    , "접속안함", Toast.LENGTH_SHORT).show();
+        }
+
+
 
 
         // AwesomeValidation 에서 제공하는 style 설정
@@ -91,6 +117,7 @@ public class DairyNew extends AppCompatActivity {
         //신규생성버튼클릭시
         _createplanbtn = findViewById(R.id.createplanbtn);
 
+
         _createplanbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,6 +141,7 @@ public class DairyNew extends AppCompatActivity {
 
 
                     final AlertDialog alertDialog = alert.create();
+
                     alertDialog.setCanceledOnTouchOutside(false);
                     alertmessage.setText(_planname.getText().toString() + "\n출발일 : " + _plandepartday.getText().toString() + "\n 여행기간은 " + _plandays.getText().toString() + " 일 일정입니다.\n");
 
@@ -125,8 +153,11 @@ public class DairyNew extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
 
-                            alertDialog.dismiss();
 
+                            Toast.makeText(DairyNew.this
+                                    , "접속중...."+ loginuseremail, Toast.LENGTH_SHORT).show();
+
+                            alertDialog.dismiss();
 
                         }
                     });
@@ -143,33 +174,43 @@ public class DairyNew extends AppCompatActivity {
                             //this.Initdata();
                             // db 테이블 업데이트
 
-                            //데이터베이스에서 data 모두불러오기
+                            //데이터베이스에서 전체 DATA - rootNode로지정
                             rootNode = FirebaseDatabase.getInstance();
                             //테이터베이스의 noder지정(첫벗재컬럼이 node 인데, 테이블개념)
-                            reference = rootNode.getReference("basic_info");
+                            // 필요한노드정보만 선택
+                            reference = rootNode.getReference("");
 
                             //data 가져오기
                             //앞에서 미리 처리됨,더 필요한건 여기에 추가
                             //
                             //
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                            //DATA 만들기//
+                            email = user.getEmail();
+                            String test1 = email.replaceAll("[.]","");
+                            String email = test1.replaceAll("[@]","");
 
                             String aplanname = _planname.getEditableText().toString();
                             String aplandepartday = _plandepartday.getEditableText().toString();
                             String aplandays = _plandays.getEditableText().toString();
                             String update_timestamp = LocalDateTime.now().toString();
                             String create_timestamp = LocalDateTime.now().toString();
+                            //
 
+                            // HELPER
+                            BaiscinfoHelper baiscinfoHelper = new BaiscinfoHelper(aplanname, aplandepartday, aplandays, update_timestamp, create_timestamp,email);
+                            //
 
-                            BaiscinfoHelper baiscinfoHelper = new BaiscinfoHelper(aplanname, aplandepartday, aplandays, update_timestamp, create_timestamp);
-
-                            reference.child(aplanname).setValue(baiscinfoHelper);
+                            // FIREBASE DB 저장
+                            reference.child(email).child("basic_info").child(aplanname).setValue(baiscinfoHelper);
 
 
                             // 설정 액티비티로 이동..개발후 변경
 
                             Toast.makeText(DairyNew.this
                                     , "신규 여행계획을 생성하였읍니다....!!!", Toast.LENGTH_SHORT).show();
-                            alertDialog.dismiss();
+                           alertDialog.dismiss();
 
 
                         }

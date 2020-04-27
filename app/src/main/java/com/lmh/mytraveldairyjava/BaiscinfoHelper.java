@@ -7,19 +7,19 @@ public class BaiscinfoHelper {
     String aplandays;
     String update_timestamp;
     String create_timestamp;
-    String aloginemail ;
+    String email;
 
     public BaiscinfoHelper() {
 
     }
 
-    public BaiscinfoHelper(String aplanname, String aplandepartday, String aplandays, String update_timestamp, String create_timestamp) {
+    public BaiscinfoHelper(String aplanname, String aplandepartday, String aplandays, String update_timestamp, String create_timestamp, String email) {
         this.aplanname = aplanname;
         this.aplandepartday = aplandepartday;
         this.aplandays = aplandays;
         this.update_timestamp = update_timestamp;
         this.create_timestamp = create_timestamp;
-        this.aloginemail = aloginemail;
+        this.email = email;
     }
 
     public String getAplanname() {
@@ -62,11 +62,11 @@ public class BaiscinfoHelper {
         this.create_timestamp = create_timestamp;
     }
 
-    public String getAloginemail() {
-        return aloginemail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAloginemail(String aloginemail) {
-        this.aloginemail = aloginemail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

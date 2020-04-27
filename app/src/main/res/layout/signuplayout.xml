@@ -84,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:fontFamily="@font/main_han_eng_notosanskr_regular"
-        android:text="FireBase DB사용을 위한 암호화 인증서비스 가입, 이메일인증 붎필요"
+        android:text="FireBase DB사용을 위한 인증서비스 가입, 이메일인증 불필요"
         android:textColor="@color/warningColor"
         android:textSize="10sp"
         android:textStyle="bold" />
@@ -203,28 +203,28 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text=".구글 FireBaseDB 서버에 이메일 아이드가 저장됩니다."
+                    android:text="- 구글 FireBaseDB 메일 인증방식사용(암호화)"
                     android:textColor="#FF5722"
                     android:fontFamily="@font/mainsub_han_eng_notosanskr_light"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text=".비번 분실시 메일요청을 통해 리셋만 가능합니다."
+                    android:text="- 비밀번호 분실시 메일로 리셋방식만 허용"
                     android:textColor="#FF5722"
                     android:fontFamily="@font/mainsub_han_eng_notosanskr_light"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text=".가입자 본인이 작성한 글만 읽기/쓰기가 가능합니다."
+                    android:text="- 가입자 본인이 작성한 글만 읽기/쓰기 가능"
                     android:textColor="#FF5722"
                     android:fontFamily="@font/mainsub_han_eng_notosanskr_light"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text=".관리자도 타 사용자 글에 대한 읽기/쓰기 권한 없으며, 데이터복구는 구글에 유료요청 가능합니다."
+                    android:text="- 관리자도 사용자 글 읽기/쓰기불가"
                     android:textColor="#FF5722"
                     android:fontFamily="@font/mainsub_han_eng_notosanskr_light"/>
 
@@ -248,6 +248,5 @@
         android:textSize="18sp"
         android:textStyle="bold"
         />
-
 
 </LinearLayout>

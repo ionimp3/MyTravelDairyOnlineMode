@@ -149,6 +149,8 @@ public class SignUpActivity extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
 
+                            //회원가입후 FDB_SETTING_TB 신규 레크드 등록
+
                             loginuseremail = String.format("%s", joinemail);
                             Toast.makeText(SignUpActivity.this, "등록 성공!!!!!", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(SignUpActivity.this,DairyNew.class);
