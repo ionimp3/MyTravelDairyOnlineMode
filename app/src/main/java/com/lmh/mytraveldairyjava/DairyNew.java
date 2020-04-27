@@ -203,6 +203,7 @@ public class DairyNew extends AppCompatActivity {
                             //
 
                             // FIREBASE DB 저장
+
                             reference.child(email).child("basic_info").child(aplanname).setValue(baiscinfoHelper);
 
 
