@@ -2,6 +2,7 @@ package com.lmh.mytraveldairyjava;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -12,24 +13,36 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.time.LocalDateTime;
+
+import static com.lmh.mytraveldairyjava.SignInActivity.email;
 
 
 public class SignUpActivity extends AppCompatActivity {
-    static String loginuseremail;
-    private EditText email_join;
-    private EditText pwd_join;
+
     private Button regist_CallStart;
     private EditText repwd_join;
     public CheckBox signup_checkbox;
     ProgressBar progressBar1;
     ProgressDialog dialog1;
+    static String loginuseremail;
+    private EditText email_join;
+    private EditText pwd_join;
+    //FIREBASE 관련 선안
     FirebaseAuth firebaseAuth;
+    FirebaseDatabase rootNode;
+    DatabaseReference reference;
 
 
     @Override
@@ -43,15 +56,9 @@ public class SignUpActivity extends AppCompatActivity {
         regist_CallStart = (Button) findViewById(R.id.callSignUp);
         //signup_checkbox = (CheckBox) findViewById(R.id.checkbox_agree);
 
-
-
-
         firebaseAuth = FirebaseAuth.getInstance();
 
-
-
     }
-
 
     //validation 메일
     private Boolean validateSignUpEmailid() {
@@ -72,7 +79,6 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     //
-
     //validation  패스워드
     private Boolean validateSignUpPassword() {
         String joinvalidPassword = pwd_join.getEditableText().toString().trim();
@@ -97,8 +103,8 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
     }
-    //
 
+    //
     //validation 비밀번호재입력
     public Boolean reSignUpPassword() {
         String joinrePassword = repwd_join.getEditableText().toString().trim();
@@ -127,14 +133,14 @@ public class SignUpActivity extends AppCompatActivity {
     // 등록실행
     public void regStart(View view) {
 
-        if (!validateSignUpEmailid() | !validateSignUpPassword()| !reSignUpPassword())  {
+        if (!validateSignUpEmailid() | !validateSignUpPassword() | !reSignUpPassword()) {
             return;
         }
         final String joinemail = email_join.getText().toString().trim();
         String joinpwd = pwd_join.getText().toString().trim();
         String repwd = repwd_join.getText().toString().trim();
 
-        if (!(joinpwd.equals(repwd))){
+        if (!(joinpwd.equals(repwd))) {
             repwd_join.setError("비밀번호가 동일하지 않습니다...");
             return;
         }
@@ -144,16 +150,45 @@ public class SignUpActivity extends AppCompatActivity {
         firebaseAuth.createUserWithEmailAndPassword(joinemail, joinpwd)
 
                 .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if (task.isSuccessful()) {
 
-                            //회원가입후 FDB_SETTING_TB 신규 레크드 등록
+                            //회원가입 완료 후 후 DB_SETTING_TB 신규 레크드 등록
+                            //넘겨줄 data 정의
 
-                            loginuseremail = String.format("%s", joinemail);
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            //
+                            Integer base_CURR_CD = 1;
+                            String disp_MAIL_ID = user.getEmail();
+                            String tmps1 = disp_MAIL_ID.replaceAll("[.]", "");
+                            String tmps2 = tmps1.replaceAll("[@]", "");
+                            Integer login_MAT_ID = 1;
+                            String nic_NAME_NM = "닉네임";
+                            Integer now_USER_ST = 1;
+                            String profile_PIC = "";
+                            String push_ALAR_ST = "N";
+                            String sele_MAIL_PK = tmps2;
+                            String tstamp_UP_DT = LocalDateTime.now().toString();
+                            String tstamp_CR_DT = LocalDateTime.now().toString();
+
+
+                            //db노드 지정
+                            rootNode = FirebaseDatabase.getInstance();
+                            reference = rootNode.getReference((sele_MAIL_PK + "/FDB_SETTING_TB"));
+
+                            //데이터 저장
+                            SettingHelperClass settingHelperClass;
+                            settingHelperClass = new SettingHelperClass(base_CURR_CD, login_MAT_ID, now_USER_ST, disp_MAIL_ID, nic_NAME_NM, profile_PIC, push_ALAR_ST, sele_MAIL_PK, tstamp_UP_DT, tstamp_CR_DT);
+                            reference.child(sele_MAIL_PK).setValue(settingHelperClass);
+
+                            //
+
+                            loginuseremail = String.format("%s", disp_MAIL_ID);
                             Toast.makeText(SignUpActivity.this, "등록 성공!!!!!", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(SignUpActivity.this,DairyNew.class);
+                            Intent intent = new Intent(SignUpActivity.this, DairyNew.class);
                             intent.putExtra("sendemailid", loginuseremail);
                             startActivity(intent);
                             finish();
@@ -178,7 +213,6 @@ public class SignUpActivity extends AppCompatActivity {
         dialog1.show();
         //
     }
-
 
     public void naverSignUpStart(View view) {
 
