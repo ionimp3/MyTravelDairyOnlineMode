@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -27,6 +28,7 @@ public class CurrencySelect extends AppCompatActivity {
     RadioButton radioButton;
 
     Intent intent;
+
 
 
 
@@ -69,7 +71,7 @@ public class CurrencySelect extends AppCompatActivity {
 
     }
 
-    @Override
+  /*  @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
         if (item.getItemId() == R.id.action_btn1) {
@@ -79,5 +81,24 @@ public class CurrencySelect extends AppCompatActivity {
 
             return true;
         } return super.onOptionsItemSelected(item);
-    }
+    }*/
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+      switch (item.getItemId()) {
+          case android.R.id.home: { // 뒤로가기 버튼 눌렀을 때
+              finish();
+              Toast.makeText(this, "clic1111k", Toast.LENGTH_SHORT).show();
+              return true;
+          }
+          case R.id.action_btn1: { // 오른쪽 상단 버튼 눌렀을 때
+              Toast.makeText(this, "click", Toast.LENGTH_SHORT).show();
+              return true;
+          }
+      }
+      return super.onOptionsItemSelected(item);
+  }
+
+
+
+
 }
