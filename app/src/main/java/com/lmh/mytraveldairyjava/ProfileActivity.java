@@ -27,31 +27,22 @@ public class ProfileActivity extends AppCompatActivity {
         setTitle("설정");
 
 
+        //로그인 체크
+        appLoginCheck3();
+        //
 
-        //db에 사용할 키 아이디 만들기
 
-        //로그인 사용자
+    }
+
+    private void appLoginCheck3() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-
-            email = user.getEmail();
-            String test1 = email.replaceAll("[.]", "");
-            String emailpk = test1.replaceAll("[@]", "");
-            TextView txemail = findViewById(R.id.txjoinTypeEmail);
-            txemail.setText(email);
-
-
+        if (user == null) {
             Toast.makeText(ProfileActivity.this
-                    , "접속중...." + emailpk, Toast.LENGTH_SHORT).show();
-
-
-        } else {
-            Toast.makeText(ProfileActivity.this
-                    , "접속이 해제되었읍니다.. 다시 로그인 시해주세요~~", Toast.LENGTH_SHORT).show();
+                    , "접속이 해제되었읍니다.. 다시 로그인을 해주세요~~", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(ProfileActivity.this, SignInActivity.class);
             startActivity(intent);
+            finish();
         }
-
     }
 
 
@@ -95,10 +86,9 @@ public class ProfileActivity extends AppCompatActivity {
             FirebaseAuth.getInstance().signOut();
 
             Toast.makeText(ProfileActivity.this
-                    , "로그아웃 하였읍니다." , Toast.LENGTH_SHORT).show();
+                    , "로그아웃 하였읍니다.", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(ProfileActivity.this, SignInActivity.class);
             startActivity(intent);
-
 
 
         } else {
@@ -107,7 +97,17 @@ public class ProfileActivity extends AppCompatActivity {
             // Intent intent = new Intent(ProfileActivity.this, SignInActivity.class);
             // startActivity(intent);
         }
+    }
 
-
+    //화면 back 버튼 눌렀을때처리
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        Intent intent = new Intent(ProfileActivity.this, UserDashboard.class);
+        startActivity(intent);
+        // 현재액티비의 루트 액티비티까지 종료시켜라
+        // 루트 설정화면을 부른 이전 메뉴 액티비티
+        // 드로워 화면 만들면 드로워 화면으로 변경해라..아니면 그대로 대시보드로 이동
+        finishAffinity();
     }
 }

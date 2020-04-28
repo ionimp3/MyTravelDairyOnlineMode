@@ -58,7 +58,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        appLoginCheck();
+        appLoginCheck2();
 
     }
 
@@ -190,7 +190,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                             loginuseremail = String.format("%s", disp_MAIL_ID);
                             Toast.makeText(SignUpActivity.this, "등록 성공!!!!!", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(SignUpActivity.this, DairyNew.class);
+                            Intent intent = new Intent(SignUpActivity.this, ProfileActivity.class);
                             intent.putExtra("sendemailid", loginuseremail);
                             startActivity(intent);
                             finish();
@@ -226,18 +226,23 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
     //로그인확인
-    private void appLoginCheck() {
+    private void appLoginCheck2() {
         //로그인확인
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             Intent intent = new Intent(SignUpActivity.this, ProfileActivity.class);
             startActivity(intent);
-        } else {
-            Toast.makeText(SignUpActivity.this
-                    , "로그인 해주세요..", Toast.LENGTH_SHORT).show();
-            // Intent intent = new Intent(ProfileActivity.this, SignInActivity.class);
-            // startActivity(intent);
+            finish();
         }
-        //
+    }
+
+    //화면 back 버튼 눌렀을때처리
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        //맨처음화면으로 이동
+        Intent intent = new Intent(SignUpActivity.this,OnBoarding.class);
+        startActivity(intent);
+        finish();
     }
 }

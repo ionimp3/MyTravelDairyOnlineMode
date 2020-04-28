@@ -10,14 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="stateAlwaysHidden">
-        <activity android:name=".CurrencySelect" android:parentActivityName=".ProfileActivity"/>
-        <activity android:name=".ProfileActivity" android:parentActivityName=".SignInActivity" />
+        <activity android:name=".CurrencySelect" />
+        <activity android:name=".ProfileActivity" />
         <activity android:name=".SignInActivity" />
-        <activity android:name=".OnBoarding" android:parentActivityName=".SignInActivity"/>
+        <activity android:name=".OnBoarding" />
         <activity android:name=".UserDashboard" />
         <activity android:name=".StartMainScreen" />
         <activity android:name=".StartActivity" />
-        <activity android:name=".SignUpActivity" android:parentActivityName=".SignInActivity" />
+        <activity android:name=".SignUpActivity" />
         <activity android:name=".LoginEmail" />
         <activity
             android:name=".DairyNew"
