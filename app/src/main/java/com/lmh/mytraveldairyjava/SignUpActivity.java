@@ -58,6 +58,8 @@ public class SignUpActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
+        appLoginCheck();
+
     }
 
     //validation 메일
@@ -222,5 +224,20 @@ public class SignUpActivity extends AppCompatActivity {
     public void googleSignUpStart(View view) {
         Toast.makeText(SignUpActivity.this, "아직 미구현!!!!", Toast.LENGTH_SHORT).show();
 
+    }
+    //로그인확인
+    private void appLoginCheck() {
+        //로그인확인
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            Intent intent = new Intent(SignUpActivity.this, ProfileActivity.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(SignUpActivity.this
+                    , "로그인 해주세요..", Toast.LENGTH_SHORT).show();
+            // Intent intent = new Intent(ProfileActivity.this, SignInActivity.class);
+            // startActivity(intent);
+        }
+        //
     }
 }
