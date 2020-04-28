@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightGrayColor"
+    android:orientation="vertical"
+    android:paddingStart="15dp"
+    android:paddingEnd="15dp"
+    tools:context=".ProfileActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/main_han_eng_notosanskr_regular"
+            android:gravity="center_vertical"
+            android:text="로그인"
+            android:textColor="@color/grayColor"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightWhiteColor"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#00ffffff"
+                android:scaleType="centerCrop"
+                android:src="@drawable/naver1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@color/lightWhiteColor"
+                android:fontFamily="@font/main_han_eng_notosanskr_regular"
+                android:gravity="center_vertical"
+                android:text="네이버로 시작하기"
+                android:textColor="@color/grayColor"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/naverJoined"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/btenable_style"
+                android:onClick="naverJoinedSelect"
+                android:scaleType="centerCrop" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightWhiteColor"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#00ffffff"
+                android:scaleType="centerCrop"
+                android:src="@drawable/google" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@color/lightWhiteColor"
+                android:fontFamily="@font/main_han_eng_notosanskr_regular"
+                android:gravity="center_vertical"
+                android:text="구글로 시작하기"
+                android:textColor="@color/grayColor"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/googleJoined"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/btenable_style"
+                android:onClick="googleJoinedSelect"
+                android:scaleType="centerCrop" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightWhiteColor"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@color/lightWhiteColor"
+                android:fontFamily="@font/main_han_eng_notosanskr_regular"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:text="이메일아이디"
+                android:textColor="@color/grayColor"
+                android:textSize="16sp"
+                android:id="@+id/txjoinTypeEmail"/>
+
+            <Button
+                android:id="@+id/passwordRest"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ic_nav_next"
+                android:onClick="passwordRestSelect"
+                android:scaleType="centerCrop" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/main_han_eng_notosanskr_regular"
+            android:gravity="center_vertical"
+            android:text="알림"
+            android:textColor="@color/grayColor"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightWhiteColor"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@color/lightWhiteColor"
+                android:fontFamily="@font/main_han_eng_notosanskr_regular"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:text="Push 알람"
+                android:textColor="@color/grayColor"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/pushAlarm"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/btenable_style"
+                android:onClick="pushAlarmSelect"
+                android:scaleType="centerCrop" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/main_han_eng_notosanskr_regular"
+            android:gravity="center_vertical"
+            android:text="통화 설정"
+            android:textColor="@color/grayColor"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightWhiteColor"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@color/lightWhiteColor"
+                android:fontFamily="@font/main_han_eng_notosanskr_regular"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:text="KRW"
+                android:textColor="@color/grayColor"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/passwordRest"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ic_nav_next"
+                android:onClick="selectCurrency"
+                android:scaleType="centerCrop" />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/main_han_eng_notosanskr_regular"
+            android:gravity="center_vertical"
+            android:text="기타"
+            android:textColor="@color/grayColor"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightWhiteColor"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@color/lightWhiteColor"
+                android:fontFamily="@font/main_han_eng_notosanskr_regular"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:text="KRW"
+                android:textColor="@color/grayColor"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/passwordRest"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ic_nav_next"
+                android:onClick="selectCurrency"
+                android:scaleType="centerCrop" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightWhiteColor"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@color/lightWhiteColor"
+                android:fontFamily="@font/main_han_eng_notosanskr_regular"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:text="KRW"
+                android:textColor="@color/grayColor"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/passwordRest"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ic_nav_next"
+                android:onClick="selectCurrency"
+                android:scaleType="centerCrop" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightWhiteColor"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@color/lightWhiteColor"
+                android:fontFamily="@font/main_han_eng_notosanskr_regular"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:text="Version Beta 1.0 : My First APP"
+                android:textColor="@color/grayColor"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/passwordRest"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ic_nav_next"
+                android:onClick="selectCurrency"
+                android:scaleType="centerCrop" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightWhiteColor"
+            android:orientation="horizontal"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightWhiteColor"
+            android:orientation="horizontal"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="로그아웃"
+            android:id="@+id/logoutApp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:onClick="logoutStart"/>
+
+    </LinearLayout>
+
+</ScrollView>

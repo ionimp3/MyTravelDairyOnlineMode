@@ -102,6 +102,16 @@
             android:background="#4CAF50"
             android:orientation="horizontal">
 
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/naver"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#00ffffff"
+                android:scaleType="centerCrop"/>
+
             <Button
                 android:id="@+id/naverSignIn"
                 android:layout_width="match_parent"
@@ -109,7 +119,7 @@
                 android:layout_gravity="center_vertical"
                 android:background="#4CAF50"
                 android:fontFamily="@font/main_han_eng_notosanskr_regular"
-                android:gravity="center"
+                android:gravity="center_vertical"
                 android:onClick="naverLoginStart"
                 android:text="네이버로 로그인"
                 android:textColor="@color/lightWhiteColor"
@@ -118,18 +128,28 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:background="#E44155"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/google"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#00ffffff"
+                android:scaleType="centerCrop"/>
 
             <Button
                 android:id="@+id/googleSignIn"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:background="#E44155"
                 android:fontFamily="@font/main_han_eng_notosanskr_regular"
-                android:gravity="center"
+                android:gravity="center_vertical"
                 android:onClick="googleLoginStart"
                 android:text="구글로 로그인"
                 android:textColor="@color/lightWhiteColor"

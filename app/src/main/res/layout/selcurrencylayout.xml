@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RadioGroup
+        android:id="@+id/RgCurrGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible" >
+
+        <RadioButton
+            android:id="@+id/RgCurr01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="KRW(한국)" />
+        <RadioButton
+            android:id="@+id/RgCurr02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="USD(미국)" />
+        <RadioButton
+            android:id="@+id/RgCurr03"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EUR(유럽)" />
+        <RadioButton
+            android:id="@+id/RgCurr04"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CNY(중국)" />
+        <RadioButton
+            android:id="@+id/RgCurr05"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HKD(홍콩)" />
+        <RadioButton
+            android:id="@+id/RgCurr06"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TWD(대만)" />
+        <RadioButton
+            android:id="@+id/RgCurr07"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="THD(태국)" />
+        <RadioButton
+            android:id="@+id/RgCurr08"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="JPY(일본)" />
+        <RadioButton
+            android:id="@+id/RgCurr09"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GBP(영국)" />
+        <RadioButton
+            android:id="@+id/RgCurr10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CAD(캐나다)" />
+    </RadioGroup>
+
+</LinearLayout>

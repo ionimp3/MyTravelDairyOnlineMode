@@ -131,7 +131,7 @@ public class SignInActivity extends AppCompatActivity {
                             // [END rtdb_keep_synced]
 
 
-                            Intent intent = new Intent(SignInActivity.this, DairyNew.class);
+                            Intent intent = new Intent(SignInActivity.this, ProfileActivity.class);
                             //여기서 로그인한 메일아이디를 다른 액티비티로 넘겨줘야함..화면에 표시하기위해
                             //DB상에는 메일과패스워드 정보없음..나중에 자기가 쓴글만 서로 읽고,쓰기 가능하도록
                             //관리자도 내용확인 불가.(FIREBASE DB RULE 작성자만 읽고 쓰도록 설정
