@@ -33,7 +33,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/lightWhiteColor"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginBottom="1dp"
+            >
 
             <ImageView
                 android:layout_width="30dp"
@@ -48,7 +50,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
-                android:layout_marginBottom="1dp"
+
                 android:layout_weight="1"
                 android:background="@color/lightWhiteColor"
                 android:fontFamily="@font/main_han_eng_notosanskr_regular"
@@ -73,7 +75,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/lightWhiteColor"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginBottom="1dp">
 
             <ImageView
                 android:layout_width="30dp"
@@ -88,7 +91,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
-                android:layout_marginBottom="1dp"
+
                 android:layout_weight="1"
                 android:background="@color/lightWhiteColor"
                 android:fontFamily="@font/main_han_eng_notosanskr_regular"
@@ -232,7 +235,7 @@
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/main_han_eng_notosanskr_regular"
             android:gravity="center_vertical"
-            android:text="기타"
+            android:text="마이페이지"
             android:textColor="@color/grayColor"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -240,7 +243,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/lightWhiteColor"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginBottom="1dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -251,7 +255,7 @@
                 android:fontFamily="@font/main_han_eng_notosanskr_regular"
                 android:gravity="center_vertical"
                 android:paddingStart="20dp"
-                android:text="KRW"
+                android:text="프로파일 사진"
                 android:textColor="@color/grayColor"
                 android:textSize="16sp" />
 
@@ -268,7 +272,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/lightWhiteColor"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginBottom="1dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -279,7 +284,7 @@
                 android:fontFamily="@font/main_han_eng_notosanskr_regular"
                 android:gravity="center_vertical"
                 android:paddingStart="20dp"
-                android:text="KRW"
+                android:text="닉네임"
                 android:textColor="@color/grayColor"
                 android:textSize="16sp" />
 
@@ -307,7 +312,7 @@
                 android:fontFamily="@font/main_han_eng_notosanskr_regular"
                 android:gravity="center_vertical"
                 android:paddingStart="20dp"
-                android:text="Version Beta 1.0 : My First APP"
+                android:text="커버 사진"
                 android:textColor="@color/grayColor"
                 android:textSize="16sp" />
 
@@ -320,11 +325,77 @@
                 android:background="@drawable/ic_nav_next"
                 android:scaleType="centerCrop" />
         </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/main_han_eng_notosanskr_regular"
+            android:gravity="center_vertical"
+            android:text="기타"
+            android:textColor="@color/grayColor"
+            android:textSize="14sp"
+            android:textStyle="bold" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/lightWhiteColor"
-            android:orientation="horizontal"/>
+            android:orientation="horizontal"
+            android:layout_marginBottom="1dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@color/lightWhiteColor"
+                android:fontFamily="@font/main_han_eng_notosanskr_regular"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:text="정보 사이트 링크"
+                android:textColor="@color/grayColor"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/etc_aa"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ic_nav_next"
+                android:scaleType="centerCrop" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightWhiteColor"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@color/lightWhiteColor"
+                android:fontFamily="@font/main_han_eng_notosanskr_regular"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:text="Version Beta 1.0 : My First APP"
+                android:textColor="@color/grayColor"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/etc_desc"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ic_nav_next"
+                android:scaleType="centerCrop"
+                android:onClick="etcDescStart"/>
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -334,10 +405,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="로그아웃"
+            android:textSize="16sp"
             android:id="@+id/logoutApp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:onClick="logoutStart"/>
+            android:onClick="logoutStart"
+            android:textStyle="bold"
+            android:fontFamily="@font/main_han_eng_notosanskr_regular"
+            android:textColor="@color/lightWhiteColor"
+            android:background="@color/grayColor"/>
 
     </LinearLayout>
 

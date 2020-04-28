@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightWhiteColor"
+    tools:context=".TravelDairyDescription"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/title_notosanskr_black"
+        android:text="MyTraleDairy Beta 1.0"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="30dp"
+         />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Android Studio 3.6.3"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Google FireBase RealTimeDatabase"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="사용자인증 : Google FireBase 제공"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Language : Java"
+        android:layout_marginBottom="50dp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/mainsub_han_eng_notosanskr_light"
+        android:text=" 개인적으로 예행시 일정수립과 관련정보를 정리하고, 여행시 정보확인 및 습득한 정보 그리고 여행이 끝난 후 자료 정리를 용이하게 하기위해 개인용도로 만든 앱입낟. 오픈소스들을 짜집기해서 만든 나의 첫 안드로이드 앱. "
+        android:textSize="10sp"
+        android:gravity="center"
+         />
+</LinearLayout>

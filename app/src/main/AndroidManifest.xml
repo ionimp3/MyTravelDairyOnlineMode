@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="stateAlwaysHidden">
+        <activity android:name=".TravelDairyDescription"/>
         <activity android:name=".CurrencySelect" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".SignInActivity" />
@@ -30,8 +31,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
     </application>
 
 </manifest>

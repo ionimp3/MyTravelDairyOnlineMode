@@ -110,4 +110,10 @@ public class ProfileActivity extends AppCompatActivity {
         // 드로워 화면 만들면 드로워 화면으로 변경해라..아니면 그대로 대시보드로 이동
         finishAffinity();
     }
+
+    public void etcDescStart(View view) {
+        Intent intent = new Intent(this,TravelDairyDescription.class);
+        startActivity(intent);
+        finish();
+    }
 }
