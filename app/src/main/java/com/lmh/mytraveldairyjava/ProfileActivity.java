@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 import static com.lmh.mytraveldairyjava.SignInActivity.email;
 
 public class ProfileActivity extends AppCompatActivity {
+    Intent intent;
 
 
     @Override
@@ -75,21 +76,16 @@ public class ProfileActivity extends AppCompatActivity {
 
     public void selectCurrency(View view) {
 
-        String selectedCurrency ="KRW";
-        currSelected(selectedCurrency);
-       // Intent intent = new Intent(ProfileActivity.this, ProfileActivity.class);
-       // intent.putExtra("currencySelected", selectedCurrency);
-        //
-        //startActivity(intent);
-        Toast.makeText(ProfileActivity.this, "아직 미구현!!!!", Toast.LENGTH_SHORT).show();
-    }
 
-    private void currSelected(String selectedCurrency) {
-         Intent intent = new Intent(ProfileActivity.this, CurrencySelect.class);
-         intent.putExtra("currencySelected", selectedCurrency);
+        //TextView tmp1 = (TextView) findViewById(R.id.selected_curr);
+        //tmp1.setText(gcurr);
+        //String selectedCurrency = tmp1.getText().toString().trim();
+        //Toast.makeText(ProfileActivity.this, "전송화통화 : " + selectedCurrency, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(ProfileActivity.this, CurrencySelect.class);
+        //intent.putExtra("currencySelected", "selectedCurrency");
         startActivity(intent);
-    }
 
+    }
 
     public void logoutStart(View view) {
 

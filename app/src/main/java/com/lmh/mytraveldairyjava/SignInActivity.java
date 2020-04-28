@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,13 +19,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
 public class SignInActivity extends AppCompatActivity {
     static String loginuseremail;
-    static  String email;
+    static String email;
     private Button login;
     private Button passwordfind;
     private EditText email_login;
@@ -41,6 +43,8 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signinlayout);
 
+        appLoginCheck();
+
 
         login = (Button) findViewById(R.id.callSignIn);
         passwordfind = (Button) findViewById(R.id.callPasswordFind);
@@ -53,6 +57,22 @@ public class SignInActivity extends AppCompatActivity {
         //firebase 초기화
         firebaseAuth = FirebaseAuth.getInstance();
 
+    }
+
+    //로그인확인
+    private void appLoginCheck() {
+        //로그인확인
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            Intent intent = new Intent(SignInActivity.this, ProfileActivity.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(SignInActivity.this
+                    , "로그인 해주세요..", Toast.LENGTH_SHORT).show();
+            // Intent intent = new Intent(ProfileActivity.this, SignInActivity.class);
+            // startActivity(intent);
+        }
+        //
     }
 
 
@@ -154,7 +174,6 @@ public class SignInActivity extends AppCompatActivity {
     //
 
 
-
     //패스워드 리셋 요청화면 다이얼로그
     public void passwordFindStart(View view) {
 
@@ -212,7 +231,6 @@ public class SignInActivity extends AppCompatActivity {
     }
 
 
-
     //네이버로 로그인 미구현
     public void naverLoginStart(View view) {
 
@@ -227,7 +245,6 @@ public class SignInActivity extends AppCompatActivity {
 
     }
     //
-
 
 
 }

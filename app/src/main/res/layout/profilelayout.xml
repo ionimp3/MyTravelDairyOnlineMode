@@ -211,10 +211,11 @@
                 android:paddingStart="20dp"
                 android:text="KRW"
                 android:textColor="@color/grayColor"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:id="@+id/selected_curr"/>
 
             <Button
-                android:id="@+id/passwordRest"
+                android:id="@+id/selectCuid"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
@@ -223,6 +224,7 @@
                 android:onClick="selectCurrency"
                 android:scaleType="centerCrop" />
         </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -254,13 +256,12 @@
                 android:textSize="16sp" />
 
             <Button
-                android:id="@+id/passwordRest"
+                android:id="@+id/etc_aa"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/ic_nav_next"
-                android:onClick="selectCurrency"
                 android:scaleType="centerCrop" />
         </LinearLayout>
         <LinearLayout
@@ -283,13 +284,12 @@
                 android:textSize="16sp" />
 
             <Button
-                android:id="@+id/passwordRest"
+                android:id="@+id/etc_bb"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/ic_nav_next"
-                android:onClick="selectCurrency"
                 android:scaleType="centerCrop" />
         </LinearLayout>
         <LinearLayout
@@ -312,13 +312,12 @@
                 android:textSize="16sp" />
 
             <Button
-                android:id="@+id/passwordRest"
+                android:id="@+id/etc_cc"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/ic_nav_next"
-                android:onClick="selectCurrency"
                 android:scaleType="centerCrop" />
         </LinearLayout>
         <LinearLayout

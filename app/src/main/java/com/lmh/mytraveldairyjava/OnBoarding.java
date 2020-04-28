@@ -14,7 +14,10 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.lmh.mytraveldairyjava.SignInActivity;
 
 public class OnBoarding extends AppCompatActivity {
@@ -38,6 +41,9 @@ public class OnBoarding extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
+        appLoginCheck();
+
+
         // hook
         viewPager = findViewById(R.id.onBoarding_ViewPager);
         dotsLayout = findViewById(R.id.dots);
@@ -54,6 +60,21 @@ public class OnBoarding extends AppCompatActivity {
         //dots
         addDots(0);
         viewPager.addOnPageChangeListener(changeListener);
+    }
+
+    private void appLoginCheck() {
+        //로그인확인
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            Intent intent = new Intent(OnBoarding.this, ProfileActivity.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(OnBoarding.this
+                    , "로그인 해주세요..", Toast.LENGTH_SHORT).show();
+            // Intent intent = new Intent(ProfileActivity.this, SignInActivity.class);
+            // startActivity(intent);
+        }
+        //
     }
 
     //skip 버튼

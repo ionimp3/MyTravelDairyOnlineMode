@@ -48,18 +48,18 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/mainsub_han_eng_notosanskr_light"
         android:gravity="center_horizontal"
+        android:paddingTop="5dp"
+        android:paddingBottom="15dp"
         android:text="@string/Intro_SecondMessage"
         android:textColor="@color/colorPrimary"
         android:textSize="10sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/intro_logo"
-        app:layout_constraintVertical_bias="0.0"
-        android:paddingBottom="15dp"
-        android:paddingTop="5dp"/>
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
