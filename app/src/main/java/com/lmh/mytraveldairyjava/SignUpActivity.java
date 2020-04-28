@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Patterns;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -14,7 +15,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -44,11 +47,19 @@ public class SignUpActivity extends AppCompatActivity {
     FirebaseDatabase rootNode;
     DatabaseReference reference;
 
+    ActionBar actionBar;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signuplayout);
+
+
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setTitle("회원가입");
+
 
         email_join = (EditText) findViewById(R.id.regEmailId);
         pwd_join = (EditText) findViewById(R.id.regPassword);
@@ -236,6 +247,15 @@ public class SignUpActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {// 뒤로가기 버튼 눌렀을 때
+            Intent intent = new Intent(this,OnBoarding.class);
+            startActivity(intent);
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
     //화면 back 버튼 눌렀을때처리
     @Override
     public void onBackPressed() {

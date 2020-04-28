@@ -381,7 +381,7 @@
                 android:fontFamily="@font/main_han_eng_notosanskr_regular"
                 android:gravity="center_vertical"
                 android:paddingStart="20dp"
-                android:text="Version Beta 1.0 : My First APP"
+                android:text="Version Beta 1.0"
                 android:textColor="@color/grayColor"
                 android:textSize="16sp" />
 

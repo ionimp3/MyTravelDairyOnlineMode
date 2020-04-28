@@ -61,7 +61,7 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/mainsub_han_eng_notosanskr_light"
-        android:text=" 개인적으로 예행시 일정수립과 관련정보를 정리하고, 여행시 정보확인 및 습득한 정보 그리고 여행이 끝난 후 자료 정리를 용이하게 하기위해 개인용도로 만든 앱입낟. 오픈소스들을 짜집기해서 만든 나의 첫 안드로이드 앱. "
+        android:text=" 개인적으로 예행시 일정수립과 관련정보를 정리하고, 여행시 정보확인 및 습득한 정보 그리고 여행이 끝난 후 자료 정리를 용이하게 하기 위한 용도입니다. 구현은 위시빈여행앱 UI 와 오픈소스들을 짜집기해 만든 첫 개인용도 안드로이드앱 입니다. "
         android:textSize="10sp"
         android:gravity="center"
          />

@@ -1,11 +1,11 @@
 package com.lmh.mytraveldairyjava;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Patterns;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,8 +13,10 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,6 +28,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 
 public class SignInActivity extends AppCompatActivity {
+    ActionBar actionBar;
+    private Toolbar toolbar;
     static String loginuseremail;
     static String email;
     private Button login;
@@ -36,21 +40,17 @@ public class SignInActivity extends AppCompatActivity {
     ProgressBar progressBar;
     ProgressDialog dialog;
 
-
     FirebaseAuth firebaseAuth;
-
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signinlayout);
 
-
-
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setTitle("로그인");
 
         appLoginCheck1();
-
 
         login = (Button) findViewById(R.id.callSignIn);
         passwordfind = (Button) findViewById(R.id.callPasswordFind);
@@ -160,7 +160,7 @@ public class SignInActivity extends AppCompatActivity {
                             //DB상에는 메일과패스워드 정보없음..나중에 자기가 쓴글만 서로 읽고,쓰기 가능하도록
                             //관리자도 내용확인 불가.(FIREBASE DB RULE 작성자만 읽고 쓰도록 설정
                             //loginuseremail = String.format("%s", email);
-                            Toast.makeText(SignInActivity.this,"로그인 성공 !!! : " + email,Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignInActivity.this, "로그인 성공 !!! : " + email, Toast.LENGTH_SHORT).show();
                             //메일 아이뒤 임시 전달
                             //intent.putExtra("sendemailid", loginuseremail);
                             //
@@ -249,12 +249,31 @@ public class SignInActivity extends AppCompatActivity {
 
     }
     //
+
+
+
+/*    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbarcustum, menu);
+        return true;
+    }*/
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {// 뒤로가기 버튼 눌렀을 때
+            Intent intent = new Intent(this,OnBoarding.class);
+            startActivity(intent);
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     //화면 back 버튼 눌렀을때처리
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
         //맨처음화면으로 이동
-        Intent intent = new Intent(SignInActivity.this,OnBoarding.class);
+        Intent intent = new Intent(SignInActivity.this, OnBoarding.class);
         startActivity(intent);
         finish();
     }

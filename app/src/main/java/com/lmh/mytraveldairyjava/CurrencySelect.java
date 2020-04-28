@@ -51,24 +51,13 @@ public class CurrencySelect extends AppCompatActivity {
 
          //   }
        // });
-
-
     }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.actionbarcustum, menu);
-        return true;
-    }
-
 
     public void rgCurrChecked(View view) {
 
         int radioId = rgGroup.getCheckedRadioButtonId();
         radioButton = findViewById(radioId);
         Toast.makeText(this, "Selected Radio Button: " + radioButton.getText(),Toast.LENGTH_SHORT).show();
-
 
     }
 
@@ -83,16 +72,22 @@ public class CurrencySelect extends AppCompatActivity {
             return true;
         } return super.onOptionsItemSelected(item);
     }*/
+
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+      getMenuInflater().inflate(R.menu.actionbarcustum, menu);
+      return true;
+  }
+
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
       switch (item.getItemId()) {
           case android.R.id.home: { // 뒤로가기 버튼 눌렀을 때
               finish();
-              Toast.makeText(this, "clic1111k", Toast.LENGTH_SHORT).show();
               return true;
           }
           case R.id.action_btn1: { // 오른쪽 상단 버튼 눌렀을 때
-              Toast.makeText(this, "click", Toast.LENGTH_SHORT).show();
+              Toast.makeText(this, "DB에 저장진행한다", Toast.LENGTH_SHORT).show();
               return true;
           }
       }
