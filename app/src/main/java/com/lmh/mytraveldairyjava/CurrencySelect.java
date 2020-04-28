@@ -29,7 +29,8 @@ public class CurrencySelect extends AppCompatActivity {
 
     Intent intent;
 
-
+    // BackPressHandler 객체 선언, 할당
+    private BackPressHandler backPressHandler = new BackPressHandler(this);
 
 
     @Override
@@ -97,6 +98,20 @@ public class CurrencySelect extends AppCompatActivity {
       }
       return super.onOptionsItemSelected(item);
   }
+
+    @Override
+    public void onBackPressed() {
+        // Default
+        //backPressHandler.onBackPressed();
+        // Toast 메세지 사용자 지정
+        backPressHandler.onBackPressed("뒤로가기 버튼 한번 더 누르면, 선택한것을 저장하지 않고 종료");
+        // 뒤로가기 간격 사용자 지정
+        //backPressHandler.onBackPressed(3000);
+        // Toast, 간격 사용자 지정
+        //backPressHandler.onBackPressed("뒤로가기 버튼 한번 더 누르면 종료", 3000);
+
+    }
+
 
 
 
