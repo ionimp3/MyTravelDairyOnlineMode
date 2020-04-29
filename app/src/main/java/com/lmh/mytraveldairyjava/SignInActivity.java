@@ -72,9 +72,11 @@ public class SignInActivity extends AppCompatActivity {
         //로그인확인
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
-            Intent intent = new Intent(SignInActivity.this, ProfileActivity.class);
-            startActivity(intent);
-            finish();
+            FirebaseAuth.getInstance().signOut();
+            Toast.makeText(SignInActivity.this, "다시한번확인" ,Toast.LENGTH_SHORT).show();
+            //Intent intent = new Intent(SignInActivity.this, ProfileActivity.class);
+            //startActivity(intent);
+            //finish();
         }
 
     }
@@ -146,21 +148,23 @@ public class SignInActivity extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
 
+                            //이전화면 기억하기...로그인,로그아웃 시 두번로그인.. 조금 문제있음..
+                            //기존로그인했던 아이디에서 다른 아이디로 로그인하면 crash 남.
                             // [START rtdb_enable_persistence]
-                            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+                            //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
                             // [END rtdb_enable_persistence]
                             // [START rtdb_keep_synced]
-                            DatabaseReference scoresRef = FirebaseDatabase.getInstance().getReference("");
-                            scoresRef.keepSynced(true);
+                            //DatabaseReference scoresRef = FirebaseDatabase.getInstance().getReference("");
+                            // scoresRef.keepSynced(true);
                             // [END rtdb_keep_synced]
 
-
+                            Toast.makeText(SignInActivity.this, "로그인 성공 !!! : " + email, Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(SignInActivity.this, ProfileActivity.class);
                             //여기서 로그인한 메일아이디를 다른 액티비티로 넘겨줘야함..화면에 표시하기위해
                             //DB상에는 메일과패스워드 정보없음..나중에 자기가 쓴글만 서로 읽고,쓰기 가능하도록
                             //관리자도 내용확인 불가.(FIREBASE DB RULE 작성자만 읽고 쓰도록 설정
                             //loginuseremail = String.format("%s", email);
-                            Toast.makeText(SignInActivity.this, "로그인 성공 !!! : " + email, Toast.LENGTH_SHORT).show();
+
                             //메일 아이뒤 임시 전달
                             //intent.putExtra("sendemailid", loginuseremail);
                             //

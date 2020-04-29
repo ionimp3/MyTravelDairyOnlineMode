@@ -267,4 +267,12 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
     }
+    @Override
+    protected void onDestroy() {
+        //Toast.makeText(ProfileActivity.this
+        //        , "로그아웃 상태입니다..", Toast.LENGTH_SHORT).show();
+        super.onDestroy();
+        Log.i("TAG","onDestory");
+    }
+
 }
