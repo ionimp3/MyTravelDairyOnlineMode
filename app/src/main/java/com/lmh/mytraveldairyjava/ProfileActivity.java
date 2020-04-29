@@ -1,9 +1,11 @@
 package com.lmh.mytraveldairyjava;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +14,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,6 +34,12 @@ public class ProfileActivity extends AppCompatActivity {
     String tmps1;
     String tmps2;
 
+    public static final int PICK_FROM_ALBUM = 1;
+
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase mDatabase;
+
+    private TextView textivewDelete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,39 +49,43 @@ public class ProfileActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("설정");
 
+        // Authentication, Database, Storage 초기화
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance();
 
         //로그인 체크
         appLoginCheck3();
         //
         //isUserCallData();
 
-
     }
 
     private void appLoginCheck3() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            //로그인 상태일떼 data 가져오기 호출
-            isUserCallData();
-        } else {
+        if (mAuth.getCurrentUser() == null) {
             //로그인요청
             Toast.makeText(ProfileActivity.this
                     , "접속이 해제되었읍니다.. 다시 로그인을 해주세요~~", Toast.LENGTH_SHORT).show();
+
+            finish();
             Intent intent = new Intent(ProfileActivity.this, SignInActivity.class);
             startActivity(intent);
-            finish();
+
+        } else {
+
+            //로그인 상태일떼 data 가져오기 호출
+            isUserCallData();
         }
     }
 
     private void isUserCallData() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser user = mAuth.getCurrentUser();
         psemail = user.getEmail();
         tmps1 = psemail.replaceAll("[.]", "");
         tmps2 = tmps1.replaceAll("[@]", "");
 
         final TextView _txjoinTypeEmail = (TextView) findViewById(R.id.txjoinTypeEmail);
         final TextView _txjoinNic = (TextView) findViewById(R.id.txjoinNic);
-        Toast.makeText(this, "aaaa" + tmps2, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "aaaa" + tmps2, Toast.LENGTH_SHORT).show();
 
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference(tmps2 + "/FDB_SETTING_TB");
@@ -176,6 +190,11 @@ public class ProfileActivity extends AppCompatActivity {
 
             Toast.makeText(ProfileActivity.this
                     , "로그아웃 하였읍니다.", Toast.LENGTH_SHORT).show();
+
+            //moveTaskToBack(true);						// 태스크를 백그라운드로 이동
+           // finishAndRemoveTask();						// 액티비티 종료 + 태스크 리스트에서 지우기
+            //android.os.Process.killProcess(android.os.Process.myPid());	// 앱 프로세스 종료
+
             Intent intent = new Intent(ProfileActivity.this, SignInActivity.class);
             startActivity(intent);
 
@@ -217,4 +236,35 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
 
+    public void delUserStart(View view) {
+
+        if (mAuth.getCurrentUser() != null){
+            AlertDialog.Builder alert_confirm = new AlertDialog.Builder(ProfileActivity.this);
+            alert_confirm.setMessage("정말 계정을 삭제 할까요?").setCancelable(false).setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            mAuth.getCurrentUser().delete()
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            Toast.makeText(ProfileActivity.this, "계정이 삭제 되었습니다.", Toast.LENGTH_LONG).show();
+                                            finish();
+                                            startActivity(new Intent(getApplicationContext(), SignInActivity.class));
+                                        }
+                                    });
+                        }
+                    }
+            );
+            alert_confirm.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Toast.makeText(ProfileActivity.this, "취소", Toast.LENGTH_LONG).show();
+                }
+            });
+            alert_confirm.show();
+        } else {
+            Toast.makeText(ProfileActivity.this, "삭제 실패.", Toast.LENGTH_LONG).show();
+        }
+
+    }
 }
