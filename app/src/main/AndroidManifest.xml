@@ -2,10 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.lmh.mytraveldairyjava">
-    
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -16,12 +16,13 @@
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="stateAlwaysHidden"
         tools:ignore="AllowBackup">
-        <activity android:name=".Intro_loading"/>
+        <activity android:name=".ChangeProfileImage"/>
+        <activity android:name=".Intro_loading" />
         <activity android:name=".TravelDairyDescription" />
         <activity android:name=".CurrencySelect" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".SignInActivity" />
-        <activity android:name=".OnBoarding" />
+        <activity android:name=".ProfilePicUpload" />
         <activity android:name=".UserDashboard" />
         <activity android:name=".StartMainScreen" />
         <activity android:name=".StartActivity" />
@@ -31,13 +32,14 @@
             android:name=".DairyNew"
             android:label="신규여행계획"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ProfilePicUpload">
+        <activity android:name=".OnBoarding">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.lmh.android.fileprovider"
@@ -45,7 +47,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
     </application>
 

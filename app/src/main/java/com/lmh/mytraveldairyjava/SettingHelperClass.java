@@ -2,14 +2,14 @@ package com.lmh.mytraveldairyjava;
 
 public class SettingHelperClass {
 
-    Integer base_CURR_CD, login_MAT_ID, now_USER_ST;
+    String base_CURR_CD, login_MAT_ID, now_USER_ST;
     String  disp_MAIL_ID, cover_PIC, nic_NAME_NM, profile_PIC, push_ALAR_ST, sele_MAIL_PK, tstamp_UP_DT, tstamp_CR_DT;
 
     public SettingHelperClass() {
 
     }
 
-    public SettingHelperClass(Integer base_CURR_CD, String cover_PIC, Integer login_MAT_ID, Integer now_USER_ST, String disp_MAIL_ID, String nic_NAME_NM, String profile_PIC, String push_ALAR_ST, String sele_MAIL_PK, String tstamp_UP_DT, String tstamp_CR_DT) {
+    public SettingHelperClass(String base_CURR_CD, String cover_PIC, String login_MAT_ID, String now_USER_ST, String disp_MAIL_ID, String nic_NAME_NM, String profile_PIC, String push_ALAR_ST, String sele_MAIL_PK, String tstamp_UP_DT, String tstamp_CR_DT) {
         this.base_CURR_CD = base_CURR_CD;
         this.cover_PIC = cover_PIC;
         this.login_MAT_ID = login_MAT_ID;
@@ -23,27 +23,27 @@ public class SettingHelperClass {
         this.tstamp_CR_DT = tstamp_CR_DT;
     }
 
-    public Integer getBase_CURR_CD() {
+    public String getBase_CURR_CD() {
         return base_CURR_CD;
     }
 
-    public void setBase_CURR_CD(Integer base_CURR_CD) {
+    public void setBase_CURR_CD(String base_CURR_CD) {
         this.base_CURR_CD = base_CURR_CD;
     }
 
-    public Integer getLogin_MAT_ID() {
+    public String getLogin_MAT_ID() {
         return login_MAT_ID;
     }
 
-    public void setLogin_MAT_ID(Integer login_MAT_ID) {
+    public void setLogin_MAT_ID(String login_MAT_ID) {
         this.login_MAT_ID = login_MAT_ID;
     }
 
-    public Integer getNow_USER_ST() {
+    public String getNow_USER_ST() {
         return now_USER_ST;
     }
 
-    public void setNow_USER_ST(Integer now_USER_ST) {
+    public void setNow_USER_ST(String now_USER_ST) {
         this.now_USER_ST = now_USER_ST;
     }
 

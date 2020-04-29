@@ -174,14 +174,14 @@ public class SignUpActivity extends AppCompatActivity {
 
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                             //
-                            Integer base_CURR_CD = 1;
+                            String base_CURR_CD = "1";
                             String cover_PIC = "";
                             String disp_MAIL_ID = user.getEmail();
                             String tmps1 = disp_MAIL_ID.replaceAll("[.]", "");
                             String tmps2 = tmps1.replaceAll("[@]", "");
-                            Integer login_MAT_ID = 1;
+                            String login_MAT_ID = "1";
                             String nic_NAME_NM = "닉네임";
-                            Integer now_USER_ST = 1;
+                            String now_USER_ST = "1";
                             String profile_PIC = "";
                             String push_ALAR_ST = "N";
                             String sele_MAIL_PK = tmps2;

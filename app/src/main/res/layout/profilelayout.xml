@@ -260,13 +260,14 @@
                 android:textSize="16sp" />
 
             <Button
-                android:id="@+id/etc_aa"
+                android:id="@+id/profile_image"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/ic_nav_next"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                android:onClick="changeprofile_btn"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -286,7 +287,8 @@
                 android:paddingStart="20dp"
                 android:text="닉네임"
                 android:textColor="@color/grayColor"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:id="@+id/txjoinNic"/>
 
             <Button
                 android:id="@+id/etc_bb"
