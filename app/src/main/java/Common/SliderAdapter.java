@@ -1,4 +1,4 @@
-package com.lmh.mytraveldairyjava;
+package Common;
 
 import android.content.Context;
 import android.view.LayoutInflater;

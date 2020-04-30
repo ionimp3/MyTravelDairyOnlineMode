@@ -1,4 +1,4 @@
-package com.lmh.mytraveldairyjava;
+package Common;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -26,10 +26,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import Profile.ProfileActivity;
+import com.lmh.mytraveldairyjava.R;
 
 import java.time.LocalDateTime;
-
-import static com.lmh.mytraveldairyjava.SignInActivity.email;
 
 
 public class SignUpActivity extends AppCompatActivity {
@@ -251,7 +251,7 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {// 뒤로가기 버튼 눌렀을 때
-            Intent intent = new Intent(this,OnBoarding.class);
+            Intent intent = new Intent(this, OnBoarding.class);
             startActivity(intent);
             finish();
         }

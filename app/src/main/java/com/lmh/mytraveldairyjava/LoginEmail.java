@@ -18,6 +18,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import Common.SignUpActivity;
+
 public class LoginEmail extends AppCompatActivity {
     static String loginuseremail;
     private Button join;

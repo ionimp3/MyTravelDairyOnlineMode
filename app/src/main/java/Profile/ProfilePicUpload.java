@@ -1,4 +1,4 @@
-package com.lmh.mytraveldairyjava;
+package Profile;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,6 +30,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.lmh.mytraveldairyjava.R;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;

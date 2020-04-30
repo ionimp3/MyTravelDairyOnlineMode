@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
 
-import com.lmh.mytraveldairyjava.R;
+import Common.BackPressHandler;
 
 public class UserDashboard extends AppCompatActivity {
     // BackPressHandler 객체 선언, 할당

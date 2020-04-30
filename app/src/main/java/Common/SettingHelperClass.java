@@ -1,4 +1,4 @@
-package com.lmh.mytraveldairyjava;
+package Common;
 
 public class SettingHelperClass {
 

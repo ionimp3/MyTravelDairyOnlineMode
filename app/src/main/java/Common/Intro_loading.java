@@ -1,4 +1,4 @@
-package com.lmh.mytraveldairyjava;
+package Common;
 
 
 import android.content.Intent;
@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.lmh.mytraveldairyjava.R;
 
 public class Intro_loading extends AppCompatActivity {
     private static int SPLASH_SCREEN = 2000;

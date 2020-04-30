@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:paddingStart="15dp"
     android:paddingEnd="15dp"
-    tools:context=".ProfileActivity">
+    tools:context="Profile.ProfileActivity">
 
 
     <LinearLayout

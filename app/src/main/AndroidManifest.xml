@@ -16,24 +16,24 @@
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="stateAlwaysHidden"
         tools:ignore="AllowBackup">
-        <activity android:name=".UpdateNicName"/>
-        <activity android:name=".ChangeProfileImage" />
-        <activity android:name=".Intro_loading" />
-        <activity android:name=".TravelDairyDescription" />
-        <activity android:name=".CurrencySelect" />
-        <activity android:name=".ProfileActivity" />
+        <activity android:name="Profile.UpdateNicName"/>
+        <activity android:name="Profile.ChangeProfileImage" />
+        <activity android:name="Common.Intro_loading" />
+        <activity android:name="Profile.TravelDairyDescription" />
+        <activity android:name="Profile.CurrencySelect" />
+        <activity android:name="Profile.ProfileActivity" />
         <activity android:name=".SignInActivity" />
-        <activity android:name=".ProfilePicUpload" />
+        <activity android:name="Profile.ProfilePicUpload" />
         <activity android:name=".UserDashboard" />
-        <activity android:name=".StartMainScreen" />
+        <activity android:name="Profile.StartMainScreen" />
         <activity android:name=".StartActivity" />
-        <activity android:name=".SignUpActivity" />
+        <activity android:name="Common.SignUpActivity" />
         <activity android:name=".LoginEmail" />
         <activity
             android:name=".DairyNew"
             android:label="신규여행계획"
             android:theme="@style/AppTheme" />
-        <activity android:name=".OnBoarding">
+        <activity android:name="Common.OnBoarding">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

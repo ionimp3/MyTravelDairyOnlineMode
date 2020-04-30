@@ -1,4 +1,4 @@
-package com.lmh.mytraveldairyjava;
+package Profile;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,6 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.WindowManager;
+
+import Common.BackPressHandler;
+
+import com.lmh.mytraveldairyjava.R;
 
 public class TravelDairyDescription extends AppCompatActivity {
     // BackPressHandler 객체 선언, 할당
@@ -23,7 +27,7 @@ public class TravelDairyDescription extends AppCompatActivity {
 
 
     public void onBackPressed() {
-        Intent intent = new Intent(this,ProfileActivity.class);
+        Intent intent = new Intent(this, ProfileActivity.class);
         startActivity(intent);
         finish();
         //super.onBackPressed();
