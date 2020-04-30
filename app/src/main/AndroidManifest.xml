@@ -16,7 +16,8 @@
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="stateAlwaysHidden"
         tools:ignore="AllowBackup">
-        <activity android:name=".ChangeProfileImage"/>
+        <activity android:name=".UpdateNicName"/>
+        <activity android:name=".ChangeProfileImage" />
         <activity android:name=".Intro_loading" />
         <activity android:name=".TravelDairyDescription" />
         <activity android:name=".CurrencySelect" />

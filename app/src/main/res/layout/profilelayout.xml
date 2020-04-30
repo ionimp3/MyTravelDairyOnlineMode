@@ -291,13 +291,14 @@
                 android:id="@+id/txjoinNic"/>
 
             <Button
-                android:id="@+id/etc_bb"
+                android:id="@+id/nic_name"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/ic_nav_next"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                android:onClick="changenicname_btn"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
