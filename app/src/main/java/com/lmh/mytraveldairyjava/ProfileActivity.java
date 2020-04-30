@@ -205,10 +205,11 @@ public class ProfileActivity extends AppCompatActivity {
 
     public void changenicname_btn(View view) {
         //TextView nic_NAME_NM_FromDB = (TextView)findViewById(R.id.prenicname);
-        Toast.makeText(this, "데이터 넘겨 줍니다." + disp_MAIL_ID_FromDB, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "데이터 넘겨 줍니다." + disp_MAIL_ID_FromDB, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(ProfileActivity.this, UpdateNicName.class);
         intent.putExtra("nic_NAME_NM_Send", nic_NAME_NM_FromDB);
         intent.putExtra("disp_MAIL_ID_Send", disp_MAIL_ID_FromDB);
+        intent.putExtra("sele_MAIL_PK_Send",sele_MAIL_PK_FromDB);
         startActivity(intent);
         finish();
 

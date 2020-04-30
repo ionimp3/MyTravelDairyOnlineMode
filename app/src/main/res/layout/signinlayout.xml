@@ -77,11 +77,24 @@
         </LinearLayout>
 
     </LinearLayout>
+    <Button
+        android:id="@+id/callSignIn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp"
+        android:fontFamily="@font/main_han_eng_notosanskr_regular"
+        android:onClick="loginStart"
+        android:text="로그인"
+        android:textColor="@color/lightWhiteColor"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:background="@color/warningColor"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+
         android:layout_marginBottom="10dp"
         android:fontFamily="@font/main_han_eng_notosanskr_regular"
         android:text="소셜계정으로 로그인(미구현)"
@@ -131,7 +144,8 @@
             android:layout_height="60dp"
             android:background="#E44155"
             android:orientation="horizontal"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp">
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -153,24 +167,11 @@
                 android:onClick="googleLoginStart"
                 android:text="구글로 로그인"
                 android:textColor="@color/lightWhiteColor"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                />
         </LinearLayout>
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/callSignIn"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="50dp"
-        android:fontFamily="@font/main_han_eng_notosanskr_regular"
-        android:onClick="loginStart"
-        android:text="로그인"
-        android:textColor="@color/lightWhiteColor"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:background="@color/warningColor"/>
 
     <LinearLayout
         android:layout_width="match_parent"

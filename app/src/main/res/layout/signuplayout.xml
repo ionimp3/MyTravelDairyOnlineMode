@@ -7,7 +7,7 @@
     android:background="@color/lightGrayColor"
     android:orientation="vertical"
     android:padding="15dp"
-    tools:context=".Common.SignUnActivity">
+    tools:context=".SignUpActivity">
 
 
     <TextView

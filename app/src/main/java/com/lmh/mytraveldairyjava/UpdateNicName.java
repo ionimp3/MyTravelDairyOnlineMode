@@ -6,6 +6,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -13,7 +14,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,18 +32,31 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.w3c.dom.Text;
 
-public class UpdateNicName extends AppCompatActivity {
+public class UpdateNicName<tmpedtext> extends AppCompatActivity {
     ActionBar actionBar;
     private Toolbar toolbar;
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
 
+    FirebaseAuth firebaseAuth;
+    FirebaseDatabase rootNode;
+    DatabaseReference reference;
+
+    String brview;
+    String atview;
+    private String ckey;
+    private String tmpedtext;
+
     // BackPressHandler 객체 선언, 할당
     private BackPressHandler backPressHandler = new BackPressHandler(this);
 
+    Intent intent;
+
     TextView nicnameView, nicmailView;
     ImageView coverImageView, profileImageView;
+    EditText edPreEdNicName;
+    LinearLayout Prestacklayout1, Prestacklayout2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +64,7 @@ public class UpdateNicName extends AppCompatActivity {
         setContentView(R.layout.updatenicnamelayout);
 
         //이미지투명도처리
-        Drawable alpha = ((LinearLayout)findViewById(R.id.stacklayout2)).getBackground();
+        Drawable alpha = ((LinearLayout) findViewById(R.id.stacklayout2)).getBackground();
         alpha.setAlpha(50);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -59,6 +76,9 @@ public class UpdateNicName extends AppCompatActivity {
 
         nicmailView = (TextView) findViewById(R.id.premailid);
         nicnameView = (TextView) findViewById(R.id.prenicname);
+        edPreEdNicName = (EditText) findViewById(R.id.preEdNicName);
+        Prestacklayout1 = (LinearLayout) findViewById(R.id.stacklayout1);
+        Prestacklayout2 = (LinearLayout) findViewById(R.id.stacklayout2);
 
         //로그인 체크
         appLoginCheck3();
@@ -70,8 +90,9 @@ public class UpdateNicName extends AppCompatActivity {
     private void showAllNicNameData() {
 
         Intent intent = getIntent();
-        String atview = intent.getStringExtra("disp_MAIL_ID_Send");
-        String brview = intent.getStringExtra("nic_NAME_NM_Send");
+        atview = intent.getStringExtra("disp_MAIL_ID_Send");
+        brview = intent.getStringExtra("nic_NAME_NM_Send");
+        ckey = intent.getStringExtra("sele_MAIL_PK_Send");
         //Toast.makeText(this, "프로파일액티비티에 데이터 넘겨 받음" +  atview , Toast.LENGTH_SHORT).show();
         nicnameView.setText(brview);
         nicmailView.setText(atview);
@@ -134,6 +155,46 @@ public class UpdateNicName extends AppCompatActivity {
         //Toast.makeText(ProfileActivity.this
         //        , "로그아웃 상태입니다..", Toast.LENGTH_SHORT).show();
         super.onDestroy();
-        Log.i("TAG","onDestory");
+        Log.i("TAG", "onDestory");
     }
+
+    public void PreViewStart(View view) {
+        tmpedtext = edPreEdNicName.getEditableText().toString();
+        nicnameView.setText(tmpedtext);
+    }
+
+    public void UpdateNicNameStart(View view) {
+        Intent intent = getIntent();
+        tmpedtext = edPreEdNicName.getEditableText().toString();
+        ckey = intent.getStringExtra("sele_MAIL_PK_Send");
+        rootNode = FirebaseDatabase.getInstance();
+        reference = rootNode.getReference((ckey +"/FDB_SETTING_TB/"+ckey));
+
+        if (mAuth.getCurrentUser() != null) {
+            AlertDialog.Builder alert_confirm = new AlertDialog.Builder(this);
+            alert_confirm.setMessage("닉네임을 변경하시겠읍니까?").setCancelable(false).setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            reference.child("nic_NAME_NM").setValue(tmpedtext).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Toast.makeText(UpdateNicName.this, "DB에 변경완료하였읍니다..", Toast.LENGTH_LONG).show();
+                                                }
+                                            });
+                                        }
+
+                    }
+            );
+            alert_confirm.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Toast.makeText(UpdateNicName.this, "취소", Toast.LENGTH_LONG).show();
+                }
+            });
+            alert_confirm.show();
+        } else {
+            Toast.makeText(this, "변경 실패.", Toast.LENGTH_LONG).show();
+        }
+    }
+
 }

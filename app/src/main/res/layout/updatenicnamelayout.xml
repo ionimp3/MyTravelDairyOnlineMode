@@ -8,19 +8,30 @@
     android:orientation="vertical"
     android:paddingTop="100dp">
 
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="[미리보기]"
+        android:fontFamily="@font/main_han_eng_notosanskr_regular"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/grayColor"/>
     <LinearLayout
         android:id="@+id/stacklayout1"
         android:layout_width="300dp"
-        android:layout_height="150dp"
-        android:background="@color/colorPrimary"
+        android:layout_height="170dp"
+        android:background="@color/grayColor"
         android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/stacklayout2"
             android:layout_width="300dp"
-            android:layout_height="150dp"
+            android:layout_height="170dp"
             android:orientation="vertical"
-            android:background="@drawable/onboarding_img9">
+            android:background="@drawable/onboarding_img1"
+            >
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -30,7 +41,7 @@
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/googleg_standard_color_18"
+                    android:src="@drawable/ic_account_circle_black"
                     android:id="@+id/preprofilepic"
                     android:scaleType="centerCrop"/>
 
@@ -40,14 +51,20 @@
                     android:paddingTop="10dp"
                     android:text="닉네임"
                     android:textColor="@color/lightWhiteColor"
-                    android:id="@+id/prenicname"/>
+                    android:id="@+id/prenicname"
+                    android:fontFamily="@font/main_han_eng_notosanskr_regular"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="이메일아이디"
                     android:textColor="@color/lightWhiteColor"
-                    android:id="@+id/premailid"/>
+                    android:id="@+id/premailid"
+                    android:fontFamily="@font/main_han_eng_notosanskr_regular"
+                    android:textSize="12sp"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -57,19 +74,37 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="변경할 닉네임 입력"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:imeOptions="actionDone"
+        android:inputType="text"
+        android:maxLength="15"
+        android:fontFamily="@font/main_han_eng_notosanskr_regular"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/grayColor"/>
 
     <Button
         android:layout_marginTop="30dp"
         android:id="@+id/previewbtn"
         android:layout_width="245dp"
-        android:layout_height="58dp"
+        android:layout_height="50dp"
         android:text="미리보기"
-        android:onClick="PreViewStart"/>
+        android:onClick="PreViewStart"
+        android:fontFamily="@font/main_han_eng_notosanskr_regular"
+        android:textSize="14sp"
+        android:textColor="@color/lightWhiteColor"
+        android:background="@color/colorPrimary"
+        android:layout_marginBottom="10dp"
+        />
     <Button
         android:id="@+id/updatenicnamebtn"
         android:layout_width="245dp"
-        android:layout_height="58dp"
+        android:layout_height="50dp"
         android:text="변경"
-        android:onClick="UpdateNicNameStart"/>
+        android:onClick="UpdateNicNameStart"
+        android:fontFamily="@font/main_han_eng_notosanskr_regular"
+        android:textSize="14sp"
+        android:textColor="@color/lightWhiteColor"
+        android:background="@color/colorPrimary"
+        />
 </LinearLayout>
