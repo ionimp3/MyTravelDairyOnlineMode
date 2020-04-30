@@ -25,8 +25,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.lmh.mytraveldairyjava.R;
-import com.lmh.mytraveldairyjava.SignInActivity;
-import com.lmh.mytraveldairyjava.UserDashboard;
+import Common.SignInActivity;
+import DashBoard.UserDashboard;
 
 import Common.BackPressHandler;
 

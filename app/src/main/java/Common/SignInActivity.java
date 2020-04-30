@@ -1,4 +1,4 @@
-package com.lmh.mytraveldairyjava;
+package Common;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -21,16 +21,16 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.lmh.mytraveldairyjava.R;
 
-import Common.OnBoarding;
 import Profile.ProfileActivity;
 
 
 public class SignInActivity extends AppCompatActivity {
     ActionBar actionBar;
     private Toolbar toolbar;
-    static String loginuseremail;
-    static String email;
+    public static String loginuseremail;
+    public static String email;
     private Button login;
     private Button passwordfind;
     private EditText email_login;

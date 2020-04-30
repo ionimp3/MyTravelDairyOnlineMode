@@ -1,9 +1,11 @@
-package com.lmh.mytraveldairyjava;
+package DashBoard;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.WindowManager;
+
+import com.lmh.mytraveldairyjava.R;
 
 import Common.BackPressHandler;
 

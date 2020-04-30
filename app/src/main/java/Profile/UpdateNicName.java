@@ -26,7 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import Common.BackPressHandler;
 
 import com.lmh.mytraveldairyjava.R;
-import com.lmh.mytraveldairyjava.SignInActivity;
+import Common.SignInActivity;
 
 public class UpdateNicName<tmpedtext> extends AppCompatActivity {
     ActionBar actionBar;

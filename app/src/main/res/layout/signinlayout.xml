@@ -7,7 +7,7 @@
     android:background="@color/lightGrayColor"
     android:orientation="vertical"
     android:padding="15dp"
-    tools:context=".Common.SignInActivity">
+    tools:context="Common.SignInActivity">
 
 
     <TextView

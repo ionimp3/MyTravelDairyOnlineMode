@@ -35,7 +35,7 @@ public class Intro_loading extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //화면전체를 사용한다고 정의, 액션바설정은 표시 그러므로 액션바 부분까지 표시할려면 STYLE에서 NOACTIONBAR 테마로
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.intro_loading);
 
         ActionBar actionBar = getSupportActionBar();

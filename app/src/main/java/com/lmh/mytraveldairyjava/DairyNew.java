@@ -28,7 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.time.LocalDateTime;
 
-import static com.lmh.mytraveldairyjava.SignInActivity.email;
+import static Common.SignInActivity.email;
 
 
 public class DairyNew extends AppCompatActivity {

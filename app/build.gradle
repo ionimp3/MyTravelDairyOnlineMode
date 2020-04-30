@@ -24,7 +24,7 @@ android {
     sourceSets {
         main {
             res {
-                srcDirs 'src/main/res', 'src/main/res/onboard'
+                srcDirs 'src/main/res', 'src/main/res/onboard', 'src/main/res/common', 'src/main/res/commonicon', 'src/main/res/boarderstyle', 'src/main/res/etcicon', 'src/main/res/custumdrawer'
             }
             java {
                 srcDirs 'src/main/java', 'src/main/java/2'
