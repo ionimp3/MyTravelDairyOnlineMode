@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -69,6 +70,7 @@ public class ProfileActivity extends AppCompatActivity {
             finish();
             Intent intent = new Intent(ProfileActivity.this, SignInActivity.class);
             startActivity(intent);
+            finish();
 
         } else {
 
@@ -173,12 +175,14 @@ public class ProfileActivity extends AppCompatActivity {
         Intent intent = new Intent(ProfileActivity.this, CurrencySelect.class);
         //intent.putExtra("currencySelected", "selectedCurrency");
         startActivity(intent);
+        finish();
 
     }
 
     public void changeprofile_btn(View view) {
         Intent intent = new Intent(ProfileActivity.this, ChangeProfileImage.class);
         startActivity(intent);
+        finish();
     }
 
     public void logoutStart(View view) {
@@ -197,6 +201,7 @@ public class ProfileActivity extends AppCompatActivity {
 
             Intent intent = new Intent(ProfileActivity.this, SignInActivity.class);
             startActivity(intent);
+            finish();
 
 
         } else {
@@ -240,16 +245,25 @@ public class ProfileActivity extends AppCompatActivity {
 
         if (mAuth.getCurrentUser() != null){
             AlertDialog.Builder alert_confirm = new AlertDialog.Builder(ProfileActivity.this);
-            alert_confirm.setMessage("정말 계정을 삭제 할까요?").setCancelable(false).setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            alert_confirm.setMessage("정말 계정을 삭제 할까요? 탈퇴시 DB에 저장된 데이터도 삭제됩니다.").setCancelable(false).setPositiveButton("확인", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             mAuth.getCurrentUser().delete()
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
-                                            Toast.makeText(ProfileActivity.this, "계정이 삭제 되었습니다.", Toast.LENGTH_LONG).show();
-                                            finish();
+                                            //선택된 사용자노드 기준 하위글 전체삭제 구문추가
+                                            DatabaseReference referenceroot = FirebaseDatabase.getInstance().getReference(tmps2);
+                                            referenceroot.setValue(null).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Toast.makeText(ProfileActivity.this, "DB,Storage 데이터 와 계정을 삭제하였읍니다.", Toast.LENGTH_LONG).show();
+                                                }
+                                            });
+
+                                            //Toast.makeText(ProfileActivity.this, "계정이 삭제 되었습니다.", Toast.LENGTH_LONG).show();
                                             startActivity(new Intent(getApplicationContext(), SignInActivity.class));
+                                            finish();
                                         }
                                     });
                         }

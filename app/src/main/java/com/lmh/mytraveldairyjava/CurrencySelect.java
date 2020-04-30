@@ -83,6 +83,8 @@ public class CurrencySelect extends AppCompatActivity {
   public boolean onOptionsItemSelected(MenuItem item) {
       switch (item.getItemId()) {
           case android.R.id.home: { // 뒤로가기 버튼 눌렀을 때
+              Intent intent = new Intent(this, ProfileActivity.class);
+              startActivity(intent);
               finish();
               return true;
           }
@@ -96,10 +98,13 @@ public class CurrencySelect extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        Intent intent = new Intent(this,ProfileActivity.class);
+        startActivity(intent);
+        finish();
         // Default
         //backPressHandler.onBackPressed();
         // Toast 메세지 사용자 지정
-        backPressHandler.onBackPressed("뒤로가기 버튼 한번 더 누르면, 선택한것을 저장하지 않고 종료");
+        //backPressHandler.onBackPressed("뒤로가기 버튼 한번 더 누르면, 선택한것을 저장하지 않고 앱을 종료");
         // 뒤로가기 간격 사용자 지정
         //backPressHandler.onBackPressed(3000);
         // Toast, 간격 사용자 지정

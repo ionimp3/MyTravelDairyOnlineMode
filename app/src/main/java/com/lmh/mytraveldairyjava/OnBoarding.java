@@ -48,7 +48,7 @@ public class OnBoarding extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        appLoginCheck();
+        //appLoginCheck();
 
 
         // hook
@@ -69,20 +69,14 @@ public class OnBoarding extends AppCompatActivity {
         viewPager.addOnPageChangeListener(changeListener);
     }
 
-    private void appLoginCheck() {
-        //로그인확인
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
+/*    private void appLoginCheck() {
+
             Intent intent = new Intent(OnBoarding.this, ProfileActivity.class);
             startActivity(intent);
-        } else {
-            Toast.makeText(OnBoarding.this
-                    , "로그인 해주세요..", Toast.LENGTH_SHORT).show();
-            // Intent intent = new Intent(ProfileActivity.this, SignInActivity.class);
-            // startActivity(intent);
-        }
+            finish();
+
         //
-    }
+    }*/
 
     //skip 버튼
 
@@ -90,6 +84,7 @@ public class OnBoarding extends AppCompatActivity {
         //SKIP 시 로그인 화면으로
         Intent intent = new Intent(OnBoarding.this, SignInActivity.class);
         startActivity(intent);
+        finish();
     }
 
     public void playon(View view) {
@@ -173,6 +168,7 @@ public class OnBoarding extends AppCompatActivity {
 
         Intent intent = new Intent(OnBoarding.this, SignUpActivity.class);
         startActivity(intent);
+        finish();
 
     }
 
@@ -180,6 +176,7 @@ public class OnBoarding extends AppCompatActivity {
     public void callLogin(View view) {
         Intent intent = new Intent(OnBoarding.this, SignInActivity.class);
         startActivity(intent);
+        finish();
 
     }
 
@@ -195,7 +192,7 @@ public class OnBoarding extends AppCompatActivity {
 
         if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
             backKeyPressedTime = System.currentTimeMillis();
-            toast = Toast.makeText(this, "\'뒤로\' 버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT);
+            toast = Toast.makeText(this, "\'뒤로\' 버튼을 한번 더 누르시면 앱이 종료됩니다.", Toast.LENGTH_SHORT);
             toast.show();
             return;
         }

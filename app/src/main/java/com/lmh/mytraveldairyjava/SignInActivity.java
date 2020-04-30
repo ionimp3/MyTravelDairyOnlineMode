@@ -50,7 +50,7 @@ public class SignInActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("로그인");
 
-        appLoginCheck1();
+        //appLoginCheck1();
 
         login = (Button) findViewById(R.id.callSignIn);
         passwordfind = (Button) findViewById(R.id.callPasswordFind);
@@ -67,7 +67,7 @@ public class SignInActivity extends AppCompatActivity {
 
     }
 
-    //로그인확인
+/*    //로그인확인
     private void appLoginCheck1() {
         //로그인확인
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -79,7 +79,7 @@ public class SignInActivity extends AppCompatActivity {
             //finish();
         }
 
-    }
+    }*/
 
 
     //validation 메일
@@ -169,6 +169,7 @@ public class SignInActivity extends AppCompatActivity {
                             //intent.putExtra("sendemailid", loginuseremail);
                             //
                             startActivity(intent);
+                            finish();
                             dialog.dismiss();
                         } else {
                             dialog.dismiss();
