@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:background="@color/lightGrayColor"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="닉네임"
+        android:layout_above="@id/h_text2"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/h_text1"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이메일아이디"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/h_text2"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="20dp"/>
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/google"
+        android:id="@+id/h_image1"
+        android:layout_above="@+id/h_text1"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="10dp"
+        />
+
+
+
+</RelativeLayout>

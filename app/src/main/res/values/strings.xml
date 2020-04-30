@@ -69,4 +69,14 @@
     <string name="third_Description">여행도중에 계획은 언제나 변경되고, 더 해지거나 빠진다. 고민 말고 다시 계획하고, 기록을 남기자! 다음 여행자를 위한 정보는 메모나 사진으로 남기도록 하자</string>
     <string name="fourth_Description">이젠 집으로.. 얼마나 지출을까? 정산을 해보자..여행을 마치면 사진 뿐이니 사진도 정리해 두자..미루면 영원히 미뤄진다 </string>
 
+    <!--임시 -->
+    <string name="temp_lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec tellus et sapien molestie laoreet nec eu risus. Aliquam est velit, sollicitudin id metus vel, molestie eleifend erat. Phasellus non nisl iaculis, porta velit quis, accumsan odio. Etiam vel erat sit amet enim sagittis finibus. Nam convallis justo tempus, accumsan urna nec, aliquet leo. Suspendisse consectetur iaculis nunc, eu hendrerit sem rutrum gravida. Aliquam sagittis nisi erat, at finibus libero accumsan rhoncus.
+
+Vivamus lobortis in augue ac tristique. Donec in lacus et mi dignissim lobortis. Suspendisse felis massa, imperdiet et leo in, porttitor tristique erat. Morbi lobortis fermentum ex in sollicitudin. Fusce accumsan massa a pulvinar fringilla. Proin mattis fringilla velit, quis consequat dolor lobortis eget. Fusce ullamcorper pharetra augue sit amet ornare. Maecenas sit amet nibh velit. Vestibulum consequat, lorem a fermentum malesuada, enim tellus varius lacus, a congue tellus diam in ante. Fusce dapibus nisi nec convallis aliquet. Fusce aliquam tellus sit amet augue condimentum pharetra. Sed luctus sapien et risus accumsan tristique vel sed tellus. Phasellus ut lectus maximus, eleifend velit non, sodales ante. Nullam porttitor eu est nec rutrum. Donec euismod neque non felis vestibulum porttitor.
+
+Sed non ipsum gravida, bibendum nunc sed, vestibulum nisl. Fusce arcu enim, tempor eget maximus at, pulvinar quis mauris. Aliquam placerat vitae mi sit amet tincidunt. Praesent aliquet orci eros, id lacinia massa pellentesque a. Nulla semper non dolor ultricies luctus. Duis et consequat ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam id ipsum est.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

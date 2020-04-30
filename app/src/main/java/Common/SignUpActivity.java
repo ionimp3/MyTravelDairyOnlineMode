@@ -242,9 +242,10 @@ public class SignUpActivity extends AppCompatActivity {
         //로그인확인
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
-            Intent intent = new Intent(SignUpActivity.this, ProfileActivity.class);
+            FirebaseAuth.getInstance().signOut();
+            /*Intent intent = new Intent(SignUpActivity.this, ProfileActivity.class);
             startActivity(intent);
-            finish();
+            finish();*/
         }
     }
 

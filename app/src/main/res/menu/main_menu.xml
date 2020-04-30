@@ -1,4 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_home"
+            android:title="home"
+            android:icon="@drawable/logo1"
+            />
+        <item
+            android:id="@+id/nav_routemap"
+            android:title="routemap"
+            android:icon="@drawable/ic_routmap"
+            />
+        <item
+            android:id="@+id/nav_world"
+            android:title="월드맵"
+            android:icon="@drawable/ic_world"
+            />
+
+
+    </group>
+
+    <item
+        android:title="profile">
+        <menu>
+            <group
+                android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/nav_p_f1"
+                    android:title="home"
+                    android:icon="@drawable/logo1"
+                    />
+                <item
+                    android:id="@+id/nav_p_f2"
+                    android:title="routemap"
+                    android:icon="@drawable/ic_routmap"
+                    />
+                <item
+                    android:id="@+id/nav_p_f3"
+                    android:title="월드맵"
+                    android:icon="@drawable/ic_world"
+                    />
+
+
+            </group>
+        </menu>
+
+    </item>
+
+    <item
+        android:title="catagory">
+        <menu>
+            <group
+                android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/nav_c_f1"
+                    android:title="home"
+                    android:icon="@drawable/logo1"
+                    />
+                <item
+                    android:id="@+id/nav_c_f2"
+                    android:title="routemap"
+                    android:icon="@drawable/ic_routmap"
+                    />
+                <item
+                    android:id="@+id/nav_c_f3"
+                    android:title="월드맵"
+                    android:icon="@drawable/ic_world"
+                    />
+
+
+            </group>
+        </menu>
+
+    </item>
+
+    <item
+        android:title="share">
+        <menu>
+            <group
+                android:checkableBehavior="none">
+
+                <item
+                    android:id="@+id/nav_s_f1"
+                    android:title="home"
+                    android:icon="@drawable/logo1"
+                    />
+                <item
+                    android:id="@+id/nav_s_f2"
+                    android:title="routemap"
+                    android:icon="@drawable/ic_routmap"
+                    />
+
+
+            </group>
+        </menu>
+
+    </item>
+
 </menu>

@@ -16,6 +16,9 @@
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="stateAlwaysHidden"
         tools:ignore="AllowBackup">
+        <!--16:9,18:9 화면비 상태에 자동맞춤 -->
+        <meta-data android:name="android.max_aspect" android:value="2.1" />
+        <!-- // -->
         <activity android:name="Profile.UpdateNicName"/>
         <activity android:name="Profile.ChangeProfileImage" />
         <activity android:name="Common.OnBoarding" />
@@ -24,7 +27,7 @@
         <activity android:name="Profile.ProfileActivity" />
         <activity android:name="Common.SignInActivity" />
         <activity android:name="Profile.ProfilePicUpload" />
-        <activity android:name="DashBoard.UserDashboard" />
+        <activity android:name="Common.Intro_loading" />
         <activity android:name="Profile.StartMainScreen" />
         <activity android:name=".StartActivity" />
         <activity android:name="Common.SignUpActivity" />
@@ -33,7 +36,7 @@
             android:name=".DairyNew"
             android:label="신규여행계획"
             android:theme="@style/AppTheme" />
-        <activity android:name="Common.Intro_loading">
+        <activity android:name="DashBoard.UserDashboard">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
