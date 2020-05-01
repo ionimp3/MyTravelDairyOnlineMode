@@ -21,7 +21,7 @@
         <!--텍스트 , 아이콘 색상- 선태시 -->
         <item name="colorPrimary">@color/lightWhiteColor</item>
         <!--백그라운드 색상 - 선택시 -->
-        <item name="colorControlHighlight">@color/colorPrimary</item>
+        <item name="colorControlHighlight">@color/grayColor</item>
 
     </style>
 

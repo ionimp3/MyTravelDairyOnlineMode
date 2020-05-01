@@ -21,7 +21,7 @@
         <!-- // -->
         <activity android:name="Profile.UpdateNicName"/>
         <activity android:name="Profile.ChangeProfileImage" />
-        <activity android:name="Common.OnBoarding" />
+        <activity android:name="Common.Intro_loading" />
         <activity android:name="Profile.TravelDairyDescription" />
         <activity android:name="Profile.CurrencySelect" />
         <activity android:name="Profile.ProfileActivity" />
@@ -36,7 +36,7 @@
             android:name=".DairyNew"
             android:label="신규여행계획"
             android:theme="@style/AppTheme" />
-        <activity android:name="Common.Intro_loading">
+        <activity android:name="Common.OnBoarding">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

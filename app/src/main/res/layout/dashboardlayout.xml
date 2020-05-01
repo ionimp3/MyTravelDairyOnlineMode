@@ -49,5 +49,6 @@
         android:background="@color/lightWhiteColor"
         android:theme="@style/MyNavigationTheme"
         app:headerLayout="@layout/menu_header"
-        app:menu="@menu/main_menu" />
+        app:menu="@menu/main_menu"
+        android:layout_marginStart="-45dp"/>
 </androidx.drawerlayout.widget.DrawerLayout>

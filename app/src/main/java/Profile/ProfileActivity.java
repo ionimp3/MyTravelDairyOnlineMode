@@ -118,7 +118,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    base_CURR_CD_FromDB = dataSnapshot.child(tmps2).child("base_CURR_CD").getValue(String.class);
+                    /*base_CURR_CD_FromDB = dataSnapshot.child(tmps2).child("base_CURR_CD").getValue(String.class);
                     cover_PIC_FromDB = dataSnapshot.child(tmps2).child("cover_PIC").getValue(String.class);
                     disp_MAIL_ID_FromDB = dataSnapshot.child(tmps2).child("disp_MAIL_ID").getValue(String.class);
                     login_MAT_ID_FromDB = dataSnapshot.child(tmps2).child("login_MAT_ID").getValue(String.class);
@@ -128,7 +128,18 @@ public class ProfileActivity extends AppCompatActivity {
                     push_ALAR_ST_FromDB = dataSnapshot.child(tmps2).child("push_ALAR_ST").getValue(String.class);
                     sele_MAIL_PK_FromDB = dataSnapshot.child(tmps2).child("sele_MAIL_PK").getValue(String.class);
                     tstamp_CR_DT_FromDB = dataSnapshot.child(tmps2).child("tstamp_CR_DT").getValue(String.class);
-                    tstamp_UP_DT_FromDB = dataSnapshot.child(tmps2).child("tstamp_UP_DT").getValue(String.class);
+                    tstamp_UP_DT_FromDB = dataSnapshot.child(tmps2).child("tstamp_UP_DT").getValue(String.class);*/
+                    base_CURR_CD_FromDB = dataSnapshot.child("base_CURR_CD").getValue(String.class);
+                    cover_PIC_FromDB = dataSnapshot.child("cover_PIC").getValue(String.class);
+                    disp_MAIL_ID_FromDB = dataSnapshot.child("disp_MAIL_ID").getValue(String.class);
+                    login_MAT_ID_FromDB = dataSnapshot.child("login_MAT_ID").getValue(String.class);
+                    nic_NAME_NM_FromDB = dataSnapshot.child("nic_NAME_NM").getValue(String.class);
+                    now_USER_ST_FromDB = dataSnapshot.child("now_USER_ST").getValue(String.class);
+                    profile_PIC_FromDB = dataSnapshot.child("profile_PIC").getValue(String.class);
+                    push_ALAR_ST_FromDB = dataSnapshot.child("push_ALAR_ST").getValue(String.class);
+                    sele_MAIL_PK_FromDB = dataSnapshot.child("sele_MAIL_PK").getValue(String.class);
+                    tstamp_CR_DT_FromDB = dataSnapshot.child("tstamp_CR_DT").getValue(String.class);
+                    tstamp_UP_DT_FromDB = dataSnapshot.child("tstamp_UP_DT").getValue(String.class);
 
                     _txjoinTypeEmail.setText(disp_MAIL_ID_FromDB);
                     _txjoinNic.setText(nic_NAME_NM_FromDB);
@@ -196,6 +207,7 @@ public class ProfileActivity extends AppCompatActivity {
         Intent intent = new Intent(ProfileActivity.this, CurrencySelect.class);
         //intent.putExtra("currencySelected", "selectedCurrency");
         intent.putExtra("base_CURR_CD_Send", base_CURR_CD_FromDB);
+        intent.putExtra("sele_MAIL_PK_Send",sele_MAIL_PK_FromDB);
         startActivity(intent);
         finish();
 
@@ -204,6 +216,7 @@ public class ProfileActivity extends AppCompatActivity {
     public void changeprofile_btn(View view) {
         Intent intent = new Intent(ProfileActivity.this, ChangeProfileImage.class);
         intent.putExtra("profile_PIC_Send", profile_PIC_FromDB);
+        intent.putExtra("sele_MAIL_PK_Send",sele_MAIL_PK_FromDB);
         startActivity(intent);
         finish();
     }

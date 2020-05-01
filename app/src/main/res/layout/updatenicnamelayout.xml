@@ -29,28 +29,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="35dp">
 
         <TextView
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/main_han_eng_notosanskr_regular"
-            android:text="[미리보기]"
+            android:text="[변경화면]"
             android:textColor="@color/grayColor"
             android:textSize="18sp"
             android:textStyle="bold" />
 
         <LinearLayout
             android:id="@+id/stacklayout1"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="170dp"
             android:background="@color/grayColor"
             android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/stacklayout2"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="170dp"
                 android:background="@drawable/onboarding_img1"
                 android:orientation="vertical">
@@ -94,7 +95,7 @@
 
         <EditText
             android:id="@+id/preEdNicName"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:fontFamily="@font/main_han_eng_notosanskr_regular"
@@ -109,27 +110,17 @@
 
         <Button
             android:id="@+id/previewbtn"
-            android:layout_width="245dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="10dp"
-            android:background="@color/colorPrimary"
+            android:background="@color/grayColor"
             android:fontFamily="@font/main_han_eng_notosanskr_regular"
             android:onClick="PreViewStart"
             android:text="미리보기"
             android:textColor="@color/lightWhiteColor"
             android:textSize="14sp" />
 
-        <Button
-            android:id="@+id/updatenicnamebtn"
-            android:layout_width="245dp"
-            android:layout_height="50dp"
-            android:background="@color/colorPrimary"
-            android:fontFamily="@font/main_han_eng_notosanskr_regular"
-            android:onClick="UpdateNicNameStart"
-            android:text="변경"
-            android:textColor="@color/lightWhiteColor"
-            android:textSize="14sp" />
 
     </LinearLayout>
 

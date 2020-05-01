@@ -109,9 +109,6 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
             }
         });
 
-
-
-
         //Navigation Drawer
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
@@ -145,7 +142,7 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
 
     }
 
-/*    private void animateNavigationDrawer() {
+  private void animateNavigationDrawer() {
         drawerLayout.setScrimColor(getResources().getColor(R.color.warningColor));
         //Add any color or remove it to use the default one!
         //To make it transparent use Color.Transparent in side setScrimColor();
@@ -167,7 +164,7 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
                 contentLayout.setTranslationX(xTranslation);
             }
         });
-    }*/
+    }
 
     @Override
     public void onBackPressed() {

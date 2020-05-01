@@ -174,6 +174,7 @@ public class SignUpActivity extends AppCompatActivity {
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                             //
                             String base_CURR_CD = "1";
+                            String base_CURR_NM = "KRW";
                             String cover_PIC = "";
                             String disp_MAIL_ID = user.getEmail();
                             String tmps1 = disp_MAIL_ID.replaceAll("[.]", "");
@@ -194,8 +195,8 @@ public class SignUpActivity extends AppCompatActivity {
 
                             //데이터 저장
                             SettingHelperClass settingHelperClass;
-                            settingHelperClass = new SettingHelperClass(base_CURR_CD, cover_PIC, login_MAT_ID, now_USER_ST, disp_MAIL_ID, nic_NAME_NM, profile_PIC, push_ALAR_ST, sele_MAIL_PK, tstamp_UP_DT, tstamp_CR_DT);
-                            reference.child(sele_MAIL_PK).setValue(settingHelperClass);
+                            settingHelperClass = new SettingHelperClass( base_CURR_CD,  base_CURR_NM,  login_MAT_ID,  now_USER_ST,  disp_MAIL_ID,  cover_PIC,  nic_NAME_NM,  profile_PIC,  push_ALAR_ST,  sele_MAIL_PK,  tstamp_UP_DT,  tstamp_CR_DT);
+                            reference.setValue(settingHelperClass);
 
                             //
 
