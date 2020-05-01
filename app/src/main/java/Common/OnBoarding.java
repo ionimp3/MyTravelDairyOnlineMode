@@ -43,7 +43,7 @@ public class OnBoarding extends AppCompatActivity {
         setContentView(R.layout.onboardinglayout);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        //actionBar.hide();
 
         //appLoginCheck();
 

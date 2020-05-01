@@ -23,9 +23,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
 import Common.BackPressHandler;
 
 import com.lmh.mytraveldairyjava.R;
+
 import Common.SignInActivity;
 
 public class UpdateNicName<tmpedtext> extends AppCompatActivity {
@@ -63,8 +65,10 @@ public class UpdateNicName<tmpedtext> extends AppCompatActivity {
         Drawable alpha = ((LinearLayout) findViewById(R.id.stacklayout2)).getBackground();
         alpha.setAlpha(50);
 
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle("닉네임변경");
+        //setTitle("닉네임변경");
 
         // Authentication, Database, Storage 초기화
         mAuth = FirebaseAuth.getInstance();
@@ -164,20 +168,20 @@ public class UpdateNicName<tmpedtext> extends AppCompatActivity {
         tmpedtext = edPreEdNicName.getEditableText().toString();
         ckey = intent.getStringExtra("sele_MAIL_PK_Send");
         rootNode = FirebaseDatabase.getInstance();
-        reference = rootNode.getReference((ckey +"/FDB_SETTING_TB/"+ckey));
+        reference = rootNode.getReference((ckey + "/FDB_SETTING_TB/" + ckey));
 
         if (mAuth.getCurrentUser() != null) {
             AlertDialog.Builder alert_confirm = new AlertDialog.Builder(this);
             alert_confirm.setMessage("닉네임을 변경하시겠읍니까?").setCancelable(false).setPositiveButton("확인", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                                            reference.child("nic_NAME_NM").setValue(tmpedtext).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                @Override
-                                                public void onSuccess(Void aVoid) {
-                                                    Toast.makeText(UpdateNicName.this, "DB에 변경완료하였읍니다..", Toast.LENGTH_LONG).show();
-                                                }
-                                            });
-                                        }
+                            reference.child("nic_NAME_NM").setValue(tmpedtext).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(UpdateNicName.this, "DB에 변경완료하였읍니다..", Toast.LENGTH_LONG).show();
+                                }
+                            });
+                        }
 
                     }
             );

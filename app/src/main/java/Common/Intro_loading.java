@@ -38,7 +38,7 @@ public class Intro_loading extends AppCompatActivity {
         setContentView(R.layout.intro_loading);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        //actionBar.hide();
 
         //animation
         ani1_topAnim = AnimationUtils.loadAnimation(this, R.anim.ani1_top_animation);

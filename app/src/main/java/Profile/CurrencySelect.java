@@ -41,9 +41,9 @@ public class CurrencySelect extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.currencyselectlayout);
 
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle("통화 선택");
-
 
         //rgSlectedReturn = findViewById(R.id.action_btn1);
         rgGroup = findViewById(R.id.RgCurrGroup);

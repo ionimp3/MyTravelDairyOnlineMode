@@ -1,611 +1,645 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="Profile.CurrencySelect"
+    android:background="@color/lightGrayColor"
     android:orientation="vertical"
-    android:background="@color/lightGrayColor">
+    tools:context="Profile.CurrencySelect">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/lightWhiteColor"
+            android:theme="@style/MyAppTheme"
+            app:layout_scrollFlags="enterAlways|scroll"
+            app:popupTheme="@style/MyAppTheme"
+            app:title="통화선택"
+            app:titleTextAppearance="@style/ToolbarTitleSize" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="15dp"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <RadioGroup
             android:id="@+id/RgCurrGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="visible"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            >
+            android:visibility="visible">
 
             <RadioButton
                 android:id="@+id/RgCurr01"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="KRW(한국)"
-                android:textColor="@color/blackColor"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"
-                />
+                android:text="KRW(한국)"
+                android:textColor="@color/blackColor"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr02"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="USD(미국)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="USD(미국)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr03"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="EUR(유럽)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="EUR(유럽)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr04"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="HKD(홍콩)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="HKD(홍콩)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr05"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="TWD(대만)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="TWD(대만)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr06"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="THB(태국)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="THB(태국)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCur07"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="GBP(영국)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="GBP(영국)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr08"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="CAD(캐나다)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="CAD(캐나다)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr09"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="CHF(스위스)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="CHF(스위스)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="SEK(스웨덴)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="SEK(스웨덴)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr11"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="AUD(호주)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="AUD(호주)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="NZD(뉴질랜드)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="NZD(뉴질랜드)"
+                android:textSize="18sp" />
+
             <RadioButton
                 android:id="@+id/RgCurr13"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="CZK(체코)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="CZK(체코)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="TRY(터키)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="TRY(터키)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="MNT(몽골)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="MNT(몽골)"
+                android:textSize="18sp" />
+
             <RadioButton
                 android:id="@+id/RgCurr16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="ILS(이스라엘)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="ILS(이스라엘)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr17"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="DKK(덴마크)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="DKK(덴마크)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr18"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="NOK(노르웨이)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="NOK(노르웨이)"
+                android:textSize="18sp" />
+
             <RadioButton
                 android:id="@+id/RgCurr19"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="SAR(사우디아라비아)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="SAR(사우디아라비아)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr20"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="KWD(쿠웨이트)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="KWD(쿠웨이트)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr21"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="BHD(바레인)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="BHD(바레인)"
+                android:textSize="18sp" />
+
             <RadioButton
                 android:id="@+id/RgCurr22"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="AED(아랍에미레이트)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="AED(아랍에미레이트)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr23"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="JOD(요르단)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="JOD(요르단)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr24"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="EGP(이집트)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="EGP(이집트)"
+                android:textSize="18sp" />
+
             <RadioButton
                 android:id="@+id/RgCurr25"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="SGD(싱가포르)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="SGD(싱가포르)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr26"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="MYR(말레이시아)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="MYR(말레이시아)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr27"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="IDR(인도네시아)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="IDR(인도네시아)"
+                android:textSize="18sp" />
+
             <RadioButton
                 android:id="@+id/RgCurr28"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="QAR(카타르)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="QAR(카타르)"
+                android:textSize="18sp" />
+
             <RadioButton
                 android:id="@+id/RgCurr29"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="KZT(카자흐스탄)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="KZT(카자흐스탄)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr30"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="BND(브루나이)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="BND(브루나이)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr31"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="INR(인도)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="INR(인도)"
+                android:textSize="18sp" />
+
             <RadioButton
                 android:id="@+id/RgCurr32"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="PKR(파키스탄)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="PKR(파키스탄)"
+                android:textSize="18sp" />
+
             <RadioButton
                 android:id="@+id/RgCurr33"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="BDT(방글라데시)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="BDT(방글라데시)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr34"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="PHP(필리핀)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="PHP(필리핀)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr35"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="MXN(멕시코)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="MXN(멕시코)"
+                android:textSize="18sp" />
+
             <RadioButton
                 android:id="@+id/RgCurr36"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="BRL(브라질)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="BRL(브라질)"
+                android:textSize="18sp" />
+
             <RadioButton
                 android:id="@+id/RgCurr37"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="VND(베트남)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="VND(베트남)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr38"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="ZAR(남아프리카공화국)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="ZAR(남아프리카공화국)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr39"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="RUB(러시아)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="RUB(러시아)"
+                android:textSize="18sp" />
+
             <RadioButton
                 android:id="@+id/RgCurr40"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="HUF(헝가리)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="HUF(헝가리)"
+                android:textSize="18sp" />
+
             <RadioButton
                 android:id="@+id/RgCurr41"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="PLN(폴란드)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="PLN(폴란드)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr42"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="UAH(우크라이나)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="UAH(우크라이나)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr43"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="UZS(우즈베키스탄)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="UZS(우즈베키스탄)"
+                android:textSize="18sp" />
+
             <RadioButton
                 android:id="@+id/RgCurr44"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="ARS(아르헨티나)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="ARS(아르헨티나)"
+                android:textSize="18sp" />
+
             <RadioButton
                 android:id="@+id/RgCurr45"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="KHR(캄보디아)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="KHR(캄보디아)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr46"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="TMT(투르크메니스탄)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="TMT(투르크메니스탄)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr47"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="KGS(키르키스탄)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="KGS(키르키스탄)"
+                android:textSize="18sp" />
+
             <RadioButton
                 android:id="@+id/RgCurr48"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="MMK(미얀마)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="MMK(미얀마)"
+                android:textSize="18sp" />
+
             <RadioButton
                 android:id="@+id/RgCurr49"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="LAK(라오스)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="LAK(라오스)"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/RgCurr50"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="MOP(마카오)"
+                android:background="@color/lightWhiteColor"
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
-                android:background="@color/lightWhiteColor"
                 android:padding="20dp"
-                android:textSize="18sp"/>
+                android:text="MOP(마카오)"
+                android:textSize="18sp" />
 
         </RadioGroup>
+    </ScrollView>
 
 
-</ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

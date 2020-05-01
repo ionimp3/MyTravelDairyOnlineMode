@@ -1,110 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:paddingTop="100dp">
+    android:background="@color/lightGrayColor">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="[미리보기]"
-        android:fontFamily="@font/main_han_eng_notosanskr_regular"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="@color/grayColor"/>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/lightWhiteColor"
+            android:theme="@style/MyAppTheme"
+            app:layout_scrollFlags="enterAlways|scroll"
+            app:popupTheme="@style/MyAppTheme"
+            app:title="닉네임변경"
+            app:titleTextAppearance="@style/ToolbarTitleSize" />
+    </com.google.android.material.appbar.AppBarLayout>
+
     <LinearLayout
-        android:id="@+id/stacklayout1"
-        android:layout_width="300dp"
-        android:layout_height="170dp"
-        android:background="@color/grayColor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/main_han_eng_notosanskr_regular"
+            android:text="[미리보기]"
+            android:textColor="@color/grayColor"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
         <LinearLayout
-            android:id="@+id/stacklayout2"
+            android:id="@+id/stacklayout1"
             android:layout_width="300dp"
             android:layout_height="170dp"
-            android:orientation="vertical"
-            android:background="@drawable/onboarding_img1"
-            >
+            android:background="@color/grayColor"
+            android:orientation="vertical">
+
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:id="@+id/stacklayout2"
+                android:layout_width="300dp"
+                android:layout_height="170dp"
+                android:background="@drawable/onboarding_img1"
                 android:orientation="vertical">
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/ic_account_circle_black"
-                    android:id="@+id/preprofilepic"
-                    android:scaleType="centerCrop"/>
 
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingTop="10dp"
-                    android:text="닉네임"
-                    android:textColor="@color/lightWhiteColor"
-                    android:id="@+id/prenicname"
-                    android:fontFamily="@font/main_han_eng_notosanskr_regular"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    />
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="이메일아이디"
-                    android:textColor="@color/lightWhiteColor"
-                    android:id="@+id/premailid"
-                    android:fontFamily="@font/main_han_eng_notosanskr_regular"
-                    android:textSize="12sp"/>
+                    <ImageView
+                        android:id="@+id/preprofilepic"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_account_circle_black" />
+
+                    <TextView
+                        android:id="@+id/prenicname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/main_han_eng_notosanskr_regular"
+                        android:paddingTop="10dp"
+                        android:text="닉네임"
+                        android:textColor="@color/lightWhiteColor"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/premailid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/main_han_eng_notosanskr_regular"
+                        android:text="이메일아이디"
+                        android:textColor="@color/lightWhiteColor"
+                        android:textSize="12sp" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-    <EditText
-        android:layout_marginTop="30dp"
-        android:id="@+id/preEdNicName"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:hint="변경할 닉네임 입력"
-        android:gravity="center"
-        android:imeOptions="actionDone"
-        android:inputType="text"
-        android:maxLength="15"
-        android:fontFamily="@font/main_han_eng_notosanskr_regular"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="@color/grayColor"/>
 
-    <Button
-        android:layout_marginTop="30dp"
-        android:id="@+id/previewbtn"
-        android:layout_width="245dp"
-        android:layout_height="50dp"
-        android:text="미리보기"
-        android:onClick="PreViewStart"
-        android:fontFamily="@font/main_han_eng_notosanskr_regular"
-        android:textSize="14sp"
-        android:textColor="@color/lightWhiteColor"
-        android:background="@color/colorPrimary"
-        android:layout_marginBottom="10dp"
-        />
-    <Button
-        android:id="@+id/updatenicnamebtn"
-        android:layout_width="245dp"
-        android:layout_height="50dp"
-        android:text="변경"
-        android:onClick="UpdateNicNameStart"
-        android:fontFamily="@font/main_han_eng_notosanskr_regular"
-        android:textSize="14sp"
-        android:textColor="@color/lightWhiteColor"
-        android:background="@color/colorPrimary"
-        />
-</LinearLayout>
+        <EditText
+            android:id="@+id/preEdNicName"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/main_han_eng_notosanskr_regular"
+            android:gravity="center"
+            android:hint="변경할 닉네임 입력"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:maxLength="15"
+            android:textColor="@color/grayColor"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/previewbtn"
+            android:layout_width="245dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/colorPrimary"
+            android:fontFamily="@font/main_han_eng_notosanskr_regular"
+            android:onClick="PreViewStart"
+            android:text="미리보기"
+            android:textColor="@color/lightWhiteColor"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/updatenicnamebtn"
+            android:layout_width="245dp"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimary"
+            android:fontFamily="@font/main_han_eng_notosanskr_regular"
+            android:onClick="UpdateNicNameStart"
+            android:text="변경"
+            android:textColor="@color/lightWhiteColor"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

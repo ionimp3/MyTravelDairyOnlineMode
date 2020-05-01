@@ -25,4 +25,12 @@
 
     </style>
 
+    <!--툴바용-->
+    <style name="ToolbarTitleSize" parent="@style/Base.TextAppearance.AppCompat.Title">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/main_han_eng_notosanskr_regular</item>
+        <!-- jj
+        <item name="android:textStyle">bold</item> -->
+    </style>
+
 </resources>

@@ -1,6 +1,8 @@
 package Profile;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +19,7 @@ import com.lmh.mytraveldairyjava.R;
 import Common.SignInActivity;
 
 public class ChangeProfileImage extends AppCompatActivity {
-
+    private Toolbar toolbar;
     FirebaseStorage fStore ;
     FirebaseAuth fAuth ;
     FirebaseUser fUser ;
@@ -35,8 +37,12 @@ public class ChangeProfileImage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.changeprofileimage);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle("읽기테스트");
+
+
 
         //로그인 체크
         appLoginCheck4();

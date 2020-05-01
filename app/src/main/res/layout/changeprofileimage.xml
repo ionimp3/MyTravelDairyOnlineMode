@@ -1,64 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="Profile.ChangeProfileImage"
     android:orientation="vertical"
-    android:gravity="center">
+    tools:context="Profile.ChangeProfileImage">
 
-
-    <TextView
-        android:id="@+id/txse1"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarlayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="16sp"
-        android:gravity="center_horizontal"
-        android:layout_marginBottom="5dp"/>
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/txse2"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/lightWhiteColor"
+            android:theme="@style/MyAppTheme"
+            app:layout_scrollFlags="enterAlways|scroll"
+            app:popupTheme="@style/MyAppTheme"
+            app:title="회원가입"
+            app:titleTextAppearance="@style/ToolbarTitleSize" />
+    </com.google.android.material.appbar.AppBarLayout>
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="16sp"
-        android:gravity="center_horizontal"
-        android:layout_marginBottom="5dp"/>
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-    <TextView
-        android:id="@+id/txse3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="16sp"
-        android:gravity="center_horizontal"
-        android:layout_marginBottom="5dp"/>
+        <TextView
+            android:id="@+id/txse1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_horizontal"
+            android:text="TextView"
+            android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/txse4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="16sp"
-        android:gravity="center_horizontal"
-        android:layout_marginBottom="5dp"/>
+        <TextView
+            android:id="@+id/txse2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_horizontal"
+            android:text="TextView"
+            android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/txse5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="16sp"
-        android:gravity="center_horizontal"
-        android:layout_marginBottom="5dp"/>
+        <TextView
+            android:id="@+id/txse3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_horizontal"
+            android:text="TextView"
+            android:textSize="16sp" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/read_test"
-        android:text="ok"
-        />
-</LinearLayout>
+        <TextView
+            android:id="@+id/txse4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_horizontal"
+            android:text="TextView"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/txse5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_horizontal"
+            android:text="TextView"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/read_test"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ok" />
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

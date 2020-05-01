@@ -55,10 +55,9 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signuplayout);
 
-
-
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle("회원가입");
 
 
         email_join = (EditText) findViewById(R.id.regEmailId);

@@ -1,6 +1,7 @@
 package Profile;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -55,6 +57,7 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseDatabase mDatabase;
 
     private TextView textivewDelete;
+    Toolbar toolbar;
 
     // BackPressHandler 객체 선언, 할당
     private BackPressHandler backPressHandler = new BackPressHandler(this);
@@ -64,8 +67,9 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profilelayout);
 
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle("설정");
 
         // Authentication, Database, Storage 초기화
         mAuth = FirebaseAuth.getInstance();

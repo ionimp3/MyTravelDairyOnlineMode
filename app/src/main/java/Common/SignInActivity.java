@@ -46,8 +46,11 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signinlayout);
 
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle("로그인");
+        //layout에서 지정하면 불필요
+        //setTitle("로그인");
 
         //appLoginCheck1();
 

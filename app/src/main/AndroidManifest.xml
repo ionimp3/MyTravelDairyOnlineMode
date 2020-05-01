@@ -27,7 +27,7 @@
         <activity android:name="Profile.ProfileActivity" />
         <activity android:name="Common.SignInActivity" />
         <activity android:name="Profile.ProfilePicUpload" />
-        <activity android:name="Common.Intro_loading" />
+        <activity android:name="DashBoard.UserDashboard" />
         <activity android:name="Profile.StartMainScreen" />
         <activity android:name=".StartActivity" />
         <activity android:name="Common.SignUpActivity" />
@@ -36,7 +36,7 @@
             android:name=".DairyNew"
             android:label="신규여행계획"
             android:theme="@style/AppTheme" />
-        <activity android:name="DashBoard.UserDashboard">
+        <activity android:name="Common.Intro_loading">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
