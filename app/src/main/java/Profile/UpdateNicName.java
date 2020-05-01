@@ -129,7 +129,7 @@ public class UpdateNicName<tmpedtext> extends AppCompatActivity {
                 finish();
                 return true;
             }
-            case R.id.action_btn1: { // 오른쪽 상단 버튼 눌렀을 때
+            case R.id.curr_changed: { // 오른쪽 상단 버튼 눌렀을 때
                 Toast.makeText(this, "DB에 저장진행한다", Toast.LENGTH_SHORT).show();
                 return true;
             }

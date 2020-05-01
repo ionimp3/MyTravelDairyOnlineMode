@@ -16,13 +16,16 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
+            android:paddingEnd="10dp"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/lightWhiteColor"
             android:theme="@style/MyAppTheme"
             app:layout_scrollFlags="enterAlways|scroll"
             app:popupTheme="@style/MyAppTheme"
             app:title="통화선택"
-            app:titleTextAppearance="@style/ToolbarTitleSize" />
+            app:titleTextAppearance="@style/ToolbarTitleSize">
+
+        </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView

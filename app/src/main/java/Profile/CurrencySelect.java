@@ -24,11 +24,11 @@ public class CurrencySelect extends AppCompatActivity {
     RadioGroup rgcurr;
     RadioButton rbcurr;
     ActionBar actionBar;
-    private Toolbar toolbar;
+    Toolbar toolbar;
 
-    Button rgSlectedReturn;
     RadioGroup rgGroup;
     RadioButton radioButton;
+
 
     Intent intent;
 
@@ -64,18 +64,6 @@ public class CurrencySelect extends AppCompatActivity {
 
     }
 
-  /*  @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle presses on the action bar items
-        if (item.getItemId() == R.id.action_btn1) {
-
-            Toast.makeText(this, "Selected Radio Button: " + radioButton.getText(),
-                    Toast.LENGTH_SHORT).show();
-
-            return true;
-        } return super.onOptionsItemSelected(item);
-    }*/
-
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
       getMenuInflater().inflate(R.menu.actionbarcustum, menu);
@@ -91,7 +79,7 @@ public class CurrencySelect extends AppCompatActivity {
               finish();
               return true;
           }
-          case R.id.action_btn1: { // 오른쪽 상단 버튼 눌렀을 때
+          case R.id.curr_changed: { // 오른쪽 상단 버튼 눌렀을 때
               Toast.makeText(this, "DB에 저장진행한다", Toast.LENGTH_SHORT).show();
               return true;
           }
@@ -112,11 +100,6 @@ public class CurrencySelect extends AppCompatActivity {
         //backPressHandler.onBackPressed(3000);
         // Toast, 간격 사용자 지정
         //backPressHandler.onBackPressed("뒤로가기 버튼 한번 더 누르면 종료", 3000);
-
     }
-
-
-
-
 
 }
