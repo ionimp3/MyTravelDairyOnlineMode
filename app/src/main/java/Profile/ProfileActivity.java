@@ -38,18 +38,18 @@ public class ProfileActivity extends AppCompatActivity {
     String tmps1;
     String tmps2;
 
-    String base_CURR_CD_FromDB;
-    String base_CURR_NM_FromDB;
-    String profile_PIC_FromDB;
-    String cover_PIC_FromDB;
-    String nic_NAME_NM_FromDB;
-    String push_ALAR_ST_FromDB;
-    String disp_MAIL_ID_FromDB;
-    String login_MAT_ID_FromDB;
-    String sele_MAIL_PK_FromDB;
-    String tstamp_CR_DT_FromDB;
-    String tstamp_UP_DT_FromDB;
-    String now_USER_ST_FromDB;
+    String baseCurrencyName_FromDB;
+    String baseCurrencyCode_FromDB;
+    String coverPicture_FromDB;
+    String displayMailId_FromDB;
+    String loginMethodStatus_FromDB;
+    String nicName_FromDB;
+    String nowUserStatus_FromDB;
+    String profilePicture_FromDB;
+    String pushAlarmSelected_FromDB;
+    String selectMailPrimaryKey_FromDB;
+    String timeStampCreaeTime_FromDB;
+    String timeStampUpdatgTime_FromDB;
 
     public static final int PICK_FROM_ALBUM = 1;
 
@@ -103,60 +103,29 @@ public class ProfileActivity extends AppCompatActivity {
         final TextView _txjoinCurr = (TextView) findViewById(R.id.selected_curr);
 
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference(tmps2 + "/FDB_SETTING_TB");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference(tmps2 + "/userProfile");
 
         Query checkSeleMailPk = reference.orderByChild(tmps2);
         checkSeleMailPk.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    /*base_CURR_CD_FromDB = dataSnapshot.child(tmps2).child("base_CURR_CD").getValue(String.class);
-                    cover_PIC_FromDB = dataSnapshot.child(tmps2).child("cover_PIC").getValue(String.class);
-                    disp_MAIL_ID_FromDB = dataSnapshot.child(tmps2).child("disp_MAIL_ID").getValue(String.class);
-                    login_MAT_ID_FromDB = dataSnapshot.child(tmps2).child("login_MAT_ID").getValue(String.class);
-                    nic_NAME_NM_FromDB = dataSnapshot.child(tmps2).child("nic_NAME_NM").getValue(String.class);
-                    now_USER_ST_FromDB = dataSnapshot.child(tmps2).child("now_USER_ST").getValue(String.class);
-                    profile_PIC_FromDB = dataSnapshot.child(tmps2).child("profile_PIC").getValue(String.class);
-                    push_ALAR_ST_FromDB = dataSnapshot.child(tmps2).child("push_ALAR_ST").getValue(String.class);
-                    sele_MAIL_PK_FromDB = dataSnapshot.child(tmps2).child("sele_MAIL_PK").getValue(String.class);
-                    tstamp_CR_DT_FromDB = dataSnapshot.child(tmps2).child("tstamp_CR_DT").getValue(String.class);
-                    tstamp_UP_DT_FromDB = dataSnapshot.child(tmps2).child("tstamp_UP_DT").getValue(String.class);*/
-                    base_CURR_CD_FromDB = dataSnapshot.child("base_CURR_CD").getValue(String.class);
-                    base_CURR_NM_FromDB = dataSnapshot.child("base_CURR_NM").getValue(String.class);
-                    cover_PIC_FromDB = dataSnapshot.child("cover_PIC").getValue(String.class);
-                    disp_MAIL_ID_FromDB = dataSnapshot.child("disp_MAIL_ID").getValue(String.class);
-                    login_MAT_ID_FromDB = dataSnapshot.child("login_MAT_ID").getValue(String.class);
-                    nic_NAME_NM_FromDB = dataSnapshot.child("nic_NAME_NM").getValue(String.class);
-                    now_USER_ST_FromDB = dataSnapshot.child("now_USER_ST").getValue(String.class);
-                    profile_PIC_FromDB = dataSnapshot.child("profile_PIC").getValue(String.class);
-                    push_ALAR_ST_FromDB = dataSnapshot.child("push_ALAR_ST").getValue(String.class);
-                    sele_MAIL_PK_FromDB = dataSnapshot.child("sele_MAIL_PK").getValue(String.class);
-                    tstamp_CR_DT_FromDB = dataSnapshot.child("tstamp_CR_DT").getValue(String.class);
-                    tstamp_UP_DT_FromDB = dataSnapshot.child("tstamp_UP_DT").getValue(String.class);
+                    baseCurrencyName_FromDB = dataSnapshot.child("baseCurrencyName").getValue(String.class);
+                    baseCurrencyCode_FromDB = dataSnapshot.child("baseCurrencyCode").getValue(String.class);
+                    coverPicture_FromDB = dataSnapshot.child("coverPicture").getValue(String.class);
+                    displayMailId_FromDB = dataSnapshot.child("displayMailId").getValue(String.class);
+                    loginMethodStatus_FromDB = dataSnapshot.child("loginMethodStatus").getValue(String.class);
+                    nicName_FromDB = dataSnapshot.child("nicName").getValue(String.class);
+                    nowUserStatus_FromDB = dataSnapshot.child("nowUserStatus").getValue(String.class);
+                    profilePicture_FromDB = dataSnapshot.child("profilePicture").getValue(String.class);
+                    pushAlarmSelected_FromDB = dataSnapshot.child("pushAlarmSelected").getValue(String.class);
+                    selectMailPrimaryKey_FromDB = dataSnapshot.child("selectMailPrimaryKey").getValue(String.class);
+                    timeStampCreaeTime_FromDB = dataSnapshot.child("timeStampCreaeTime").getValue(String.class);
+                    timeStampUpdatgTime_FromDB = dataSnapshot.child("timeStampUpdatgTime").getValue(String.class);
 
-
-                    _txjoinTypeEmail.setText(disp_MAIL_ID_FromDB);
-                    _txjoinNic.setText(nic_NAME_NM_FromDB);
-                    _txjoinCurr.setText(base_CURR_NM_FromDB);
-
-
-/*                    // 가져온 값을 다른 액티비티로 넘겨줄때 사용
-                    Intent intent = new Intent(getApplicationContext(),UserDashboard.class);
-                    // 전송한 할 DATA와 받은 액티비티에서 사용할 NAME 지정
-                    intent.putExtra("base_CURR_CD_Send",base_CURR_CD_FromDB);
-                    intent.putExtra("base_CURR_NM_Send",base_CURR_NM_FromDB);
-                    intent.putExtra("cover_PIC_Send",cover_PIC_FromDB);
-                    intent.putExtra("disp_MAIL_ID_Send",disp_MAIL_ID_FromDB);
-                    intent.putExtra("login_MAT_ID_Send",login_MAT_ID_FromDB);
-                    intent.putExtra("nic_NAME_NM_Send",nic_NAME_NM_FromDB);
-                    intent.putExtra("now_USER_ST_Send",now_USER_ST_FromDB);
-                    intent.putExtra("profile_PIC_Send",profile_PIC_FromDB);
-                    intent.putExtra("push_ALAR_ST_Send",push_ALAR_ST_FromDB);
-                    intent.putExtra("sele_MAIL_PK_Send",sele_MAIL_PK_FromDB);
-                    intent.putExtra("tstamp_CR_DT_Send",tstamp_CR_DT_FromDB);
-                    intent.putExtra("tstamp_UP_DT_Send",tstamp_UP_DT_FromDB);
-                    startActivity(intent);
-                    //*/
+                    _txjoinTypeEmail.setText(displayMailId_FromDB);
+                    _txjoinNic.setText(nicName_FromDB);
+                    _txjoinCurr.setText(baseCurrencyName_FromDB);
 
                 } else {
                     //
@@ -187,15 +156,15 @@ public class ProfileActivity extends AppCompatActivity {
     }
     public void selectCurrency(View view) {
         Intent intent = new Intent(ProfileActivity.this, CurrencySelect.class);
-        intent.putExtra("base_CURR_CD_Send",base_CURR_CD_FromDB);
-        intent.putExtra("sele_MAIL_PK_Send",sele_MAIL_PK_FromDB);
+        intent.putExtra("baseCurrencyCode_Send",baseCurrencyCode_FromDB);
+        intent.putExtra("selectMailPrimaryKey_Send",selectMailPrimaryKey_FromDB);
         startActivity(intent);
         finish();
     }
     public void changeprofile_btn(View view) {
         Intent intent = new Intent(ProfileActivity.this, ChangeProfileImage.class);
-        intent.putExtra("profile_PIC_Send", profile_PIC_FromDB);
-        intent.putExtra("sele_MAIL_PK_Send",sele_MAIL_PK_FromDB);
+        intent.putExtra("profilePicture_Send",profilePicture_FromDB);
+        intent.putExtra("selectMailPrimaryKey_FromDB_Send",selectMailPrimaryKey_FromDB);
         startActivity(intent);
         finish();
     }
@@ -203,9 +172,9 @@ public class ProfileActivity extends AppCompatActivity {
         //TextView nic_NAME_NM_FromDB = (TextView)findViewById(R.id.prenicname);
         //Toast.makeText(this, "데이터 넘겨 줍니다." + disp_MAIL_ID_FromDB, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(ProfileActivity.this, UpdateNicName.class);
-        intent.putExtra("nic_NAME_NM_Send", nic_NAME_NM_FromDB);
-        intent.putExtra("disp_MAIL_ID_Send", disp_MAIL_ID_FromDB);
-        intent.putExtra("sele_MAIL_PK_Send", sele_MAIL_PK_FromDB);
+        intent.putExtra("nicName_Send", nicName_FromDB);
+        intent.putExtra("displayMailId_Send", displayMailId_FromDB);
+        intent.putExtra("selectMailPrimaryKey_FromDB_Send", selectMailPrimaryKey_FromDB);
         startActivity(intent);
         finish();
     }

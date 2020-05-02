@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,6 +19,8 @@ import android.widget.Toast;
 
 import Common.BackPressHandler;
 import Common.MessageToast;
+import Common.SignUpActivity;
+import DashBoard.UserDashboard;
 
 import com.airbnb.lottie.L;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -28,6 +31,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.lmh.mytraveldairyjava.R;
+
+import java.util.HashMap;
 
 
 public class CurrencySelect extends AppCompatActivity {
@@ -40,12 +45,14 @@ public class CurrencySelect extends AppCompatActivity {
     RadioGroup rgGroup;
     RadioButton radioButton;
 
+    ProgressDialog dialog1;
 
     Intent intent;
 
     FirebaseAuth mAuth;
     FirebaseDatabase rootNode;
     DatabaseReference reference;
+    DatabaseReference UserRef;
 
     String ckey, rBselect, selectedRb, selectedNm;
     Integer numInt;
@@ -68,10 +75,11 @@ public class CurrencySelect extends AppCompatActivity {
         //rgSlectedReturn = findViewById(R.id.action_btn1);
         rgGroup = findViewById(R.id.RgCurrGroup);
         intent = getIntent();
-        ckey = intent.getStringExtra("sele_MAIL_PK_Send");
-        rBselect = intent.getStringExtra("base_CURR_CD_Send");
+        ckey = intent.getStringExtra("selectMailPrimaryKey_Send");
+        rBselect = intent.getStringExtra("baseCurrencyCode_Send");
         numInt = Integer.parseInt(rBselect);
-        //Toast.makeText(this, "Selected Radio Button: " + radioButton.getText(),Toast.LENGTH_SHORT).show();
+
+        UserRef = FirebaseDatabase.getInstance().getReference();
 
         SetDefaultCurrency();
 
@@ -503,62 +511,60 @@ public class CurrencySelect extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home: { // 뒤로가기 버튼 눌렀을 때
-                Intent intent = new Intent(this, ProfileActivity.class);
-                startActivity(intent);
-                finish();
+                Intent currencyIntent = new Intent(CurrencySelect.this, ProfileActivity.class);
+                currencyIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(currencyIntent);
                 return true;
             }
             case R.id.curr_changed: { // 오른쪽 상단 버튼 눌렀을 때
                 Intent intent = getIntent();
                 rootNode = FirebaseDatabase.getInstance();
-                reference = rootNode.getReference((ckey + "/FDB_SETTING_TB/"));
-                //currency 변경 : 호출한 액티비티에 따라 저장컬럼변경
-                //저장소 선택 : 1 default, 2 : 단순선택, 3 : 여행지통화 저장..현재는 하드코딩..나중에 추가
-                // int callCase = 1;
-                //
-                reference.child("base_CURR_CD").setValue(selectedRb)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                System.out.println("ok");
-                                msG = "Success";
-                                reCheckTest();
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                System.out.println("FAIL");
-                                msG = "FAIL";
-                            }
-                        });
-                Toast.makeText(this,msG,Toast.LENGTH_SHORT).show();
+                reference = rootNode.getReference((ckey + "/userProfile/"));
+
+                showProcessDialog1();
+
+                UserRef = FirebaseDatabase.getInstance().getReference().child(ckey).child("userProfile");
+                HashMap userCurrencyMap = new HashMap();
+                userCurrencyMap.put("baseCurrencyCode",selectedRb);
+                userCurrencyMap.put("baseCurrencyName",selectedNm);
+                UserRef.updateChildren(userCurrencyMap).addOnCompleteListener(new OnCompleteListener() {
+                    @Override
+                    public void onComplete(@NonNull Task task)
+                    {
+                        if(task.isSuccessful())
+                        {
+                            MessageToast.message(CurrencySelect.this,"기본통화변경완료!!!!!!");
+                            dialog1.dismiss();
+                        }
+                        else {
+                            String message = task.getException().getMessage();
+                            Toast.makeText(CurrencySelect.this,"통화변경작업이 실패하였읍니다. : " + message,Toast.LENGTH_SHORT).show();
+                            dialog1.dismiss();
+                        }
+                    }
+                });
             }
         }
         return super.onOptionsItemSelected(item);
     }
-    private void reCheckTest() {
-        reference.child("base_CURR_NM").setValue(selectedNm)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        //msG = "Success";
-                        System.out.println("ok");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        System.out.println("FAIL");
-                        //복원
-                        reference.child("base_CURR_CD").setValue(selectedRb);
-                    }
-                });
+
+
+    private void showProcessDialog1() {
+        dialog1 = new ProgressDialog(CurrencySelect.this);
+        dialog1.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog1.setTitle("기본통화변경");
+        dialog1.setMessage("DB업데이트 중입니다..");
+        dialog1.show();
+        dialog1.setCanceledOnTouchOutside(true);
+        //
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        Intent currencyIntent = new Intent(CurrencySelect.this, ProfileActivity.class);
+        currencyIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(currencyIntent);
         //Intent intent = new Intent(this, ProfileActivity.class);
         //startActivity(intent);
         // Default

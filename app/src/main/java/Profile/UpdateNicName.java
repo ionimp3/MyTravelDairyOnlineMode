@@ -90,9 +90,9 @@ public class UpdateNicName<tmpedtext> extends AppCompatActivity {
     private void showAllNicNameData() {
 
         Intent intent = getIntent();
-        atview = intent.getStringExtra("disp_MAIL_ID_Send");
-        brview = intent.getStringExtra("nic_NAME_NM_Send");
-        ckey = intent.getStringExtra("sele_MAIL_PK_Send");
+        atview = intent.getStringExtra("displayMailId_Send");
+        brview = intent.getStringExtra("nicName_Send");
+        ckey = intent.getStringExtra("selectMailPrimaryKey_FromDB_Send");
         //Toast.makeText(this, "프로파일액티비티에 데이터 넘겨 받음" +  atview , Toast.LENGTH_SHORT).show();
         nicnameView.setText(brview);
         nicmailView.setText(atview);
@@ -131,16 +131,16 @@ public class UpdateNicName<tmpedtext> extends AppCompatActivity {
             case R.id.curr_changed: { // 오른쪽 상단 버튼 눌렀을 때
                 Intent intent = getIntent();
                 tmpedtext = edPreEdNicName.getEditableText().toString();
-                ckey = intent.getStringExtra("sele_MAIL_PK_Send");
+                ckey = intent.getStringExtra("selectMailPrimaryKey_FromDB_Send");
                 rootNode = FirebaseDatabase.getInstance();
-                reference = rootNode.getReference((ckey + "/FDB_SETTING_TB/"));
+                reference = rootNode.getReference((ckey + "/userProfile/"));
 
                 if (mAuth.getCurrentUser() != null) {
                     AlertDialog.Builder alert_confirm = new AlertDialog.Builder(this);
                     alert_confirm.setMessage("닉네임을 변경하시겠읍니까?").setCancelable(false).setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                    reference.child("nic_NAME_NM").setValue(tmpedtext).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    reference.child("nicName").setValue(tmpedtext).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
                                             Toast.makeText(UpdateNicName.this, "DB에 변경완료하였읍니다..", Toast.LENGTH_LONG).show();

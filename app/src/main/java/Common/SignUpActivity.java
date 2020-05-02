@@ -33,6 +33,8 @@ import Profile.ProfileActivity;
 import com.lmh.mytraveldairyjava.R;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Objects;
 
 
 public class SignUpActivity extends AppCompatActivity {
@@ -43,18 +45,22 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText email_join;
     private EditText pwd_join;
 
+    String displayMailId;
     String loginuseremail;
-    String disp_MAIL_ID;
 
     ProgressDialog dialog1;
 
     //FIREBASE 관련 선안
     FirebaseAuth firebaseAuth;
+    FirebaseAuth mAuth;
     FirebaseDatabase rootNode;
     DatabaseReference reference;
+    DatabaseReference UserRef;
 
     ActionBar actionBar;
     private Toolbar toolbar;
+
+    String currentUserId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,16 +83,12 @@ public class SignUpActivity extends AppCompatActivity {
         //signup_checkbox = (CheckBox) findViewById(R.id.checkbox_agree);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        //로근인 후 사용할수있는 유저 고유 id
+        //currentUserId = firebaseAuth.getCurrentUser().getUid();
+        UserRef = FirebaseDatabase.getInstance().getReference();
 
-        appLoginCheck2();
 
-    }
-
-    private void appLoginCheck2() {
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-        if (user != null) {
-            firebaseAuth.signOut();
-        }
     }
 
     @Override
@@ -191,32 +193,46 @@ public class SignUpActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             //회원가입 완료 후 후 DB_SETTING_TB 신규 레크드 등록
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                            String base_CURR_CD = "1";
-                            String base_CURR_NM = "KRW";
-                            String cover_PIC = "";
-                            disp_MAIL_ID = user.getEmail();
-                            String tmps1 = disp_MAIL_ID.replaceAll("[.]", "");
+                            displayMailId = user.getEmail();
+                            String tmps1 = displayMailId.replaceAll("[.]", "");
                             String tmps2 = tmps1.replaceAll("[@]", "");
-                            String login_MAT_ID = "1";
-                            String nic_NAME_NM = "닉네임";
-                            String now_USER_ST = "1";
-                            String profile_PIC = "";
-                            String push_ALAR_ST = "N";
-                            String sele_MAIL_PK = tmps2;
-                            String tstamp_UP_DT = LocalDateTime.now().toString();
-                            String tstamp_CR_DT = LocalDateTime.now().toString();
+                            String selectMailPrimaryKey = tmps2;
+                            String timeStampUpdatgTime = LocalDateTime.now().toString();
+                            String timeStampCreaeTime = LocalDateTime.now().toString();
 
-                            //db노드 지정
-                            rootNode = FirebaseDatabase.getInstance();
-                            reference = rootNode.getReference((sele_MAIL_PK + "/userProfile"));
-                            //데이터 저장
-                            SettingHelperClass settingHelperClass;
-                            settingHelperClass = new SettingHelperClass(base_CURR_CD, base_CURR_NM, login_MAT_ID, now_USER_ST, disp_MAIL_ID, cover_PIC, nic_NAME_NM, profile_PIC, push_ALAR_ST, sele_MAIL_PK, tstamp_UP_DT, tstamp_CR_DT);
-                            reference.setValue(settingHelperClass);
-
-                            MessageToast.message(SignUpActivity.this,"등록성공!!!!!!");
-
-                            GotoUserDashboard();
+                            //db노드 저장할 노드지정
+                            UserRef = FirebaseDatabase.getInstance().getReference().child(selectMailPrimaryKey).child("userProfile");
+                            HashMap userProfileMap = new HashMap();
+                            userProfileMap.put("baseCurrencyCode","1");
+                            userProfileMap.put("baseCurrencyName","KRW");
+                            userProfileMap.put("coverPicture","");
+                            userProfileMap.put("displayMailId",displayMailId);
+                            userProfileMap.put("loginMethodStatus","1");
+                            userProfileMap.put("nicName","닉네임");
+                            userProfileMap.put("nowUserStatus","1");
+                            userProfileMap.put("profilePicture","");
+                            userProfileMap.put("pushAlarmSelected","N");
+                            userProfileMap.put("selectMailPrimaryKey",selectMailPrimaryKey);
+                            userProfileMap.put("timeStampUpdatgTime",timeStampUpdatgTime);
+                            userProfileMap.put("timeStampCreaeTime",timeStampCreaeTime);
+                            UserRef.updateChildren(userProfileMap).addOnCompleteListener(new OnCompleteListener() {
+                                @Override
+                                public void onComplete(@NonNull Task task)
+                                {
+                                    if(task.isSuccessful())
+                                    {
+                                        GotoUserDashboard();
+                                        MessageToast.message(SignUpActivity.this,"기본정설정완료!!!!!!");
+                                        dialog1.dismiss();
+                                    }
+                                    else {
+                                        String message = task.getException().getMessage();
+                                        Toast.makeText(SignUpActivity.this,"기본정보 설정실패(수동입력해주세요)  : " + message,Toast.LENGTH_SHORT).show();
+                                        GotoUserDashboard();
+                                        dialog1.dismiss();
+                                    }
+                                }
+                            });
                         } else {
                             String message = task.getException().getMessage();
                             Toast.makeText(SignUpActivity.this,"등록실패 오류내용 : "+message,Toast.LENGTH_SHORT).show();
@@ -226,11 +242,10 @@ public class SignUpActivity extends AppCompatActivity {
                         }
                     }
                 });
-
     }
 
     private void GotoUserDashboard() {
-        loginuseremail = String.format("%s", disp_MAIL_ID);
+        loginuseremail = String.format("%s", displayMailId);
         Intent signupIntent = new Intent(SignUpActivity.this, UserDashboard.class);
         signupIntent.putExtra("sendemailid", loginuseremail);
         signupIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
