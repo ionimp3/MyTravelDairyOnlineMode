@@ -55,6 +55,7 @@ public class UpdateNicName<tmpedtext> extends AppCompatActivity {
     FirebaseDatabase rootNode;
     DatabaseReference reference;
     private DatabaseReference UserRef;
+    private FirebaseUser currentUser;
 
     ProgressDialog dialog1;
 
@@ -132,7 +133,7 @@ public class UpdateNicName<tmpedtext> extends AppCompatActivity {
     }
 /* private void CheckUserExistance()
     {
-        final String current_user_id = mAuth.getCurrentUser().getUid();
+        final String current_user_id = currentUser.getUid();
         UserRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
