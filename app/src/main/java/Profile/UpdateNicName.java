@@ -63,7 +63,7 @@ public class UpdateNicName<tmpedtext> extends AppCompatActivity {
 
         //이미지투명도처리
         Drawable alpha = ((LinearLayout) findViewById(R.id.stacklayout2)).getBackground();
-        alpha.setAlpha(50);
+        alpha.setAlpha(70);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -105,7 +105,6 @@ public class UpdateNicName<tmpedtext> extends AppCompatActivity {
             Toast.makeText(this
                     , "접속이 해제되었읍니다.. 다시 로그인을 해주세요~~", Toast.LENGTH_SHORT).show();
 
-            finish();
             Intent intent = new Intent(this, SignInActivity.class);
             startActivity(intent);
             finish();
@@ -145,6 +144,12 @@ public class UpdateNicName<tmpedtext> extends AppCompatActivity {
                                         @Override
                                         public void onSuccess(Void aVoid) {
                                             Toast.makeText(UpdateNicName.this, "DB에 변경완료하였읍니다..", Toast.LENGTH_LONG).show();
+                                            nicnameView.setText(edPreEdNicName.getEditableText().toString().trim());
+                                            //액티비티강제갱신
+                                           /* Intent intent = getIntent();
+                                            finish();
+                                            startActivity(intent);*/
+                                            //
                                         }
                                     });
                                 }

@@ -8,11 +8,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,6 +29,8 @@ import com.lmh.mytraveldairyjava.TabCall;
 import com.lmh.mytraveldairyjava.TabChat;
 
 import Common.BackPressHandler;
+import Common.MessageToast;
+import Common.OnBoarding;
 
 public class UserDashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     // BackPressHandler 객체 선언, 할당
@@ -49,11 +54,24 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
     FragmentTransaction ft;
     FragmentManager fm;
 
+    Button btncheck;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.dashboardlayout);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        //getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_drawer_back_black_24dp);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        //setTitle("대시보드");
+        // 툴바 왼쪽 버튼 설정
+        //supportActionBar!!.setDisplayHomeAsUpEnabled(true)  // 왼쪽 버튼 사용 여부 true
+        //supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp)  // 왼쪽 버튼 이미지 설정
+        //supportActionBar!!.setDisplayShowTitleEnabled(false)    // 타이틀 안보이게 하기
 
         //hooks
         //textView = findViewById(R.id.textView1);
@@ -61,15 +79,15 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
         //contentLayout = findViewById(R.id.contentlayout);
 
         //menu hooks
+        btncheck = findViewById(R.id.test_btncheck);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigation_view_layout);
         frameLayout = findViewById(R.id.simpleframelayout);
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         tabLayout = findViewById(R.id.tab_layout);
+        //탭레이웃 안에 탭투가
         tabLayout.addTab(tabLayout.newTab().setText("첫번째탭"));
         tabLayout.addTab(tabLayout.newTab().setText("두번째탭"));
-        setTitle("대시보드");
+        //setTitle("대시보드");
 
         fragment = new TabChat();
         fm = getSupportFragmentManager();
@@ -166,6 +184,23 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
         });
     }
 
+
+/*    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbarcustum, menu);
+        return true;
+    }*/
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {// 뒤로가기 버튼 눌렀을 때
+            drawerLayout.openDrawer(GravityCompat.START);
+        }
+        return super.onOptionsItemSelected(item);
+    }
     @Override
     public void onBackPressed() {
 
@@ -185,8 +220,12 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
         //backPressHandler.onBackPressed("뒤로가기 버튼 한번 더 누르면 종료", 3000);
 
     }
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        return true;
+
+    public void ttbtn1(View view) {
+        MessageToast.message(this, "툴바버튼을 눌렀네요");
+    }
+
+    public void drawerbackStart(View view) {
+        drawerLayout.openDrawer(GravityCompat.START);
     }
 }

@@ -39,6 +39,7 @@ public class ProfileActivity extends AppCompatActivity {
     String tmps2;
 
     String base_CURR_CD_FromDB;
+    String base_CURR_NM_FromDB;
     String profile_PIC_FromDB;
     String cover_PIC_FromDB;
     String nic_NAME_NM_FromDB;
@@ -108,6 +109,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         final TextView _txjoinTypeEmail = (TextView) findViewById(R.id.txjoinTypeEmail);
         final TextView _txjoinNic = (TextView) findViewById(R.id.txjoinNic);
+        final TextView _txjoinCurr = (TextView) findViewById(R.id.selected_curr);
         //Toast.makeText(this, "aaaa" + tmps2, Toast.LENGTH_SHORT).show();
 
 
@@ -130,6 +132,7 @@ public class ProfileActivity extends AppCompatActivity {
                     tstamp_CR_DT_FromDB = dataSnapshot.child(tmps2).child("tstamp_CR_DT").getValue(String.class);
                     tstamp_UP_DT_FromDB = dataSnapshot.child(tmps2).child("tstamp_UP_DT").getValue(String.class);*/
                     base_CURR_CD_FromDB = dataSnapshot.child("base_CURR_CD").getValue(String.class);
+                    base_CURR_NM_FromDB = dataSnapshot.child("base_CURR_NM").getValue(String.class);
                     cover_PIC_FromDB = dataSnapshot.child("cover_PIC").getValue(String.class);
                     disp_MAIL_ID_FromDB = dataSnapshot.child("disp_MAIL_ID").getValue(String.class);
                     login_MAT_ID_FromDB = dataSnapshot.child("login_MAT_ID").getValue(String.class);
@@ -141,14 +144,17 @@ public class ProfileActivity extends AppCompatActivity {
                     tstamp_CR_DT_FromDB = dataSnapshot.child("tstamp_CR_DT").getValue(String.class);
                     tstamp_UP_DT_FromDB = dataSnapshot.child("tstamp_UP_DT").getValue(String.class);
 
+
                     _txjoinTypeEmail.setText(disp_MAIL_ID_FromDB);
                     _txjoinNic.setText(nic_NAME_NM_FromDB);
+                    _txjoinCurr.setText(base_CURR_NM_FromDB);
 
 
 /*                    // 가져온 값을 다른 액티비티로 넘겨줄때 사용
                     Intent intent = new Intent(getApplicationContext(),UserDashboard.class);
                     // 전송한 할 DATA와 받은 액티비티에서 사용할 NAME 지정
                     intent.putExtra("base_CURR_CD_Send",base_CURR_CD_FromDB);
+                    intent.putExtra("base_CURR_NM_Send",base_CURR_NM_FromDB);
                     intent.putExtra("cover_PIC_Send",cover_PIC_FromDB);
                     intent.putExtra("disp_MAIL_ID_Send",disp_MAIL_ID_FromDB);
                     intent.putExtra("login_MAT_ID_Send",login_MAT_ID_FromDB);
@@ -173,46 +179,29 @@ public class ProfileActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
-
-
     public void pushAlarmSelect(View view) {
         Toast.makeText(ProfileActivity.this, "아직 미구현!!!!", Toast.LENGTH_SHORT).show();
 
     }
-
     public void passwordRestSelect(View view) {
         Toast.makeText(ProfileActivity.this, "아직 미구현!!!!", Toast.LENGTH_SHORT).show();
 
     }
-
     public void googleJoinedSelect(View view) {
         Toast.makeText(ProfileActivity.this, "아직 미구현!!!!", Toast.LENGTH_SHORT).show();
     }
-
     public void naverJoinedSelect(View view) {
         Toast.makeText(ProfileActivity.this, "아직 미구현!!!!", Toast.LENGTH_SHORT).show();
 
     }
-
     public void selectCurrency(View view) {
-
-
-        //TextView tmp1 = (TextView) findViewById(R.id.selected_curr);
-        //tmp1.setText(gcurr);
-        //String selectedCurrency = tmp1.getText().toString().trim();
-        //Toast.makeText(ProfileActivity.this, "전송화통화 : " + selectedCurrency, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(ProfileActivity.this, CurrencySelect.class);
-        //intent.putExtra("currencySelected", "selectedCurrency");
-        intent.putExtra("base_CURR_CD_Send", base_CURR_CD_FromDB);
+        intent.putExtra("base_CURR_CD_Send",base_CURR_CD_FromDB);
         intent.putExtra("sele_MAIL_PK_Send",sele_MAIL_PK_FromDB);
         startActivity(intent);
         finish();
-
     }
-
     public void changeprofile_btn(View view) {
         Intent intent = new Intent(ProfileActivity.this, ChangeProfileImage.class);
         intent.putExtra("profile_PIC_Send", profile_PIC_FromDB);
@@ -220,25 +209,21 @@ public class ProfileActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
     public void changenicname_btn(View view) {
         //TextView nic_NAME_NM_FromDB = (TextView)findViewById(R.id.prenicname);
         //Toast.makeText(this, "데이터 넘겨 줍니다." + disp_MAIL_ID_FromDB, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(ProfileActivity.this, UpdateNicName.class);
         intent.putExtra("nic_NAME_NM_Send", nic_NAME_NM_FromDB);
         intent.putExtra("disp_MAIL_ID_Send", disp_MAIL_ID_FromDB);
-        intent.putExtra("sele_MAIL_PK_Send",sele_MAIL_PK_FromDB);
+        intent.putExtra("sele_MAIL_PK_Send", sele_MAIL_PK_FromDB);
         startActivity(intent);
         finish();
-
     }
-
     public void etcDescStart(View view) {
         Intent intent = new Intent(this, TravelDairyDescription.class);
         startActivity(intent);
         finish();
     }
-
     public void logoutStart(View view) {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -265,7 +250,6 @@ public class ProfileActivity extends AppCompatActivity {
             // startActivity(intent);
         }
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {// 뒤로가기 버튼 눌렀을 때
@@ -275,7 +259,6 @@ public class ProfileActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
     //화면 back 버튼 눌렀을때처리
     @Override
     public void onBackPressed() {
@@ -287,7 +270,6 @@ public class ProfileActivity extends AppCompatActivity {
         // 드로워 화면 만들면 드로워 화면으로 변경해라..아니면 그대로 대시보드로 이동
         finish();
     }
-
     public void delUserStart(View view) {
 
         if (mAuth.getCurrentUser() != null) {
@@ -328,7 +310,6 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
     }
-
     @Override
     protected void onDestroy() {
         //Toast.makeText(ProfileActivity.this
@@ -336,6 +317,4 @@ public class ProfileActivity extends AppCompatActivity {
         super.onDestroy();
         Log.i("TAG", "onDestory");
     }
-
-
 }

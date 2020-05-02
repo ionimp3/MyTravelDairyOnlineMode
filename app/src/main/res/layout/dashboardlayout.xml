@@ -12,27 +12,74 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/lightGrayColor">
-
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                android:background="@color/lightWhiteColor"
                 android:theme="@style/MyAppTheme"
                 app:layout_scrollFlags="enterAlways|scroll"
                 app:popupTheme="@style/MyAppTheme"
-                android:background="@color/lightWhiteColor"/>
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <Button
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:background="@drawable/ic_drawer_back_black_24dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="10dp"
+                        android:id="@+id/drawerback"
+                        android:onClick="drawerbackStart"/>
 
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/logo1"
+                        android:scaleType="centerCrop"
+                        android:layout_gravity="center_vertical"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+                    <Button
+                        android:layout_width="150dp"
+                        android:layout_height="40dp"
+                        android:text="어디로 떠나 볼까??"
+                        android:gravity="center"
+                        android:paddingStart="10dp"
+                        android:textSize="12sp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="20dp"
+                        android:onClick="ttbtn1"
+                        android:id="@+id/test_btncheck"
+                        tools:ignore="OnClick"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/mainsub_han_eng_notosanskr_light"
+                        android:textColor="@color/grayColor"
+                        />
+                </LinearLayout>
+            </androidx.appcompat.widget.Toolbar>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_layout"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
+                android:background="@color/lightGrayColor"
                 android:theme="@style/MyAppTheme"
-                android:background="@color/lightGrayColor"/>
+                />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+          </LinearLayout>
         </com.google.android.material.appbar.AppBarLayout>
         <FrameLayout
             android:id="@+id/simpleframelayout"
@@ -46,9 +93,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:layout_marginStart="-45dp"
         android:background="@color/lightWhiteColor"
         android:theme="@style/MyNavigationTheme"
         app:headerLayout="@layout/menu_header"
-        app:menu="@menu/main_menu"
-        android:layout_marginStart="-45dp"/>
+        app:menu="@menu/main_menu" />
 </androidx.drawerlayout.widget.DrawerLayout>

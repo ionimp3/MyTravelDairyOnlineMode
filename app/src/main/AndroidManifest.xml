@@ -16,10 +16,11 @@
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="stateAlwaysHidden"
         tools:ignore="AllowBackup">
-        <!--16:9,18:9 화면비 상태에 자동맞춤 -->
-        <meta-data android:name="android.max_aspect" android:value="2.1" />
-        <!-- // -->
-        <activity android:name="Profile.UpdateNicName"/>
+        <!-- 16:9,18:9 화면비 상태에 자동맞춤 -->
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.1" /> <!-- // -->
+        <activity android:name="Profile.UpdateNicName" />
         <activity android:name="Profile.ChangeProfileImage" />
         <activity android:name="Common.Intro_loading" />
         <activity android:name="Profile.TravelDairyDescription" />
