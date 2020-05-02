@@ -6,51 +6,51 @@
 
         <item
             android:id="@+id/nav_home"
-            android:title="HOME"
-            android:icon="@drawable/logo1"
+            android:title="새로운 일정만들기"
+            android:icon="@drawable/ic_plus"
             />
         <item
-            android:id="@+id/nav_routemap"
-            android:title="TEST1"
-            android:icon="@drawable/ic_routmap"
+            android:id="@+id/nav_home"
+            android:title="홈"
+            android:icon="@drawable/ic_profile"
             />
         <item
-            android:id="@+id/nav_world"
-            android:title="TEST2"
-            android:icon="@drawable/ic_world"
+            android:id="@+id/nav_alram"
+            android:title="알림메세지"
+            android:icon="@drawable/ic_bell"
             />
 
         <item
             android:id="@+id/nav_setting"
             android:title="설정"
-            android:icon="@drawable/logo1"
+            android:icon="@drawable/ic_setting"
             />
 
     </group>
 
 
     <item
-        android:title="catagory">
+        android:title="카테고리"
+        android:icon="@drawable/ic_tags">
         <menu>
             <group
-                android:checkableBehavior="single">
+                android:checkableBehavior="none">
 
                 <item
-                    android:id="@+id/nav_c_f1"
-                    android:title="home"
-                    android:icon="@drawable/logo1"
-                    />
-                <item
-                    android:id="@+id/nav_c_f2"
-                    android:title="routemap"
-                    android:icon="@drawable/ic_routmap"
-                    />
-                <item
-                    android:id="@+id/nav_c_f3"
-                    android:title="월드맵"
+                    android:id="@+id/nav_country"
+                    android:title="나라"
                     android:icon="@drawable/ic_world"
                     />
-
+                <item
+                    android:id="@+id/nav_city"
+                    android:title="도시"
+                    android:icon="@drawable/ic_map"
+                    />
+                <item
+                    android:id="@+id/nav_place"
+                    android:title="여행지"
+                    android:icon="@drawable/ic_camera"
+                    />
 
             </group>
         </menu>
@@ -58,20 +58,20 @@
     </item>
 
     <item
-        android:title="share">
+        android:title="기타"
+        android:icon="@drawable/ic_etc">
         <menu>
             <group
                 android:checkableBehavior="none">
-
                 <item
-                    android:id="@+id/nav_s_f1"
-                    android:title="home"
-                    android:icon="@drawable/logo1"
+                    android:id="@+id/nav_etc1"
+                    android:title="미정"
+                    android:icon="@drawable/ic_calender"
                     />
                 <item
-                    android:id="@+id/nav_s_f2"
-                    android:title="routemap"
-                    android:icon="@drawable/ic_routmap"
+                    android:id="@+id/nav_etc2"
+                    android:title="미정"
+                    android:icon="@drawable/ic_backup"
                     />
 
 

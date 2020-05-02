@@ -1,4 +1,4 @@
-package com.lmh.mytraveldairyjava;
+package DashBoard;
 
 import android.os.Bundle;
 
@@ -8,13 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.lmh.mytraveldairyjava.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TabChat extends Fragment {
+public class DetailToDo extends Fragment {
 
-    public TabChat() {
+    public DetailToDo() {
         // Required empty public constructor
     }
 
@@ -23,6 +24,6 @@ public class TabChat extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tab_chat, container, false);
+        return inflater.inflate(R.layout.fragmentdetailtodo, container, false);
     }
 }

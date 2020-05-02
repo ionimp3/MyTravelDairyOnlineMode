@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.lmh.mytraveldairyjava.R;
 
 import DashBoard.UserDashboard;
@@ -50,39 +51,18 @@ public class SignInActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //layout에서 지정하면 불필요
-        //setTitle("로그인");
-
-        //appLoginCheck1();
-
-        login = (Button) findViewById(R.id.callSignIn);
-        passwordfind = (Button) findViewById(R.id.callPasswordFind);
-
-        // 버튼텍스트에 밑줄긋기
-        //passwordfind.setPaintFlags(passwordfind.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-        //
-
-        email_login = (EditText) findViewById(R.id.etEmailId);
-        pwd_login = (EditText) findViewById(R.id.etPassword);
 
         //firebase 초기화
         firebaseAuth = FirebaseAuth.getInstance();
 
+        login = (Button) findViewById(R.id.callSignIn);
+        passwordfind = (Button) findViewById(R.id.callPasswordFind);
+        email_login = (EditText) findViewById(R.id.etEmailId);
+        pwd_login = (EditText) findViewById(R.id.etPassword);
+        // 버튼텍스트에 밑줄긋기
+        //passwordfind.setPaintFlags(passwordfind.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        //
     }
-
-/*    //로그인확인
-    private void appLoginCheck1() {
-        //로그인확인
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            FirebaseAuth.getInstance().signOut();
-            Toast.makeText(SignInActivity.this, "다시한번확인" ,Toast.LENGTH_SHORT).show();
-            //Intent intent = new Intent(SignInActivity.this, ProfileActivity.class);
-            //startActivity(intent);
-            //finish();
-        }
-
-    }*/
 
 
     //validation 메일

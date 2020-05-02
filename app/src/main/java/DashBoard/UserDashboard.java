@@ -10,30 +10,23 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.lmh.mytraveldairyjava.R;
-import com.lmh.mytraveldairyjava.StartActivity;
-import com.lmh.mytraveldairyjava.TabCall;
-import com.lmh.mytraveldairyjava.TabChat;
 
 import Common.BackPressHandler;
 import Common.MessageToast;
-import Common.OnBoarding;
 import Profile.ProfileActivity;
 
 public class UserDashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -44,10 +37,11 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
     static final float END_SCALE = 0.7F;
 
     //drawer menu
-    DrawerLayout drawerLayout;
-    NavigationView navigationView;
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+    private RecyclerView postList;
 
-    ImageView menuListIcon;
+    Button menuListIcon;
     TextView textView;
     LinearLayout contentLayout;
 
@@ -77,23 +71,21 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
         //supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp)  // 왼쪽 버튼 이미지 설정
         //supportActionBar!!.setDisplayShowTitleEnabled(false)    // 타이틀 안보이게 하기
 
-        //hooks
-        //textView = findViewById(R.id.textView1);
-        //menuListIcon = findViewById(R.id.btn_drawerlist);
-        //contentLayout = findViewById(R.id.contentlayout);
 
         //menu hooks
+        menuListIcon = findViewById(R.id.drawerback);
         btncheck = findViewById(R.id.test_btncheck);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigation_view_layout);
         frameLayout = findViewById(R.id.simpleframelayout);
         tabLayout = findViewById(R.id.tab_layout);
         //탭레이웃 안에 탭투가
-        tabLayout.addTab(tabLayout.newTab().setText("첫번째탭"));
-        tabLayout.addTab(tabLayout.newTab().setText("두번째탭"));
+        tabLayout.addTab(tabLayout.newTab().setText("대시보드"));
+        tabLayout.addTab(tabLayout.newTab().setText("여행루트"));
+        tabLayout.addTab(tabLayout.newTab().setText("세부일정"));
         //setTitle("대시보드");
 
-        fragment = new TabChat();
+        fragment = new DashBoardMain();
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
         ft.replace(R.id.simpleframelayout, fragment);
@@ -106,10 +98,13 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
                 Fragment fragment = null;
                 switch (tab.getPosition()) {
                     case 0:
-                        fragment = new TabChat();
+                        fragment = new DashBoardMain();
                         break;
                     case 1:
-                        fragment = new TabCall();
+                        fragment = new TravelRoute();
+                        break;
+                    case 2:
+                        fragment = new DetailToDo();
                         break;
                 }
                 fm = getSupportFragmentManager();
@@ -134,21 +129,18 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
         //Navigation Drawer
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
-        navigationView.setCheckedItem(R.id.nav_home);
-
-        navigationDrawer();
-
-
+        //navigationView.setCheckedItem(R.id.drawerback);
+        //navigationDrawer();
     }
 
     //navigation 기능메소드드
-    private void navigationDrawer() {
+/*    private void navigationDrawer() {
         //navigation Drawer
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
-        navigationView.setCheckedItem(R.id.nav_home);
+        navigationView.setCheckedItem(R.id.drawerback);
         //상단에 list 버튼 만들어 누르면 드로어 열어 주는 구문 ..
-/*        menuListIcon.setOnClickListener(new View.OnClickListener() {
+        menuListIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (drawerLayout.isDrawerVisible(GravityCompat.START)) {
@@ -157,10 +149,23 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
                     drawerLayout.openDrawer(GravityCompat.START);
                 }
             }
-        });*/
+        });
+        animateNavigationDrawer();
+    }*/
 
-        //animateNavigationDrawer();
-
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.nav_home:
+                drawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            case R.id.nav_setting:
+                Intent intent = new Intent(this, ProfileActivity.class);
+                startActivity(intent);
+                finish();
+                break;
+        }
+        return true;
     }
 
     private void animateNavigationDrawer() {
@@ -187,27 +192,11 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
         });
     }
 
-
     /*    @Override
         public boolean onCreateOptionsMenu(Menu menu) {
             getMenuInflater().inflate(R.menu.actionbarcustum, menu);
             return true;
         }*/
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        switch (menuItem.getItemId()) {
-            case R.id.nav_home:
-                drawerLayout.closeDrawer(GravityCompat.START);
-                break;
-            case R.id.nav_setting:
-                Intent intent = new Intent(this, ProfileActivity.class);
-                startActivity(intent);
-                finish();
-                break;
-        }
-        return true;
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {// 뒤로가기 버튼 눌렀을 때
@@ -216,13 +205,13 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
         return super.onOptionsItemSelected(item);
     }
 
-
     public void ttbtn1(View view) {
         MessageToast.message(this, "툴바버튼을 눌렀네요");
     }
 
     public void drawerbackStart(View view) {
         drawerLayout.openDrawer(GravityCompat.START);
+
     }
 
     @Override

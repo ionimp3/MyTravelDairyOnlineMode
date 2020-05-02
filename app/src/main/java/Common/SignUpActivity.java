@@ -29,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import DashBoard.UserDashboard;
 import Profile.ProfileActivity;
+
 import com.lmh.mytraveldairyjava.R;
 
 import java.time.LocalDateTime;
@@ -39,11 +40,14 @@ public class SignUpActivity extends AppCompatActivity {
     private Button regist_CallStart;
     private EditText repwd_join;
     public CheckBox signup_checkbox;
-    ProgressBar progressBar1;
-    ProgressDialog dialog1;
-    static String loginuseremail;
     private EditText email_join;
     private EditText pwd_join;
+
+    String loginuseremail;
+    String disp_MAIL_ID;
+
+    ProgressDialog dialog1;
+
     //FIREBASE 관련 선안
     FirebaseAuth firebaseAuth;
     FirebaseDatabase rootNode;
@@ -78,7 +82,13 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
-    //validation 메일
+    private void appLoginCheck2() {
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if (user != null) {
+            firebaseAuth.signOut();
+        }
+    }
+
     private Boolean validateSignUpEmailid() {
         String joinvalidemail = email_join.getEditableText().toString().trim();
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]";
@@ -96,8 +106,6 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
-    //
-    //validation  패스워드
     private Boolean validateSignUpPassword() {
         String joinvalidPassword = pwd_join.getEditableText().toString().trim();
         String passwordPattern = "^" +
@@ -122,8 +130,6 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
-    //
-    //validation 비밀번호재입력
     public Boolean reSignUpPassword() {
         String joinrePassword = repwd_join.getEditableText().toString().trim();
         String passwordPattern = "^" +
@@ -150,7 +156,6 @@ public class SignUpActivity extends AppCompatActivity {
 
     // 등록실행
     public void regStart(View view) {
-
         if (!validateSignUpEmailid() | !validateSignUpPassword() | !reSignUpPassword()) {
             return;
         }
@@ -166,23 +171,17 @@ public class SignUpActivity extends AppCompatActivity {
         showProcessDialog1();
 
         firebaseAuth.createUserWithEmailAndPassword(joinemail, joinpwd)
-
                 .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
                     @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-
                         if (task.isSuccessful()) {
-
                             //회원가입 완료 후 후 DB_SETTING_TB 신규 레크드 등록
-                            //넘겨줄 data 정의
-
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                            //
                             String base_CURR_CD = "1";
                             String base_CURR_NM = "KRW";
                             String cover_PIC = "";
-                            String disp_MAIL_ID = user.getEmail();
+                            disp_MAIL_ID = user.getEmail();
                             String tmps1 = disp_MAIL_ID.replaceAll("[.]", "");
                             String tmps2 = tmps1.replaceAll("[@]", "");
                             String login_MAT_ID = "1";
@@ -194,28 +193,21 @@ public class SignUpActivity extends AppCompatActivity {
                             String tstamp_UP_DT = LocalDateTime.now().toString();
                             String tstamp_CR_DT = LocalDateTime.now().toString();
 
-
                             //db노드 지정
                             rootNode = FirebaseDatabase.getInstance();
                             reference = rootNode.getReference((sele_MAIL_PK + "/FDB_SETTING_TB"));
-
                             //데이터 저장
                             SettingHelperClass settingHelperClass;
-                            settingHelperClass = new SettingHelperClass( base_CURR_CD,  base_CURR_NM,  login_MAT_ID,  now_USER_ST,  disp_MAIL_ID,  cover_PIC,  nic_NAME_NM,  profile_PIC,  push_ALAR_ST,  sele_MAIL_PK,  tstamp_UP_DT,  tstamp_CR_DT);
+                            settingHelperClass = new SettingHelperClass(base_CURR_CD, base_CURR_NM, login_MAT_ID, now_USER_ST, disp_MAIL_ID, cover_PIC, nic_NAME_NM, profile_PIC, push_ALAR_ST, sele_MAIL_PK, tstamp_UP_DT, tstamp_CR_DT);
                             reference.setValue(settingHelperClass);
 
-                            //
+                            MessageToast.message(SignUpActivity.this,"등록성공!!!!!!");
 
-                            loginuseremail = String.format("%s", disp_MAIL_ID);
-                            Toast.makeText(SignUpActivity.this, "등록 성공!!!!!", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(SignUpActivity.this, UserDashboard.class);
-                            intent.putExtra("sendemailid", loginuseremail);
-                            startActivity(intent);
-                            finish();
-                            dialog1.dismiss();
+                            GotoUserDashboard();
                         } else {
-
-                            Toast.makeText(SignUpActivity.this, "기존사용자입니다..비밀번호 분실시는 초기화해주세요", Toast.LENGTH_LONG).show();
+                            String message = task.getException().getMessage();
+                            Toast.makeText(SignUpActivity.this,"등록실패 오류내용 : "+message,Toast.LENGTH_SHORT).show();
+                            //MessageToast.message(SignUpActivity.this,"기존사용자입니다..비밀번호 분실시는 초기화해주세요");
                             dialog1.dismiss();
 
                         }
@@ -224,13 +216,25 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
+    private void GotoUserDashboard() {
+        loginuseremail = String.format("%s", disp_MAIL_ID);
+        Intent signupIntent = new Intent(SignUpActivity.this, UserDashboard.class);
+        signupIntent.putExtra("sendemailid", loginuseremail);
+        signupIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(signupIntent);
+        finish();
+        dialog1.dismiss();
+    }
+
     //프로세스다이얼로그 start
     private void showProcessDialog1() {
 
         dialog1 = new ProgressDialog(SignUpActivity.this);
         dialog1.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog1.setMessage("데이터를 확인하는 중입니다.");
+        dialog1.setTitle("신규계정생성");
+        dialog1.setMessage("신규사용자계정을 생성중입니다..");
         dialog1.show();
+        dialog1.setCanceledOnTouchOutside(true);
         //
     }
 
@@ -243,17 +247,7 @@ public class SignUpActivity extends AppCompatActivity {
         Toast.makeText(SignUpActivity.this, "아직 미구현!!!!", Toast.LENGTH_SHORT).show();
 
     }
-    //로그인확인
-    private void appLoginCheck2() {
-        //로그인확인
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            FirebaseAuth.getInstance().signOut();
-            /*Intent intent = new Intent(SignUpActivity.this, ProfileActivity.class);
-            startActivity(intent);
-            finish();*/
-        }
-    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -264,12 +258,13 @@ public class SignUpActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     //화면 back 버튼 눌렀을때처리
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
         //맨처음화면으로 이동
-        Intent intent = new Intent(SignUpActivity.this,OnBoarding.class);
+        Intent intent = new Intent(SignUpActivity.this, OnBoarding.class);
         startActivity(intent);
         finish();
     }

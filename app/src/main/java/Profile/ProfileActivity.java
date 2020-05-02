@@ -78,8 +78,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         //로그인 체크
         appLoginCheck3();
-        //
-        //isUserCallData();
 
     }
 
@@ -110,7 +108,6 @@ public class ProfileActivity extends AppCompatActivity {
         final TextView _txjoinTypeEmail = (TextView) findViewById(R.id.txjoinTypeEmail);
         final TextView _txjoinNic = (TextView) findViewById(R.id.txjoinNic);
         final TextView _txjoinCurr = (TextView) findViewById(R.id.selected_curr);
-        //Toast.makeText(this, "aaaa" + tmps2, Toast.LENGTH_SHORT).show();
 
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference(tmps2 + "/FDB_SETTING_TB");

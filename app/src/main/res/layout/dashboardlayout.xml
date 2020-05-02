@@ -37,6 +37,7 @@
                         android:id="@+id/drawerback"
                         android:onClick="drawerbackStart"/>
 
+
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
@@ -93,7 +94,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:layout_marginStart="-45dp"
+        android:layout_marginStart="-1dp"
         android:background="@color/lightWhiteColor"
         android:theme="@style/MyNavigationTheme"
         app:headerLayout="@layout/menu_header"

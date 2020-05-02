@@ -16,9 +16,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.lmh.mytraveldairyjava.R;
 
 public class OnBoarding extends AppCompatActivity {
+
+    FirebaseAuth mAuth;
 
     ViewPager viewPager;
     LinearLayout dotsLayout;
@@ -66,22 +70,24 @@ public class OnBoarding extends AppCompatActivity {
         viewPager.addOnPageChangeListener(changeListener);
     }
 
-/*    private void appLoginCheck() {
-
-            Intent intent = new Intent(OnBoarding.this, ProfileActivity.class);
+    //시작하면서 바로 접속한 사용자 있는지 체크, 없으면 로그인 화면으로
+    //지금은 불필용요..나중에 자동로그인 할떼 분기로 쓰자.
+/*    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser == null){
+            Intent intent = new Intent(OnBoarding.this, SignInActivity.class);
             startActivity(intent);
             finish();
-
-        //
+        }
     }*/
-
-    //skip 버튼
 
     public void skip(View view) {
         //SKIP 시 로그인 화면으로
-        Intent intent = new Intent(OnBoarding.this, SignInActivity.class);
-        startActivity(intent);
-        finish();
+        Intent signinIntent = new Intent(OnBoarding.this, SignInActivity.class);
+        signinIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(signinIntent);
     }
 
     public void playon(View view) {
@@ -162,18 +168,20 @@ public class OnBoarding extends AppCompatActivity {
 
     //회원가입버튼 클릭
     public void callRegist(View view) {
+        Intent signUpIntent = new Intent(OnBoarding.this, SignUpActivity.class);
+        signUpIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(signUpIntent);
 
-        Intent intent = new Intent(OnBoarding.this, SignUpActivity.class);
-        startActivity(intent);
-        finish();
 
     }
 
     //로그인버튼 클릭시
     public void callLogin(View view) {
-        Intent intent = new Intent(OnBoarding.this, SignInActivity.class);
-        startActivity(intent);
-        finish();
+        Intent signinIntent = new Intent(OnBoarding.this, SignInActivity.class);
+        //화면이동중 백버튼을 누를때 발생할수있는 오류 디버그처리
+        signinIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(signinIntent);
+
 
     }
 
