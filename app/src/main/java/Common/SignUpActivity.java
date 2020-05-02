@@ -26,6 +26,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import DashBoard.UserDashboard;
 import Profile.ProfileActivity;
 import com.lmh.mytraveldairyjava.R;
 
@@ -206,7 +208,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                             loginuseremail = String.format("%s", disp_MAIL_ID);
                             Toast.makeText(SignUpActivity.this, "등록 성공!!!!!", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(SignUpActivity.this, ProfileActivity.class);
+                            Intent intent = new Intent(SignUpActivity.this, UserDashboard.class);
                             intent.putExtra("sendemailid", loginuseremail);
                             startActivity(intent);
                             finish();

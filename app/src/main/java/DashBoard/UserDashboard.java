@@ -19,18 +19,22 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
+
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.lmh.mytraveldairyjava.R;
+import com.lmh.mytraveldairyjava.StartActivity;
 import com.lmh.mytraveldairyjava.TabCall;
 import com.lmh.mytraveldairyjava.TabChat;
 
 import Common.BackPressHandler;
 import Common.MessageToast;
 import Common.OnBoarding;
+import Profile.ProfileActivity;
 
 public class UserDashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     // BackPressHandler 객체 선언, 할당
@@ -92,7 +96,7 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
         fragment = new TabChat();
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
-        ft.replace(R.id.simpleframelayout,fragment);
+        ft.replace(R.id.simpleframelayout, fragment);
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         ft.commit();
 
@@ -100,18 +104,18 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 Fragment fragment = null;
-                switch (tab.getPosition()){
+                switch (tab.getPosition()) {
                     case 0:
                         fragment = new TabChat();
                         break;
-                    case 1 :
+                    case 1:
                         fragment = new TabCall();
                         break;
                 }
                 fm = getSupportFragmentManager();
                 fm = getSupportFragmentManager();
                 ft = fm.beginTransaction();
-                ft.replace(R.id.simpleframelayout,fragment);
+                ft.replace(R.id.simpleframelayout, fragment);
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                 ft.commit();
             }
@@ -135,11 +139,10 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
         navigationDrawer();
 
 
-
     }
 
     //navigation 기능메소드드
-   private void navigationDrawer() {
+    private void navigationDrawer() {
         //navigation Drawer
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
@@ -160,7 +163,7 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
 
     }
 
-  private void animateNavigationDrawer() {
+    private void animateNavigationDrawer() {
         drawerLayout.setScrimColor(getResources().getColor(R.color.warningColor));
         //Add any color or remove it to use the default one!
         //To make it transparent use Color.Transparent in side setScrimColor();
@@ -185,15 +188,26 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
     }
 
 
-/*    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.actionbarcustum, menu);
-        return true;
-    }*/
+    /*    @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
+            getMenuInflater().inflate(R.menu.actionbarcustum, menu);
+            return true;
+        }*/
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.nav_home:
+                drawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            case R.id.nav_setting:
+                Intent intent = new Intent(this, ProfileActivity.class);
+                startActivity(intent);
+                finish();
+                break;
+        }
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {// 뒤로가기 버튼 눌렀을 때
@@ -201,15 +215,25 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+    public void ttbtn1(View view) {
+        MessageToast.message(this, "툴바버튼을 눌렀네요");
+    }
+
+    public void drawerbackStart(View view) {
+        drawerLayout.openDrawer(GravityCompat.START);
+    }
+
     @Override
     public void onBackPressed() {
 
-        if(drawerLayout.isDrawerVisible(GravityCompat.START)){
+        if (drawerLayout.isDrawerVisible(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-
-        }else{
-            super.onBackPressed();
+        } else {
+            backPressHandler.onBackPressed();
         }
+        //super.onBackPressed();
         // Default
         //backPressHandler.onBackPressed();
         // Toast 메세지 사용자 지정
@@ -219,13 +243,5 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
         // Toast, 간격 사용자 지정
         //backPressHandler.onBackPressed("뒤로가기 버튼 한번 더 누르면 종료", 3000);
 
-    }
-
-    public void ttbtn1(View view) {
-        MessageToast.message(this, "툴바버튼을 눌렀네요");
-    }
-
-    public void drawerbackStart(View view) {
-        drawerLayout.openDrawer(GravityCompat.START);
     }
 }

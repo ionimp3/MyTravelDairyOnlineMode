@@ -6,50 +6,28 @@
 
         <item
             android:id="@+id/nav_home"
-            android:title="home"
+            android:title="HOME"
             android:icon="@drawable/logo1"
             />
         <item
             android:id="@+id/nav_routemap"
-            android:title="routemap"
+            android:title="TEST1"
             android:icon="@drawable/ic_routmap"
             />
         <item
             android:id="@+id/nav_world"
-            android:title="월드맵"
+            android:title="TEST2"
             android:icon="@drawable/ic_world"
             />
 
+        <item
+            android:id="@+id/nav_setting"
+            android:title="설정"
+            android:icon="@drawable/logo1"
+            />
 
     </group>
 
-    <item
-        android:title="profile">
-        <menu>
-            <group
-                android:checkableBehavior="single">
-
-                <item
-                    android:id="@+id/nav_p_f1"
-                    android:title="home"
-                    android:icon="@drawable/logo1"
-                    />
-                <item
-                    android:id="@+id/nav_p_f2"
-                    android:title="routemap"
-                    android:icon="@drawable/ic_routmap"
-                    />
-                <item
-                    android:id="@+id/nav_p_f3"
-                    android:title="월드맵"
-                    android:icon="@drawable/ic_world"
-                    />
-
-
-            </group>
-        </menu>
-
-    </item>
 
     <item
         android:title="catagory">

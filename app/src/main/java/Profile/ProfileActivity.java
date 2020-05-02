@@ -250,26 +250,6 @@ public class ProfileActivity extends AppCompatActivity {
             // startActivity(intent);
         }
     }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {// 뒤로가기 버튼 눌렀을 때
-            Intent intent = new Intent(this, UserDashboard.class);
-            startActivity(intent);
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
-    }
-    //화면 back 버튼 눌렀을때처리
-    @Override
-    public void onBackPressed() {
-        //super.onBackPressed();
-        Intent intent = new Intent(ProfileActivity.this, UserDashboard.class);
-        startActivity(intent);
-        // 현재액티비의 루트 액티비티까지 종료시켜라
-        // 루트 설정화면을 부른 이전 메뉴 액티비티
-        // 드로워 화면 만들면 드로워 화면으로 변경해라..아니면 그대로 대시보드로 이동
-        finish();
-    }
     public void delUserStart(View view) {
 
         if (mAuth.getCurrentUser() != null) {
@@ -310,6 +290,27 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {// 뒤로가기 버튼 눌렀을 때
+            Intent intent = new Intent(this, UserDashboard.class);
+            startActivity(intent);
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    //화면 back 버튼 눌렀을때처리
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        Intent intent = new Intent(ProfileActivity.this, UserDashboard.class);
+        startActivity(intent);
+        // 현재액티비의 루트 액티비티까지 종료시켜라
+        // 루트 설정화면을 부른 이전 메뉴 액티비티
+        // 드로워 화면 만들면 드로워 화면으로 변경해라..아니면 그대로 대시보드로 이동
+        finish();
+    }
+
     @Override
     protected void onDestroy() {
         //Toast.makeText(ProfileActivity.this
