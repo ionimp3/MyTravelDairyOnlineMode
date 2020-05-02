@@ -22,10 +22,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 import com.lmh.mytraveldairyjava.R;
 
 import DashBoard.UserDashboard;
-import Profile.ProfileActivity;
+
 
 
 public class SignInActivity extends AppCompatActivity {
@@ -82,9 +85,6 @@ public class SignInActivity extends AppCompatActivity {
         }
 
     }
-
-    //
-
     //validation  패스워드
     private Boolean validatePassword() {
         String validPassword = pwd_login.getEditableText().toString().trim();
@@ -109,9 +109,6 @@ public class SignInActivity extends AppCompatActivity {
         }
 
     }
-    //
-
-
     //로그인 버튼 클릭시..xml파일에서 onClick설정하여 생성
     public void loginStart(View view) {
 
@@ -120,17 +117,12 @@ public class SignInActivity extends AppCompatActivity {
         }
         final String email = email_login.getText().toString().trim();
         String pwd = pwd_login.getText().toString().trim();
-
         showProcessDialog();
-
         firebaseAuth.signInWithEmailAndPassword(email, pwd)
                 .addOnCompleteListener(SignInActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-
-
                         if (task.isSuccessful()) {
-
                             //이전화면 기억하기...로그인,로그아웃 시 두번로그인.. 조금 문제있음..
                             //기존로그인했던 아이디에서 다른 아이디로 로그인하면 crash 남.
                             // [START rtdb_enable_persistence]
@@ -140,32 +132,38 @@ public class SignInActivity extends AppCompatActivity {
                             //DatabaseReference scoresRef = FirebaseDatabase.getInstance().getReference("");
                             // scoresRef.keepSynced(true);
                             // [END rtdb_keep_synced]
-
-                            Toast.makeText(SignInActivity.this, "로그인 성공 !!! : " + email, Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(SignInActivity.this, UserDashboard.class);
-                            //여기서 로그인한 메일아이디를 다른 액티비티로 넘겨줘야함..화면에 표시하기위해
-                            //DB상에는 메일과패스워드 정보없음..나중에 자기가 쓴글만 서로 읽고,쓰기 가능하도록
-                            //관리자도 내용확인 불가.(FIREBASE DB RULE 작성자만 읽고 쓰도록 설정
-                            //loginuseremail = String.format("%s", email);
-
-                            //메일 아이뒤 임시 전달
-                            //intent.putExtra("sendemailid", loginuseremail);
-                            //
-                            startActivity(intent);
+                            MessageToast.message(SignInActivity.this,"로그인 성공 !!!");
+                            //Toast.makeText(SignInActivity.this, "로그인 성공 !!! : " + email, Toast.LENGTH_SHORT).show();
+                            Intent signinIntent = new Intent(SignInActivity.this, UserDashboard.class);
+                            signinIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(signinIntent);
                             finish();
                             dialog.dismiss();
                         } else {
-                            dialog.dismiss();
-                            Toast.makeText(SignInActivity.this, "등록되지 않은 사용자이거나, 메일아이디 또는 비밀번호가 틀렸읍니다.!!!", Toast.LENGTH_SHORT).show();
+                            String message = task.getException().getMessage();
+                            Toast.makeText(SignInActivity.this,"로그인 실패 오류내용 : "+ message,Toast.LENGTH_SHORT).show();
+                            MessageToast.message(SignInActivity.this,"등록되지 않은 사용자이거나, 메일아이디 또는 비밀번호가 틀렸읍니다.!!!");
+                            //Toast.makeText(SignInActivity.this, "등록되지 않은 사용자이거나, 메일아이디 또는 비밀번호가 틀렸읍니다.!!!", Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                         }
                     }
                 });
-
     }
+
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        if (currentUser != null) {
+            Intent userdashboardIntent = new Intent(SignInActivity.this, UserDashboard.class);
+            userdashboardIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(userdashboardIntent);
+            finish();
+        }
+    }
+
     //
-
-
     //패스워드 리셋 요청화면 다이얼로그
     public void passwordFindStart(View view) {
 
@@ -209,43 +207,27 @@ public class SignInActivity extends AppCompatActivity {
 
         passwordDialog.show();
     }
-    //
-
-
-    //프로세스다이얼로그 start
-    private void showProcessDialog() {
-
-        dialog = new ProgressDialog(SignInActivity.this);
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog.setMessage("데이터를 확인하는 중입니다.");
-        dialog.show();
-
-    }
-
-
     //네이버로 로그인 미구현
     public void naverLoginStart(View view) {
 
         Toast.makeText(SignInActivity.this, "아직 지원하지 않습니다....", Toast.LENGTH_SHORT).show();
 
     }
-
     //구글로 로그인 미구현
     public void googleLoginStart(View view) {
 
         Toast.makeText(SignInActivity.this, "아직 지원하지 않습니다....", Toast.LENGTH_SHORT).show();
 
     }
-    //
-
-
-
-/*    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.actionbarcustum, menu);
-        return true;
-    }*/
-
+    //프로세스다이얼로그 start
+    private void showProcessDialog() {
+        dialog = new ProgressDialog(SignInActivity.this);
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.setTitle("로그인");
+        dialog.setMessage("로그인진행중입니다...");
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {// 뒤로가기 버튼 눌렀을 때
@@ -255,7 +237,6 @@ public class SignInActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
     //화면 back 버튼 눌렀을때처리
     @Override
     public void onBackPressed() {

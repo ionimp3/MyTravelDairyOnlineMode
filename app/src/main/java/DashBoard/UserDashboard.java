@@ -23,10 +23,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.lmh.mytraveldairyjava.R;
 
 import Common.BackPressHandler;
 import Common.MessageToast;
+import Common.OnBoarding;
 import Profile.ProfileActivity;
 
 public class UserDashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -36,6 +44,10 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
     //네이비게이션애니매이터 용 변수
     static final float END_SCALE = 0.7F;
 
+    //파이어베이스
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase mDatabase;
+    private DatabaseReference mUserRef;
     //drawer menu
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
@@ -65,6 +77,11 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         //getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_drawer_back_black_24dp);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance();
+        mUserRef = FirebaseDatabase.getInstance().getReference().child("Users");
+
         //setTitle("대시보드");
         // 툴바 왼쪽 버튼 설정
         //supportActionBar!!.setDisplayHomeAsUpEnabled(true)  // 왼쪽 버튼 사용 여부 true
@@ -129,29 +146,58 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
         //Navigation Drawer
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
-        //navigationView.setCheckedItem(R.id.drawerback);
-        //navigationDrawer();
+
     }
 
-    //navigation 기능메소드드
-/*    private void navigationDrawer() {
-        //navigation Drawer
-        navigationView.bringToFront();
-        navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
-        navigationView.setCheckedItem(R.id.drawerback);
-        //상단에 list 버튼 만들어 누르면 드로어 열어 주는 구문 ..
-        menuListIcon.setOnClickListener(new View.OnClickListener() {
+    //자동로그인체크..액티비티가 실행되면 바로 실행
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser == null) {
+            Intent userdashboardIntent = new Intent(UserDashboard.this, OnBoarding.class);
+            userdashboardIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(userdashboardIntent);
+            finish();
+        }
+        else
+            {
+                //실제접속이되엇는지 확인하는 메소드
+                CheckUserExistance();
+
+        }
+    }
+
+    private void CheckUserExistance()
+    {
+        final String current_user_id = mAuth.getCurrentUser().getUid();
+        mUserRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-                if (drawerLayout.isDrawerVisible(GravityCompat.START)) {
-                    drawerLayout.closeDrawer(GravityCompat.START);
-                } else {
-                    drawerLayout.openDrawer(GravityCompat.START);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                //실제 데이터베이스상에는 안보임..유저가입정보있는 uid를 가지고 비교..
+                if (!dataSnapshot.hasChild(current_user_id))
+                {
+                    //SendUserToSetupActivity();
                 }
             }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError)
+            {
+
+            }
         });
-        animateNavigationDrawer();
+    }
+
+/*    private void SendUserToSetupActivity()
+    {
+        Intent setupIntent = new Intent(UserDashboard.this, OnBoarding.class);
+        setupIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(setupIntent);
+        finish();
     }*/
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {

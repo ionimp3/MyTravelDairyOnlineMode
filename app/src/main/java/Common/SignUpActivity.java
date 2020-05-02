@@ -89,6 +89,19 @@ public class SignUpActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        if (currentUser != null) {
+            Intent userdashboardIntent = new Intent(SignUpActivity.this, UserDashboard.class);
+            userdashboardIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(userdashboardIntent);
+            finish();
+        }
+    }
+
     private Boolean validateSignUpEmailid() {
         String joinvalidemail = email_join.getEditableText().toString().trim();
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]";
@@ -195,7 +208,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                             //db노드 지정
                             rootNode = FirebaseDatabase.getInstance();
-                            reference = rootNode.getReference((sele_MAIL_PK + "/FDB_SETTING_TB"));
+                            reference = rootNode.getReference((sele_MAIL_PK + "/userProfile"));
                             //데이터 저장
                             SettingHelperClass settingHelperClass;
                             settingHelperClass = new SettingHelperClass(base_CURR_CD, base_CURR_NM, login_MAT_ID, now_USER_ST, disp_MAIL_ID, cover_PIC, nic_NAME_NM, profile_PIC, push_ALAR_ST, sele_MAIL_PK, tstamp_UP_DT, tstamp_CR_DT);
@@ -232,7 +245,7 @@ public class SignUpActivity extends AppCompatActivity {
         dialog1 = new ProgressDialog(SignUpActivity.this);
         dialog1.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         dialog1.setTitle("신규계정생성");
-        dialog1.setMessage("신규사용자계정을 생성중입니다..");
+        dialog1.setMessage("신규계정을 생성중입니다..");
         dialog1.show();
         dialog1.setCanceledOnTouchOutside(true);
         //

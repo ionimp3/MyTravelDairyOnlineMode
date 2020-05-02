@@ -51,7 +51,6 @@ public class ProfileActivity extends AppCompatActivity {
     String tstamp_UP_DT_FromDB;
     String now_USER_ST_FromDB;
 
-
     public static final int PICK_FROM_ALBUM = 1;
 
     private FirebaseAuth mAuth;
@@ -59,10 +58,8 @@ public class ProfileActivity extends AppCompatActivity {
 
     private TextView textivewDelete;
     Toolbar toolbar;
-
     // BackPressHandler 객체 선언, 할당
     private BackPressHandler backPressHandler = new BackPressHandler(this);
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,16 +68,12 @@ public class ProfileActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         // Authentication, Database, Storage 초기화
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
-
         //로그인 체크
         appLoginCheck3();
-
     }
-
     private void appLoginCheck3() {
         if (mAuth.getCurrentUser() == null) {
             //로그인요청
@@ -225,26 +218,15 @@ public class ProfileActivity extends AppCompatActivity {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
-
             FirebaseAuth.getInstance().signOut();
-
             Toast.makeText(ProfileActivity.this
                     , "로그아웃 하였읍니다.", Toast.LENGTH_SHORT).show();
-
-            //moveTaskToBack(true);						// 태스크를 백그라운드로 이동
-            // finishAndRemoveTask();						// 액티비티 종료 + 태스크 리스트에서 지우기
-            //android.os.Process.killProcess(android.os.Process.myPid());	// 앱 프로세스 종료
-
             Intent intent = new Intent(ProfileActivity.this, SignInActivity.class);
             startActivity(intent);
             finish();
-
-
         } else {
             Toast.makeText(ProfileActivity.this
                     , "로그아웃 상태입니다..", Toast.LENGTH_SHORT).show();
-            // Intent intent = new Intent(ProfileActivity.this, SignInActivity.class);
-            // startActivity(intent);
         }
     }
     public void delUserStart(View view) {
@@ -307,7 +289,6 @@ public class ProfileActivity extends AppCompatActivity {
         // 드로워 화면 만들면 드로워 화면으로 변경해라..아니면 그대로 대시보드로 이동
         finish();
     }
-
     @Override
     protected void onDestroy() {
         //Toast.makeText(ProfileActivity.this
