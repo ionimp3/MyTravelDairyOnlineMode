@@ -159,8 +159,8 @@ public class UpdateNicName<tmpedtext> extends AppCompatActivity {
 
         dialog1 = new ProgressDialog(UpdateNicName.this);
         dialog1.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog1.setTitle("신규계정생성");
-        dialog1.setMessage("신규계정을 생성중입니다..");
+        dialog1.setTitle("닉네임변경");
+        dialog1.setMessage("DB에 닉네임을 변경중입니다...");
         dialog1.show();
         dialog1.setCanceledOnTouchOutside(true);
         //
