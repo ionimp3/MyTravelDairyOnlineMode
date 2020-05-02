@@ -174,7 +174,7 @@ public class ProfileActivity extends AppCompatActivity {
         Intent intent = new Intent(ProfileActivity.this, UpdateNicName.class);
         intent.putExtra("nicName_Send", nicName_FromDB);
         intent.putExtra("displayMailId_Send", displayMailId_FromDB);
-        intent.putExtra("selectMailPrimaryKey_FromDB_Send", selectMailPrimaryKey_FromDB);
+        intent.putExtra("selectMailPrimaryKey_Send", selectMailPrimaryKey_FromDB);
         startActivity(intent);
         finish();
     }

@@ -1,10 +1,12 @@
 package Profile;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -19,16 +21,28 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import Common.BackPressHandler;
 
+import com.google.firebase.database.ValueEventListener;
 import com.lmh.mytraveldairyjava.R;
 
+import java.util.HashMap;
+
+import Common.MessageToast;
+import Common.OnBoarding;
 import Common.SignInActivity;
+import Common.SignUpActivity;
+import DashBoard.UserDashboard;
 
 public class UpdateNicName<tmpedtext> extends AppCompatActivity {
     ActionBar actionBar;
@@ -40,6 +54,9 @@ public class UpdateNicName<tmpedtext> extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseDatabase rootNode;
     DatabaseReference reference;
+    private DatabaseReference UserRef;
+
+    ProgressDialog dialog1;
 
     String brview;
     String atview;
@@ -80,9 +97,6 @@ public class UpdateNicName<tmpedtext> extends AppCompatActivity {
         Prestacklayout1 = (LinearLayout) findViewById(R.id.stacklayout1);
         Prestacklayout2 = (LinearLayout) findViewById(R.id.stacklayout2);
 
-        //로그인 체크
-        appLoginCheck3();
-        //
         showAllNicNameData();
 
     }
@@ -92,110 +106,116 @@ public class UpdateNicName<tmpedtext> extends AppCompatActivity {
         Intent intent = getIntent();
         atview = intent.getStringExtra("displayMailId_Send");
         brview = intent.getStringExtra("nicName_Send");
-        ckey = intent.getStringExtra("selectMailPrimaryKey_FromDB_Send");
+        ckey = intent.getStringExtra("selectMailPrimaryKey_Send");
         //Toast.makeText(this, "프로파일액티비티에 데이터 넘겨 받음" +  atview , Toast.LENGTH_SHORT).show();
         nicnameView.setText(brview);
         nicmailView.setText(atview);
 
     }
 
-    private void appLoginCheck3() {
-        if (mAuth.getCurrentUser() == null) {
-            //로그인요청
-            Toast.makeText(this
-                    , "접속이 해제되었읍니다.. 다시 로그인을 해주세요~~", Toast.LENGTH_SHORT).show();
-
-            Intent intent = new Intent(this, SignInActivity.class);
-            startActivity(intent);
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser == null) {
+            Intent userdashboardIntent = new Intent(UpdateNicName.this, OnBoarding.class);
+            userdashboardIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(userdashboardIntent);
             finish();
+        }
+        else
+        {
+            //실제접속이되엇는지 확인하는 메소드..getUid() 함수 오류
+            //CheckUserExistance();
 
         }
     }
+/* private void CheckUserExistance()
+    {
+        final String current_user_id = mAuth.getCurrentUser().getUid();
+        UserRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                //실제 데이터베이스상에는 안보임..유저가입정보있는 uid를 가지고 비교..
+                if (!dataSnapshot.hasChild(current_user_id))
+                {
+                    Intent userdashboardIntent = new Intent(UpdateNicName.this, OnBoarding.class);
+                    userdashboardIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(userdashboardIntent);
+                    finish();
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError)
+            {
+
+            }
+        });
+    }*/
+    private void showProcessDialog1() {
+
+        dialog1 = new ProgressDialog(UpdateNicName.this);
+        dialog1.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog1.setTitle("신규계정생성");
+        dialog1.setMessage("신규계정을 생성중입니다..");
+        dialog1.show();
+        dialog1.setCanceledOnTouchOutside(true);
+        //
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.actionbarcustum, menu);
         return true;
     }
 
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home: { // 뒤로가기 버튼 눌렀을 때
-                Intent intent = new Intent(this, ProfileActivity.class);
-                startActivity(intent);
-                finish();
-                return true;
-            }
-            case R.id.curr_changed: { // 오른쪽 상단 버튼 눌렀을 때
-                Intent intent = getIntent();
-                tmpedtext = edPreEdNicName.getEditableText().toString();
-                ckey = intent.getStringExtra("selectMailPrimaryKey_FromDB_Send");
-                rootNode = FirebaseDatabase.getInstance();
-                reference = rootNode.getReference((ckey + "/userProfile/"));
-
-                if (mAuth.getCurrentUser() != null) {
-                    AlertDialog.Builder alert_confirm = new AlertDialog.Builder(this);
-                    alert_confirm.setMessage("닉네임을 변경하시겠읍니까?").setCancelable(false).setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    reference.child("nicName").setValue(tmpedtext).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void aVoid) {
-                                            Toast.makeText(UpdateNicName.this, "DB에 변경완료하였읍니다..", Toast.LENGTH_LONG).show();
-                                            nicnameView.setText(edPreEdNicName.getEditableText().toString().trim());
-                                            //액티비티강제갱신
-                                           /* Intent intent = getIntent();
-                                            finish();
-                                            startActivity(intent);*/
-                                            //
-                                        }
-                                    });
-                                }
-
-                            }
-                    );
-                    alert_confirm.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            Toast.makeText(UpdateNicName.this, "취소", Toast.LENGTH_LONG).show();
-                        }
-                    });
-                    alert_confirm.show();
-                } else {
-                    Toast.makeText(this, "변경 실패.", Toast.LENGTH_LONG).show();
-                }
-                return true;
-            }
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    //화면 back 버튼 눌렀을때처리
-    @Override
-    public void onBackPressed() {
-        //super.onBackPressed();
-        Intent intent = new Intent(this, ProfileActivity.class);
-        startActivity(intent);
-        // 현재액티비의 루트 액티비티까지 종료시켜라
-        // 루트 설정화면을 부른 이전 메뉴 액티비티
-        // 드로워 화면 만들면 드로워 화면으로 변경해라..아니면 그대로 대시보드로 이동
-        finish();
-    }
-
-
-    @Override
-    protected void onDestroy() {
-        //Toast.makeText(ProfileActivity.this
-        //        , "로그아웃 상태입니다..", Toast.LENGTH_SHORT).show();
-        super.onDestroy();
-        Log.i("TAG", "onDestory");
-    }
-
     public void PreViewStart(View view) {
         tmpedtext = edPreEdNicName.getEditableText().toString();
         nicnameView.setText(tmpedtext);
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: { // 뒤로가기 버튼 눌렀을 때
+                Intent UpdateNicNameiIntent = new Intent(this, ProfileActivity.class);
+                UpdateNicNameiIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(UpdateNicNameiIntent);
+                return true;
+            }
+            case R.id.curr_changed: { // 오른쪽 상단 버튼 눌렀을 때
+                Intent intent = getIntent();
+                showProcessDialog1();
+                tmpedtext = edPreEdNicName.getEditableText().toString();
+                ckey = intent.getStringExtra("selectMailPrimaryKey_Send");
+                //db노드 저장할 노드지정
+                UserRef = FirebaseDatabase.getInstance().getReference().child(ckey).child("userProfile");
+                HashMap userProfileMap = new HashMap();
+                userProfileMap.put("nicName", tmpedtext);
+                UserRef.updateChildren(userProfileMap).addOnCompleteListener(new OnCompleteListener() {
+                    @Override
+                    public void onComplete(@NonNull Task task) {
+                        if (task.isSuccessful()) {
+                            MessageToast.message(UpdateNicName.this, "닉네임변경완료!!!!!!");
+                            dialog1.dismiss();
+                        } else {
+                            String message = task.getException().getMessage();
+                            Toast.makeText(UpdateNicName.this, "변경실패!! 다시 시도해주세요  : " + message, Toast.LENGTH_SHORT).show();
+                            dialog1.dismiss();
+                        }
+                    }
+                });
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    //화면 back 버튼 눌렀을때처리
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent updateIntent = new Intent(UpdateNicName.this, ProfileActivity.class);
+        updateIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(updateIntent);
+        dialog1.dismiss();
+    }
 }
