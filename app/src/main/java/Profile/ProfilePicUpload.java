@@ -248,6 +248,7 @@ public class ProfilePicUpload extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Uri uri) {
                                         String downloadUrl = uri.toString();
+                                        //해시맵으로 timeStampUpdateTime..도 함꼐 업데이트..추가할것
                                         UserRef.child("profilePicture").setValue(downloadUrl).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
