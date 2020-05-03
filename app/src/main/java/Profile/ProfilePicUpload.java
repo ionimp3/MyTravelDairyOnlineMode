@@ -74,7 +74,7 @@ public class ProfilePicUpload extends AppCompatActivity {
     private Uri resultUri;
     private Uri test12;
 
-    int i = 0;
+    private  int i = 0;
 
     String profilePicture_FromDB;
 
@@ -108,28 +108,32 @@ public class ProfilePicUpload extends AppCompatActivity {
             selectedImage.setImageResource(R.drawable.ic_account_circle_black);
             i = 1;
         }
-        else if (i < 2)
+        else if (akey.trim().length() > 20 && i < 1)
         {
-            UserRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                       String image = dataSnapshot.child("profilePicture").getValue().toString();
-                        //Picasso.get().load("http://i.imgur.com/DvpvklR.png").into(imageView);
-                        Picasso.get().load(image).into(selectedImage);
-                    } else {
-                        //
-                        Log.d("tag", "불러오기 실패 ");
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
-
+            Picasso.get().load(akey).into(selectedImage);
             i = 5;
+            //Toast.makeText(this,"정보있음",Toast.LENGTH_SHORT).show();
+        }
+        else
+            {
+                UserRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            String image = dataSnapshot.child("profilePicture").getValue().toString();
+                            //Picasso.get().load("http://i.imgur.com/DvpvklR.png").into(imageView);
+                            Picasso.get().load(image).into(selectedImage);
+                            i = 5;
+                        } else {
+                            //
+                            Log.d("tag", "불러오기 실패 ");
+                            i = 0;
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    }
+                });
         }
 
         galleryBtn.setOnClickListener(new View.OnClickListener() {
@@ -248,12 +252,13 @@ public class ProfilePicUpload extends AppCompatActivity {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
+                                                    i = 5;
                                                     Toast.makeText(ProfilePicUpload.this, "이미지 스토리지/DB저장완료", Toast.LENGTH_SHORT).show();
                                                     dialog1.dismiss();
                                                 } else {
                                                     selectedImage.setImageResource(R.drawable.ic_account_circle_black);
                                                     String message = task.getException().getMessage();
-                                                    Toast.makeText(ProfilePicUpload.this, "이미지 DB저장 실패" + message, Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(ProfilePicUpload.this, "이미지 DB저장 실패!! 다시 진행해주세요" + message, Toast.LENGTH_SHORT).show();
                                                     dialog1.dismiss();
                                                 }
                                             }
@@ -263,38 +268,7 @@ public class ProfilePicUpload extends AppCompatActivity {
                             }
                         }
                     }
-
                 });
-
-
-/*                filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            //DB 에 링크 URL 저장
-                            final String downloadUrl = task.getResult().getMetadata().getPath().toString();
-                            UserRef.child("profilePicture").setValue(downloadUrl).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        Toast.makeText(ProfilePicUpload.this, "이미지 스토리지/DB저장완료", Toast.LENGTH_SHORT).show();
-                                        dialog1.dismiss();
-                                    } else {
-                                        selectedImage.setImageResource(R.drawable.ic_account_circle_black);
-                                        String message = task.getException().getMessage();
-                                        Toast.makeText(ProfilePicUpload.this, "이미지 DB저장 실패" + message, Toast.LENGTH_SHORT).show();
-                                        dialog1.dismiss();
-                                    }
-                                }
-                            });
-                        } else {
-                            selectedImage.setImageResource(R.drawable.ic_account_circle_black);
-                            String message = task.getException().getMessage();
-                            Toast.makeText(ProfilePicUpload.this, "이미지 스토리지/DB저장 실패..재시도 해주세요" + message, Toast.LENGTH_SHORT).show();
-                            dialog1.dismiss();
-                        }
-                    }
-                });*/
             }
         }
         return super.onOptionsItemSelected(item);
