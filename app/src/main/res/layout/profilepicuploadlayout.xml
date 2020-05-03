@@ -33,7 +33,7 @@
             android:id="@+id/displayImageView"
             android:layout_width="300dp"
             android:layout_height="300dp"
-            android:src="@drawable/ic_account_circle_black"
+            android:src="@drawable/onboarding_img8"
             app:civ_circle_background_color="@color/grayColor"/>
 
         <LinearLayout

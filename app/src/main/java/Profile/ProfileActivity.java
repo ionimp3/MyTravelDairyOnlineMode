@@ -71,8 +71,10 @@ public class ProfileActivity extends AppCompatActivity {
         // Authentication, Database, Storage 초기화
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
+
         //로그인 체크
         appLoginCheck3();
+
     }
     private void appLoginCheck3() {
         if (mAuth.getCurrentUser() == null) {
@@ -91,6 +93,7 @@ public class ProfileActivity extends AppCompatActivity {
             isUserCallData();
         }
     }
+
 
     private void isUserCallData() {
         FirebaseUser user = mAuth.getCurrentUser();

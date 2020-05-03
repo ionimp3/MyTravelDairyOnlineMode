@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -72,6 +74,10 @@ public class ProfilePicUpload extends AppCompatActivity {
     private Uri resultUri;
     private Uri test12;
 
+    int i = 0;
+
+    String profilePicture_FromDB;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +106,30 @@ public class ProfilePicUpload extends AppCompatActivity {
 
         if (akey.trim().length() < 20) {
             selectedImage.setImageResource(R.drawable.ic_account_circle_black);
+            i = 1;
+        }
+        else if (i < 2)
+        {
+            UserRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                       String image = dataSnapshot.child("profilePicture").getValue().toString();
+                        //Picasso.get().load("http://i.imgur.com/DvpvklR.png").into(imageView);
+                        Picasso.get().load(image).into(selectedImage);
+                    } else {
+                        //
+                        Log.d("tag", "불러오기 실패 ");
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+            i = 5;
         }
 
         galleryBtn.setOnClickListener(new View.OnClickListener() {
@@ -204,12 +234,45 @@ public class ProfilePicUpload extends AppCompatActivity {
                 selectedImage.setImageURI(resultUri);
                 showProcessDialog1();
                 final StorageReference filePath = UserProfileImageRef.child("Profileimage.jpg");
-                filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                filePath.putFile(resultUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        if (taskSnapshot.getMetadata()!=null){
+                            if (taskSnapshot.getMetadata().getReference() != null){
+                                Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
+                                result.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        String downloadUrl = uri.toString();
+                                        UserRef.child("profilePicture").setValue(downloadUrl).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    Toast.makeText(ProfilePicUpload.this, "이미지 스토리지/DB저장완료", Toast.LENGTH_SHORT).show();
+                                                    dialog1.dismiss();
+                                                } else {
+                                                    selectedImage.setImageResource(R.drawable.ic_account_circle_black);
+                                                    String message = task.getException().getMessage();
+                                                    Toast.makeText(ProfilePicUpload.this, "이미지 DB저장 실패" + message, Toast.LENGTH_SHORT).show();
+                                                    dialog1.dismiss();
+                                                }
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                        }
+                    }
+
+                });
+
+
+/*                filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
                             //DB 에 링크 URL 저장
-                            final String downloadUrl = filePath.getDownloadUrl().toString();
+                            final String downloadUrl = task.getResult().getMetadata().getPath().toString();
                             UserRef.child("profilePicture").setValue(downloadUrl).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
@@ -231,7 +294,7 @@ public class ProfilePicUpload extends AppCompatActivity {
                             dialog1.dismiss();
                         }
                     }
-                });
+                });*/
             }
         }
         return super.onOptionsItemSelected(item);
