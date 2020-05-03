@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="Profile.ProfilePicUpload">
+    tools:context="Profile.ProfilePicUpload"
+    android:background="@color/lightGrayColor">
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarlayout"
         android:layout_width="match_parent"
@@ -32,7 +33,7 @@
             android:id="@+id/displayImageView"
             android:layout_width="300dp"
             android:layout_height="300dp"
-            android:src="@drawable/onboarding_img8"
+            android:src="@drawable/ic_account_circle_black"
             app:civ_circle_background_color="@color/grayColor"/>
 
         <LinearLayout

@@ -99,7 +99,6 @@ public class ProfilePicUpload extends AppCompatActivity {
         galleryBtn = findViewById(R.id.galleryBtn);
 
         if (akey.trim().length() < 20) {
-            MessageToast.message(ProfilePicUpload.this,"사진없음..초기화");
             selectedImage.setImageResource(R.drawable.ic_account_circle_black);
         }
 
