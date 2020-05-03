@@ -1,5 +1,6 @@
 package Profile;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
@@ -19,10 +20,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -32,8 +38,11 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
+import Common.MessageToast;
 import Common.OnBoarding;
+import DashBoard.UserDashboard;
 
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 
@@ -55,13 +64,13 @@ public class ProfilePicUpload extends AppCompatActivity {
     final static int GET_GALLERY_IMAGE = 200;
     final static int Gallery_Pick = 1;
 
-    //안드로이드 개발자홈피에서 가져온 코드에서 파일저장위치 선언부만
-    //글로벌위치로 이동함함
 
     Uri uri;
     Intent intent;
 
-    String akey, ckey;
+    private String akey, tmps1, ckey, aname, timeStampUpdateTime;
+    private Uri resultUri;
+    private Uri test12;
 
 
     @Override
@@ -79,8 +88,6 @@ public class ProfilePicUpload extends AppCompatActivity {
         akey = intent.getStringExtra("profilePicture_Send");
         ckey = intent.getStringExtra("selectMailPrimaryKey_Send");
 
-
-
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
         UserRef = FirebaseDatabase.getInstance().getReference().child(ckey).child("userProfile");
@@ -91,6 +98,10 @@ public class ProfilePicUpload extends AppCompatActivity {
         cameraBtn = findViewById(R.id.cameraBtn);
         galleryBtn = findViewById(R.id.galleryBtn);
 
+        if (akey.trim().length() < 20) {
+            MessageToast.message(ProfilePicUpload.this,"사진없음..초기화");
+            selectedImage.setImageResource(R.drawable.ic_account_circle_black);
+        }
 
         galleryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,10 +123,24 @@ public class ProfilePicUpload extends AppCompatActivity {
                         .start(ProfilePicUpload.this);
             }
         });
+        UserRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        //사진선택,크롭까지만
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             Uri imageuri = CropImage.getPickImageResultUri(this, data);
@@ -128,20 +153,9 @@ public class ProfilePicUpload extends AppCompatActivity {
                         .setAspectRatio(1, 1)
                         .setMultiTouchEnabled(true)
                         .start(this);
-                CropImage.ActivityResult result = CropImage.getActivityResult(data);
-                if (resultCode == RESULT_OK) {
-                    Uri resultUri = result.getUri();
-                    //StorageReference filePath = UserProfileImageRef.child(nameUnique+"Profileimag");
-                    selectedImage.setImageURI(result.getUri());
-
-
-                    Toast.makeText(this, "이미지 크롭후 가져오기 성공", Toast.LENGTH_SHORT).show();
-                    //Intent goBackProfileIntent = new Intent(ProfilePicUpload.this,ProfileActivity.class);
-                    //goBackProfileIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    //startActivity(goBackProfileIntent);
-                } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                    Exception error = result.getError();
-                }
+                final CropImage.ActivityResult result = CropImage.getActivityResult(data);
+                resultUri = result.getUri();
+                selectedImage.setImageURI(resultUri);
             }
         }
     }
@@ -165,8 +179,8 @@ public class ProfilePicUpload extends AppCompatActivity {
 
         dialog1 = new ProgressDialog(ProfilePicUpload.this);
         dialog1.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog1.setTitle("닉네임변경");
-        dialog1.setMessage("DB에 닉네임을 변경중입니다...");
+        dialog1.setTitle("이미지업로드");
+        dialog1.setMessage("스토리지,DB에 업로중입니다....");
         dialog1.show();
         dialog1.setCanceledOnTouchOutside(true);
         //
@@ -187,13 +201,51 @@ public class ProfilePicUpload extends AppCompatActivity {
                 return true;
             }
             case R.id.curr_changed: { // 오른쪽 상단 버튼 눌렀을 때
+                //스토리지 저장
+                selectedImage.setImageURI(resultUri);
                 showProcessDialog1();
-                Toast.makeText(ProfilePicUpload.this, "프로파일포토 업로드진행 ", Toast.LENGTH_SHORT).show();
-                dialog1.dismiss();
+                final StorageReference filePath = UserProfileImageRef.child("Profileimage.jpg");
+                filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            //DB 에 링크 URL 저장
+                            final String downloadUrl = filePath.getDownloadUrl().toString();
+                            UserRef.child("profilePicture").setValue(downloadUrl).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(ProfilePicUpload.this, "이미지 스토리지/DB저장완료", Toast.LENGTH_SHORT).show();
+                                        dialog1.dismiss();
+                                    } else {
+                                        selectedImage.setImageResource(R.drawable.ic_account_circle_black);
+                                        String message = task.getException().getMessage();
+                                        Toast.makeText(ProfilePicUpload.this, "이미지 DB저장 실패" + message, Toast.LENGTH_SHORT).show();
+                                        dialog1.dismiss();
+                                    }
+                                }
+                            });
+                        } else {
+                            selectedImage.setImageResource(R.drawable.ic_account_circle_black);
+                            String message = task.getException().getMessage();
+                            Toast.makeText(ProfilePicUpload.this, "이미지 스토리지/DB저장 실패..재시도 해주세요" + message, Toast.LENGTH_SHORT).show();
+                            dialog1.dismiss();
+                        }
+                    }
+                });
             }
         }
         return super.onOptionsItemSelected(item);
     }
 
-
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        Intent UpdateNicNameiIntent = new Intent(ProfilePicUpload.this, ProfileActivity.class);
+        UpdateNicNameiIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(UpdateNicNameiIntent);
+        // 현재액티비의 루트 액티비티까지 종료시켜라
+        // 루트 설정화면을 부른 이전 메뉴 액티비티
+        // 드로워 화면 만들면 드로워 화면으로 변경해라..아니면 그대로 대시보드로 이동
+    }
 }

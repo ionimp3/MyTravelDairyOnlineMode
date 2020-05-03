@@ -197,8 +197,8 @@ public class SignUpActivity extends AppCompatActivity {
                             String tmps1 = displayMailId.replaceAll("[.]", "");
                             String tmps2 = tmps1.replaceAll("[@]", "");
                             String selectMailPrimaryKey = tmps2;
-                            String timeStampUpdatgTime = LocalDateTime.now().toString();
-                            String timeStampCreaeTime = LocalDateTime.now().toString();
+                            String timeStampUpdateTime = LocalDateTime.now().toString();
+                            String timeStampCreateTime = LocalDateTime.now().toString();
 
                             //db노드 저장할 노드지정
                             UserRef = FirebaseDatabase.getInstance().getReference().child(selectMailPrimaryKey).child("userProfile");
@@ -213,8 +213,8 @@ public class SignUpActivity extends AppCompatActivity {
                             userProfileMap.put("profilePicture","");
                             userProfileMap.put("pushAlarmSelected","N");
                             userProfileMap.put("selectMailPrimaryKey",selectMailPrimaryKey);
-                            userProfileMap.put("timeStampUpdatgTime",timeStampUpdatgTime);
-                            userProfileMap.put("timeStampCreaeTime",timeStampCreaeTime);
+                            userProfileMap.put("timeStampUpdateTime",timeStampUpdateTime);
+                            userProfileMap.put("timeStampCreateTime",timeStampCreateTime);
                             UserRef.updateChildren(userProfileMap).addOnCompleteListener(new OnCompleteListener() {
                                 @Override
                                 public void onComplete(@NonNull Task task)
