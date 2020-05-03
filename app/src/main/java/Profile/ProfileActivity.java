@@ -158,15 +158,15 @@ public class ProfileActivity extends AppCompatActivity {
         Intent intent = new Intent(ProfileActivity.this, CurrencySelect.class);
         intent.putExtra("baseCurrencyCode_Send",baseCurrencyCode_FromDB);
         intent.putExtra("selectMailPrimaryKey_Send",selectMailPrimaryKey_FromDB);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
-        finish();
     }
     public void changeprofile_btn(View view) {
-        Intent intent = new Intent(ProfileActivity.this, ChangeProfileImage.class);
+        Intent intent = new Intent(ProfileActivity.this, ProfilePicUpload.class);
         intent.putExtra("profilePicture_Send",profilePicture_FromDB);
-        intent.putExtra("selectMailPrimaryKey_FromDB_Send",selectMailPrimaryKey_FromDB);
+        intent.putExtra("selectMailPrimaryKey_Send",selectMailPrimaryKey_FromDB);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
-        finish();
     }
     public void changenicname_btn(View view) {
         //TextView nic_NAME_NM_FromDB = (TextView)findViewById(R.id.prenicname);
@@ -175,8 +175,8 @@ public class ProfileActivity extends AppCompatActivity {
         intent.putExtra("nicName_Send", nicName_FromDB);
         intent.putExtra("displayMailId_Send", displayMailId_FromDB);
         intent.putExtra("selectMailPrimaryKey_Send", selectMailPrimaryKey_FromDB);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
-        finish();
     }
     public void etcDescStart(View view) {
         Intent intent = new Intent(this, TravelDairyDescription.class);
@@ -191,6 +191,7 @@ public class ProfileActivity extends AppCompatActivity {
             Toast.makeText(ProfileActivity.this
                     , "로그아웃 하였읍니다.", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(ProfileActivity.this, SignInActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
         } else {

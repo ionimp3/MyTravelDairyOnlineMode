@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:background="@color/lightGrayColor">
+    android:background="@color/lightGrayColor"
+    tools:context="Profile.UpdateNicName">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarlayout"

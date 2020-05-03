@@ -6,6 +6,5 @@
         android:icon="@drawable/ic_check1"
         app:showAsAction="always"
         />
-
 </menu>
 

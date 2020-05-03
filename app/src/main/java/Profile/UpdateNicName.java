@@ -46,7 +46,7 @@ import DashBoard.UserDashboard;
 
 public class UpdateNicName<tmpedtext> extends AppCompatActivity {
     ActionBar actionBar;
-    private Toolbar toolbar;
+    Toolbar toolbar;
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
