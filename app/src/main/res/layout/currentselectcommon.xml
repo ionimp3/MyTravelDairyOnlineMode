@@ -11,6 +11,7 @@
             android:id="@+id/RgCurrGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="100dp"
             android:visibility="visible">
 
             <RadioButton
@@ -539,7 +540,7 @@
                 android:layoutDirection="rtl"
                 android:onClick="rgCurrChecked"
                 android:padding="20dp"
-                android:text="ARS(아르헨티나)"
+                android:text="JPY(일본)"
                 android:textSize="18sp" />
 
             <RadioButton

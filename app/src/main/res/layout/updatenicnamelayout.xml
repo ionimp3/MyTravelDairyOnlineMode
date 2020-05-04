@@ -46,14 +46,14 @@
         <LinearLayout
             android:id="@+id/stacklayout1"
             android:layout_width="match_parent"
-            android:layout_height="170dp"
+            android:layout_height="180dp"
             android:background="@color/grayColor"
             android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/stacklayout2"
                 android:layout_width="match_parent"
-                android:layout_height="170dp"
+                android:layout_height="180dp"
                 android:background="@drawable/ic_launcher_background"
                 android:orientation="vertical">
 
@@ -66,8 +66,8 @@
 
                     <ImageView
                         android:id="@+id/preprofilepic"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_account_circle_black" />
 

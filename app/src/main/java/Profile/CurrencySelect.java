@@ -391,202 +391,202 @@ public class CurrencySelect extends AppCompatActivity {
                 break;
             case R.id.RgCurr11:
                 selectedRb = "11";
-                selectedNm = "KRW";
+                selectedNm = "AUD";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr12:
                 selectedRb = "12";
-                selectedNm = "KRW";
+                selectedNm = "NZD";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr13:
                 selectedRb = "13";
-                selectedNm = "KRW";
+                selectedNm = "CZK";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr14:
                 selectedRb = "14";
-                selectedNm = "KRW";
+                selectedNm = "TRY";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr15:
                 selectedRb = "15";
-                selectedNm = "KRW";
+                selectedNm = "MNT";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr16:
                 selectedRb = "16";
-                selectedNm = "KRW";
+                selectedNm = "ILS";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr17:
                 selectedRb = "17";
-                selectedNm = "KRW";
+                selectedNm = "DKK";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr18:
                 selectedRb = "18";
-                selectedNm = "KRW";
+                selectedNm = "NOK";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr19:
                 selectedRb = "19";
-                selectedNm = "KRW";
+                selectedNm = "SAR";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr20:
                 selectedRb = "20";
-                selectedNm = "KRW";
+                selectedNm = "KWD";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr21:
                 selectedRb = "21";
-                selectedNm = "KRW";
+                selectedNm = "BHD";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr22:
                 selectedRb = "22";
-                selectedNm = "KRW";
+                selectedNm = "AED";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr23:
                 selectedRb = "23";
-                selectedNm = "KRW";
+                selectedNm = "JOD";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr24:
                 selectedRb = "24";
-                selectedNm = "KRW";
+                selectedNm = "EGP";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr25:
                 selectedRb = "25";
-                selectedNm = "KRW";
+                selectedNm = "SGD";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr26:
                 selectedRb = "26";
-                selectedNm = "KRW";
+                selectedNm = "MYR";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr27:
                 selectedRb = "27";
-                selectedNm = "KRW";
+                selectedNm = "IDR";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr28:
                 selectedRb = "28";
-                selectedNm = "KRW";
+                selectedNm = "QAR";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr29:
                 selectedRb = "29";
-                selectedNm = "KRW";
+                selectedNm = "KZT";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr30:
                 selectedRb = "30";
-                selectedNm = "KRW";
+                selectedNm = "BND";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr31:
                 selectedRb = "31";
-                selectedNm = "KRW";
+                selectedNm = "INR";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr32:
                 selectedRb = "32";
-                selectedNm = "KRW";
+                selectedNm = "PKR";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr33:
                 selectedRb = "33";
-                selectedNm = "KRW";
+                selectedNm = "BDT";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr34:
                 selectedRb = "34";
-                selectedNm = "KRW";
+                selectedNm = "PHP";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr35:
                 selectedRb = "35";
-                selectedNm = "KRW";
+                selectedNm = "MXN";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr36:
                 selectedRb = "36";
-                selectedNm = "KRW";
+                selectedNm = "BRL";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr37:
                 selectedRb = "37";
-                selectedNm = "KRW";
+                selectedNm = "VND";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr38:
                 selectedRb = "38";
-                selectedNm = "KRW";
+                selectedNm = "ZAR";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr39:
                 selectedRb = "39";
-                selectedNm = "KRW";
+                selectedNm = "RUB";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr40:
                 selectedRb = "40";
-                selectedNm = "KRW";
+                selectedNm = "HUF";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr41:
                 selectedRb = "41";
-                selectedNm = "KRW";
+                selectedNm = "PLN";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr42:
                 selectedRb = "42";
-                selectedNm = "KRW";
+                selectedNm = "UAH";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr43:
                 selectedRb = "43";
-                selectedNm = "KRW";
+                selectedNm = "UZS";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr44:
                 selectedRb = "44";
-                selectedNm = "KRW";
+                selectedNm = "JPY";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr45:
                 selectedRb = "45";
-                selectedNm = "KRW";
+                selectedNm = "KHR";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr46:
                 selectedRb = "46";
-                selectedNm = "KRW";
+                selectedNm = "TMT";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr47:
                 selectedRb = "47";
-                selectedNm = "KRW";
+                selectedNm = "KGS";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr48:
                 selectedRb = "48";
-                selectedNm = "KRW";
+                selectedNm = "MNK";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr49:
                 selectedRb = "49";
-                selectedNm = "KRW";
+                selectedNm = "LAK";
                 currencySaveDataToDb();
                 break;
             case R.id.RgCurr50:
                 selectedRb = "50";
-                selectedNm = "KRW";
+                selectedNm = "MOP";
                 currencySaveDataToDb();
                 break;
             default:
