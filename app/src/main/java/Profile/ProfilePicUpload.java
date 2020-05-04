@@ -41,6 +41,7 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 
 import Common.MessageToast;
 import Common.OnBoarding;
@@ -236,9 +237,11 @@ public class ProfilePicUpload extends AppCompatActivity {
                                     result.addOnSuccessListener(new OnSuccessListener<Uri>() {
                                         @Override
                                         public void onSuccess(Uri uri) {
+                                            HashMap ProfilePicUpladMap = new HashMap();
                                             String downloadUrl = uri.toString();
-                                            //해시맵으로 timeStampUpdateTime..도 함꼐 업데이트..추가할것
-                                            UserRef.child("profilePicture").setValue(downloadUrl).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            ProfilePicUpladMap.put("profilePicture",downloadUrl);
+                                            ProfilePicUpladMap.put("timeStampUpdateTime", LocalDateTime.now().toString());
+                                            UserRef.updateChildren(ProfilePicUpladMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if (task.isSuccessful()) {
@@ -281,7 +284,10 @@ public class ProfilePicUpload extends AppCompatActivity {
 
     public void resetProfilePicStart(View view) {
         showProcessDialog1();
-        UserRef.child("profilePicture").setValue("NA").addOnCompleteListener(new OnCompleteListener<Void>() {
+        HashMap userCurrencyMap = new HashMap();
+        userCurrencyMap.put("profilePicture","NA");
+        userCurrencyMap.put("timeStampUpdateTime", LocalDateTime.now().toString());
+        UserRef.updateChildren(userCurrencyMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {

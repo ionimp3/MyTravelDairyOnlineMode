@@ -36,6 +36,7 @@ import Common.BackPressHandler;
 import com.google.firebase.database.ValueEventListener;
 import com.lmh.mytraveldairyjava.R;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 
 import Common.MessageToast;
@@ -191,9 +192,10 @@ public class UpdateNicName<tmpedtext> extends AppCompatActivity {
                     ckey = intent.getStringExtra("selectMailPrimaryKey_Send");
                     //db노드 저장할 노드지정
                     UserRef = FirebaseDatabase.getInstance().getReference().child(ckey).child("userProfile");
-                    HashMap userProfileMap = new HashMap();
-                    userProfileMap.put("nicName", tmpedtext);
-                    UserRef.updateChildren(userProfileMap).addOnCompleteListener(new OnCompleteListener() {
+                    HashMap UpdateNicNameMap = new HashMap();
+                    UpdateNicNameMap.put("nicName", tmpedtext);
+                    UpdateNicNameMap.put("timeStampUpdateTime", LocalDateTime.now().toString());
+                    UserRef.updateChildren(UpdateNicNameMap).addOnCompleteListener(new OnCompleteListener() {
                         @Override
                         public void onComplete(@NonNull Task task) {
                             if (task.isSuccessful()) {
