@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import Common.BackPressHandler;
 import Common.MessageToast;
+import Common.OnBoarding;
 import Common.SignUpActivity;
 import DashBoard.UserDashboard;
 
@@ -28,8 +29,12 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.lmh.mytraveldairyjava.R;
 
 import java.util.HashMap;
@@ -84,6 +89,44 @@ public class CurrencySelect extends AppCompatActivity {
         SetDefaultCurrency();
 
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser == null) {
+            Intent currencyIntent = new Intent(CurrencySelect.this, OnBoarding.class);
+            currencyIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(currencyIntent);
+            finish();
+        } else {
+            CheckUserExistance();
+        }
+    }
+
+    private void CheckUserExistance() {
+        final String current_User_Id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference RealUserCheck = FirebaseDatabase.getInstance().getReference();
+        RealUserCheck.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //실제 데이터베이스를 조회해서 이메일 id 가 있는지 확인
+                if (!dataSnapshot.hasChild(current_User_Id)) {
+                    Intent currencyIntent = new Intent(CurrencySelect.this, OnBoarding.class);
+                    currencyIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(currencyIntent);
+                    finish();
+                }
+                else{
+                    //MessageToast.message(UpdateNicName.this,"실제접속했어요");
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
 
     private void SetDefaultCurrency() {
 
@@ -292,7 +335,6 @@ public class CurrencySelect extends AppCompatActivity {
 
 
     }
-
     public void rgCurrChecked(View view) {
         int radioId = rgGroup.getCheckedRadioButtonId();
         switch (radioId) {

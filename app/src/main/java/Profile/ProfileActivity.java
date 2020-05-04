@@ -27,6 +27,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.lmh.mytraveldairyjava.R;
+
+import Common.OnBoarding;
 import Common.SignInActivity;
 import DashBoard.UserDashboard;
 
@@ -76,6 +78,44 @@ public class ProfileActivity extends AppCompatActivity {
         appLoginCheck3();
 
     }
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser == null) {
+            Intent profileIntent = new Intent(ProfileActivity.this, OnBoarding.class);
+            profileIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(profileIntent);
+            finish();
+        } else {
+            CheckUserExistance();
+        }
+    }
+
+    private void CheckUserExistance() {
+        final String current_User_Id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference RealUserCheck = FirebaseDatabase.getInstance().getReference();
+        RealUserCheck.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //실제 데이터베이스를 조회해서 이메일 id 가 있는지 확인
+                if (!dataSnapshot.hasChild(current_User_Id)) {
+                    Intent profileIntent = new Intent(ProfileActivity.this, OnBoarding.class);
+                    profileIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(profileIntent);
+                    finish();
+                }
+                else{
+                    //MessageToast.message(UpdateNicName.this,"실제접속했어요");
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+
     private void appLoginCheck3() {
         if (mAuth.getCurrentUser() == null) {
             //로그인요청
@@ -93,8 +133,6 @@ public class ProfileActivity extends AppCompatActivity {
             isUserCallData();
         }
     }
-
-
     private void isUserCallData() {
         FirebaseUser user = mAuth.getCurrentUser();
         psemail = user.getEmail();

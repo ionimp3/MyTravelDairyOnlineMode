@@ -119,9 +119,9 @@ public class UpdateNicName<tmpedtext> extends AppCompatActivity {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null) {
-            Intent userdashboardIntent = new Intent(UpdateNicName.this, OnBoarding.class);
-            userdashboardIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(userdashboardIntent);
+            Intent udateNicNameIntent = new Intent(UpdateNicName.this, OnBoarding.class);
+            udateNicNameIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(udateNicNameIntent);
             finish();
         } else {
             CheckUserExistance();
@@ -136,9 +136,9 @@ public class UpdateNicName<tmpedtext> extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //실제 데이터베이스를 조회해서 이메일 id 가 있는지 확인
                 if (!dataSnapshot.hasChild(current_User_Id)) {
-                    Intent userdashboardIntent = new Intent(UpdateNicName.this, OnBoarding.class);
-                    userdashboardIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(userdashboardIntent);
+                    Intent udateNicNameIntent = new Intent(UpdateNicName.this, OnBoarding.class);
+                    udateNicNameIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(udateNicNameIntent);
                     finish();
                 }
                 else{
@@ -187,24 +187,31 @@ public class UpdateNicName<tmpedtext> extends AppCompatActivity {
                 Intent intent = getIntent();
                 showProcessDialog1();
                 tmpedtext = edPreEdNicName.getEditableText().toString();
-                ckey = intent.getStringExtra("selectMailPrimaryKey_Send");
-                //db노드 저장할 노드지정
-                UserRef = FirebaseDatabase.getInstance().getReference().child(ckey).child("userProfile");
-                HashMap userProfileMap = new HashMap();
-                userProfileMap.put("nicName", tmpedtext);
-                UserRef.updateChildren(userProfileMap).addOnCompleteListener(new OnCompleteListener() {
-                    @Override
-                    public void onComplete(@NonNull Task task) {
-                        if (task.isSuccessful()) {
-                            MessageToast.message(UpdateNicName.this, "닉네임변경완료!!!!!!");
-                            dialog1.dismiss();
-                        } else {
-                            String message = task.getException().getMessage();
-                            Toast.makeText(UpdateNicName.this, "변경실패!! 다시 시도해주세요  : " + message, Toast.LENGTH_SHORT).show();
-                            dialog1.dismiss();
+                if (tmpedtext.length() >= 1) {
+                    ckey = intent.getStringExtra("selectMailPrimaryKey_Send");
+                    //db노드 저장할 노드지정
+                    UserRef = FirebaseDatabase.getInstance().getReference().child(ckey).child("userProfile");
+                    HashMap userProfileMap = new HashMap();
+                    userProfileMap.put("nicName", tmpedtext);
+                    UserRef.updateChildren(userProfileMap).addOnCompleteListener(new OnCompleteListener() {
+                        @Override
+                        public void onComplete(@NonNull Task task) {
+                            if (task.isSuccessful()) {
+                                MessageToast.message(UpdateNicName.this, "닉네임변경완료!!!!!!");
+                                dialog1.dismiss();
+                            } else {
+                                String message = task.getException().getMessage();
+                                Toast.makeText(UpdateNicName.this, "변경실패!! 다시 시도해주세요  : " + message, Toast.LENGTH_SHORT).show();
+                                dialog1.dismiss();
+                            }
                         }
-                    }
-                });
+                    });
+                } else
+                {
+                    MessageToast.message(UpdateNicName.this, "변경할 닉네임이 없읍니다...");
+                    dialog1.dismiss();
+                }
+
             }
         }
         return super.onOptionsItemSelected(item);

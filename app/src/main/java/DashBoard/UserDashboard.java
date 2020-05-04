@@ -149,55 +149,42 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
 
     }
 
-    //자동로그인체크..액티비티가 실행되면 바로 실행
-    @Override
+    //실제등록접속되었는지 DB에 쿼리 확인
     protected void onStart() {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null) {
-            Intent userdashboardIntent = new Intent(UserDashboard.this, OnBoarding.class);
-            userdashboardIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(userdashboardIntent);
+            Intent userDashBoardIntent = new Intent(UserDashboard.this, OnBoarding.class);
+            userDashBoardIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(userDashBoardIntent);
             finish();
-        }
-        else
-            {
-                //실제접속이되엇는지 확인하는 메소드
-                CheckUserExistance();
-
+        } else {
+            CheckUserExistance();
         }
     }
-
-    private void CheckUserExistance()
-    {
-        final String current_user_id = mAuth.getCurrentUser().getUid();
-        mUserRef.addValueEventListener(new ValueEventListener() {
+    private void CheckUserExistance() {
+        final String current_User_Id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference RealUserCheck = FirebaseDatabase.getInstance().getReference();
+        RealUserCheck.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
-                //실제 데이터베이스상에는 안보임..유저가입정보있는 uid를 가지고 비교..
-                if (!dataSnapshot.hasChild(current_user_id))
-                {
-                    //SendUserToSetupActivity();
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //실제 데이터베이스를 조회해서 이메일 id 가 있는지 확인
+                if (!dataSnapshot.hasChild(current_User_Id)) {
+                    Intent userDashBoardIntent = new Intent(UserDashboard.this, OnBoarding.class);
+                    userDashBoardIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(userDashBoardIntent);
+                    finish();
+                }
+                else{
+                    //MessageToast.message(UpdateNicName.this,"실제접속했어요");
                 }
             }
-
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError)
-            {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
     }
-
-/*    private void SendUserToSetupActivity()
-    {
-        Intent setupIntent = new Intent(UserDashboard.this, OnBoarding.class);
-        setupIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(setupIntent);
-        finish();
-    }*/
-
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -238,11 +225,6 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
         });
     }
 
-    /*    @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
-            getMenuInflater().inflate(R.menu.actionbarcustum, menu);
-            return true;
-        }*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {// 뒤로가기 버튼 눌렀을 때
