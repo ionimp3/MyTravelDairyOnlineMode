@@ -37,6 +37,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.lmh.mytraveldairyjava.R;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 
 
@@ -603,6 +604,7 @@ public class CurrencySelect extends AppCompatActivity {
         HashMap userCurrencyMap = new HashMap();
         userCurrencyMap.put("baseCurrencyCode",selectedRb);
         userCurrencyMap.put("baseCurrencyName",selectedNm);
+        userCurrencyMap.put("timeStampUpdateTime", LocalDateTime.now().toString());
         UserRef.updateChildren(userCurrencyMap).addOnCompleteListener(new OnCompleteListener() {
             @Override
             public void onComplete(@NonNull Task task)

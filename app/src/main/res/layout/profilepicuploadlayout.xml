@@ -44,19 +44,19 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/cameraBtn"
+                android:id="@+id/resetProfilePic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Camera"
-                android:layout_weight="1" />
+                android:text="초기화"
+                android:layout_weight="1"
+                android:fontFamily="@font/main_han_eng_notosanskr_regular"
+                android:textSize="14sp"
+                android:background="@color/grayColor"
+                android:textColor="@color/lightWhiteColor"
+                android:textStyle="bold"
+                android:onClick="resetProfilePicStart"
+                tools:ignore="OnClick" />
 
-            <Button
-                android:id="@+id/galleryBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Gallery"
-                android:layout_marginStart="30dp"
-                android:layout_weight="1"/>
         </LinearLayout>
     </LinearLayout>
 

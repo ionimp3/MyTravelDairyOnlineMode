@@ -53,7 +53,7 @@ public class ProfilePicUpload extends AppCompatActivity {
     Toolbar toolbar;
 
     ImageView selectedImage;
-    Button cameraBtn, galleryBtn;
+    Button resetProfilePic;
     StorageReference storageReference;
 
     FirebaseAuth mAuth;
@@ -102,10 +102,8 @@ public class ProfilePicUpload extends AppCompatActivity {
 
 
         selectedImage = findViewById(R.id.displayImageView);
-        cameraBtn = findViewById(R.id.cameraBtn);
-        galleryBtn = findViewById(R.id.galleryBtn);
 
-        if (akey.trim().length() < 20) {
+        if (akey.trim().equals("NA")) {
             selectedImage.setImageResource(R.drawable.ic_account_circle_black);
             i = 1;
         }
@@ -137,18 +135,6 @@ public class ProfilePicUpload extends AppCompatActivity {
                 });
         }
 
-        galleryBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        cameraBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
         selectedImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -291,5 +277,23 @@ public class ProfilePicUpload extends AppCompatActivity {
         // 현재액티비의 루트 액티비티까지 종료시켜라
         // 루트 설정화면을 부른 이전 메뉴 액티비티
         // 드로워 화면 만들면 드로워 화면으로 변경해라..아니면 그대로 대시보드로 이동
+    }
+
+    public void resetProfilePicStart(View view) {
+        showProcessDialog1();
+        UserRef.child("profilePicture").setValue("NA").addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    selectedImage.setImageResource(R.drawable.ic_account_circle_black);
+                    Toast.makeText(ProfilePicUpload.this, "이미지 초기화 완료!!", Toast.LENGTH_SHORT).show();
+                    dialog1.dismiss();
+                } else {
+                    String message = task.getException().getMessage();
+                    Toast.makeText(ProfilePicUpload.this, "초기화 실패!! 다시 진행해주세요" + message, Toast.LENGTH_SHORT).show();
+                    dialog1.dismiss();
+                }
+            }
+        });
     }
 }

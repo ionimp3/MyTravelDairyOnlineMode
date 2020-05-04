@@ -438,21 +438,6 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/logoutApp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@color/grayColor"
-                    android:fontFamily="@font/main_han_eng_notosanskr_regular"
-                    android:gravity="center"
-                    android:onClick="logoutStart"
-                    android:text="로그아웃"
-                    android:textColor="@color/lightWhiteColor"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <Button
                     android:id="@+id/delUser"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -463,7 +448,8 @@
                     android:text="회원탈퇴"
                     android:textColor="@color/lightWhiteColor"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_marginTop="20dp"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

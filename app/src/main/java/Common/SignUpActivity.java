@@ -206,13 +206,13 @@ public class SignUpActivity extends AppCompatActivity {
                             HashMap userProfileMap = new HashMap();
                             userProfileMap.put("baseCurrencyCode","1");
                             userProfileMap.put("baseCurrencyName","KRW");
-                            userProfileMap.put("coverPicture","");
+                            userProfileMap.put("coverPicture","NA");
                             userProfileMap.put("currentUserId",currentUserId);
                             userProfileMap.put("displayMailId",displayMailId);
                             userProfileMap.put("loginMethodStatus","1");
                             userProfileMap.put("nicName","닉네임");
                             userProfileMap.put("nowUserStatus","1");
-                            userProfileMap.put("profilePicture","");
+                            userProfileMap.put("profilePicture","NA");
                             userProfileMap.put("pushAlarmSelected","N");
                             userProfileMap.put("selectMailPrimaryKey",selectMailPrimaryKey);
                             userProfileMap.put("timeStampUpdateTime",timeStampUpdateTime);

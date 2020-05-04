@@ -224,21 +224,6 @@ public class ProfileActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-    public void logoutStart(View view) {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            FirebaseAuth.getInstance().signOut();
-            Toast.makeText(ProfileActivity.this
-                    , "로그아웃 하였읍니다.", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(ProfileActivity.this, SignInActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            finish();
-        } else {
-            Toast.makeText(ProfileActivity.this
-                    , "로그아웃 상태입니다..", Toast.LENGTH_SHORT).show();
-        }
-    }
     public void delUserStart(View view) {
 
         if (mAuth.getCurrentUser() != null) {
