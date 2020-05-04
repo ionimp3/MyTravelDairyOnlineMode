@@ -7,13 +7,13 @@
         <item name="colorPrimaryDark">#939191</item>
         <item name="colorAccent">#0B0A0A</item>
     </style>
-    <style name="MyAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="MyAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#5A5858</item>
         <item name="colorPrimaryDark">#1F1F1F</item>
         <item name="colorAccent">#FFFFFF</item>
     </style>
-    <style name="MyAppTabTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="MyAppTabTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#1F1F1F</item>
         <item name="colorPrimaryDark">#00BCD4</item>
@@ -21,7 +21,7 @@
         <item name="android:textColorPrimary">#00BCD4</item>
         <item name="android:textColorSecondary">#1F1F1F</item>
     </style>
-    <style name="AlterDialogTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AlterDialogTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorAccent">@color/alrterColor</item>
 
     </style>
@@ -40,6 +40,11 @@
         <!-- jj
         <item name="android:textStyle">bold</item> -->
     </style>
-
+    <style name="MyAppToolBarTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#CCCCCC</item>
+        <item name="colorPrimaryDark">#CCCCCC</item>
+        <item name="colorAccent">#FFFFFF</item>
+    </style>
 
 </resources>

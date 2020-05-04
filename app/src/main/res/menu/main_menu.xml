@@ -28,7 +28,6 @@
 
     </group>
 
-
     <item
         android:title="카테고리"
         android:icon="@drawable/ic_tags">

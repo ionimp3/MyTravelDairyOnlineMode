@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">MyTravelDairyJava</string>
+    <string name="drawer_open">Drawer Open</string>
+    <string name="drawer_close">Drawer Close</string>
     <string name="viewbetalogo">viewbetalogo</string>
     <string name="btnviewplan">btnviewplan</string>
     <string name="btnnewplan" />
