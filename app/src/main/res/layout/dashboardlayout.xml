@@ -1,46 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="DashBoard.UserDashboard">
-    <RelativeLayout
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/rootLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <include
-            android:id="@+id/dashboard_main_page_toolbar"
-            layout="@layout/app_bar_layout">
-        </include>
-
-        <FrameLayout
-            android:id="@+id/dashboard_main_container"
+        android:layout_height="match_parent"
+        android:background="@color/lightGrayColor">
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarlayout"
             android:layout_width="match_parent"
-            android:layout_height="603dp"
-            android:layout_below="@id/dashboard_main_page_toolbar">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/dashboard_post_list"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/lightGrayColor"/>
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/lightWhiteColor"
+                android:theme="@style/MyAppTheme"
+                app:layout_scrollFlags="enterAlways|scroll"
+                app:popupTheme="@style/MyAppTheme"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <Button
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:background="@drawable/ic_drawer_back_black_24dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="10dp"
+                        android:id="@+id/drawerback"
+                        android:onClick="drawerbackStart"/>
 
 
-        </FrameLayout>
-    </RelativeLayout>
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/logo1"
+                        android:scaleType="centerCrop"
+                        android:layout_gravity="center_vertical"/>
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:text="MyTravelDairy"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/main_han_eng_notosanskr_regular"
+                        android:textStyle="bold"
+                        />
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="어디로 떠나 볼까??"
+                        android:gravity="center"
+                        android:paddingStart="10dp"
+                        android:textSize="12sp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="20dp"
+                        android:onClick="ttbtn1"
+                        android:id="@+id/test_btncheck"
+                        tools:ignore="OnClick"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/mainsub_han_eng_notosanskr_light"
+                        android:textColor="@color/grayColor"
+                        />
+                </LinearLayout>
+            </androidx.appcompat.widget.Toolbar>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/warningColor">
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/lightWhiteColor"
+                    android:theme="@style/MyAppTabTheme"
+                    />
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="일정표"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:background="#00ffff"
+                    android:fontFamily="@font/mainsub_han_eng_notosanskr_light"/>
+            </LinearLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+        <FrameLayout
+            android:id="@+id/simpleframelayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:layout_marginBottom="3dp"
-        app:menu="@menu/main_menu">
-
-    </com.google.android.material.navigation.NavigationView>
-
-
+        android:layout_marginStart="-1dp"
+        android:background="@color/lightWhiteColor"
+        android:theme="@style/MyNavigationTheme"
+        app:headerLayout="@layout/menu_header"
+        app:menu="@menu/main_menu" />
 </androidx.drawerlayout.widget.DrawerLayout>
