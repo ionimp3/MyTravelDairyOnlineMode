@@ -141,7 +141,11 @@ public class ProfilePicUpload extends AppCompatActivity {
             public void onClick(View v) {
                 //github의 라이브러시 사용법을 따라하자..그게 맞음
                 CropImage.activity()
+                        .setGuidelines(CropImageView.Guidelines.ON)
+                        .setAspectRatio(1, 1)
+                        .setMultiTouchEnabled(true)
                         .start(ProfilePicUpload.this);
+
             }
         });
         UserRef.addValueEventListener(new ValueEventListener() {
@@ -169,11 +173,6 @@ public class ProfilePicUpload extends AppCompatActivity {
                 uri = imageuri;
                 requestPermissions(new String[]{READ_EXTERNAL_STORAGE}, 0);
             } else {
-                CropImage.activity(imageuri)
-                        .setGuidelines(CropImageView.Guidelines.ON)
-                        .setAspectRatio(1, 1)
-                        .setMultiTouchEnabled(true)
-                        .start(this);
                 final CropImage.ActivityResult result = CropImage.getActivityResult(data);
                 resultUri = result.getUri();
                 selectedImage.setImageURI(resultUri);
