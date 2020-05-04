@@ -148,19 +148,6 @@ public class ProfilePicUpload extends AppCompatActivity {
 
             }
         });
-        UserRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
     }
 
     @Override
@@ -187,9 +174,9 @@ public class ProfilePicUpload extends AppCompatActivity {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null) {
-            Intent userdashboardIntent = new Intent(ProfilePicUpload.this, OnBoarding.class);
-            userdashboardIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(userdashboardIntent);
+            Intent ProfilePicUploadIntent = new Intent(ProfilePicUpload.this, OnBoarding.class);
+            ProfilePicUploadIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(ProfilePicUploadIntent);
             finish();
         } else {
             //실제접속이되엇는지 확인하는 메소드..getUid() 함수 오류
@@ -262,7 +249,7 @@ public class ProfilePicUpload extends AppCompatActivity {
                         }
                     });
                 } else {
-                    Toast.makeText(ProfilePicUpload.this, "선택한 사진이 없읍니다!!!" , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfilePicUpload.this, "기존 사진과 동일합니다!!!" , Toast.LENGTH_SHORT).show();
                 }
 
             }
