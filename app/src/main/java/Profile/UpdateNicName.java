@@ -54,7 +54,7 @@ public class UpdateNicName<tmpedtext> extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseDatabase rootNode;
     DatabaseReference reference;
-    private DatabaseReference UserRef;
+    DatabaseReference UserRef;
     private FirebaseUser currentUser;
 
     ProgressDialog dialog1;
@@ -88,6 +88,7 @@ public class UpdateNicName<tmpedtext> extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //setTitle("닉네임변경");
 
+
         // Authentication, Database, Storage 초기화
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
@@ -99,7 +100,6 @@ public class UpdateNicName<tmpedtext> extends AppCompatActivity {
         Prestacklayout2 = (LinearLayout) findViewById(R.id.stacklayout2);
 
         showAllNicNameData();
-
     }
 
     private void showAllNicNameData() {
@@ -120,41 +120,38 @@ public class UpdateNicName<tmpedtext> extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null) {
             Intent userdashboardIntent = new Intent(UpdateNicName.this, OnBoarding.class);
-            userdashboardIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            userdashboardIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(userdashboardIntent);
             finish();
-        }
-        else
-        {
-            //실제접속이되엇는지 확인하는 메소드..getUid() 함수 오류
-            //CheckUserExistance();
-
+        } else {
+            CheckUserExistance();
         }
     }
-/* private void CheckUserExistance()
-    {
-        final String current_user_id = currentUser.getUid();
-        UserRef.addValueEventListener(new ValueEventListener() {
+
+    private void CheckUserExistance() {
+        final String current_User_Id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference RealUserCheck = FirebaseDatabase.getInstance().getReference();
+        RealUserCheck.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
-                //실제 데이터베이스상에는 안보임..유저가입정보있는 uid를 가지고 비교..
-                if (!dataSnapshot.hasChild(current_user_id))
-                {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //실제 데이터베이스를 조회해서 이메일 id 가 있는지 확인
+                if (!dataSnapshot.hasChild(current_User_Id)) {
                     Intent userdashboardIntent = new Intent(UpdateNicName.this, OnBoarding.class);
-                    userdashboardIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    userdashboardIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(userdashboardIntent);
                     finish();
                 }
+                else{
+                    //MessageToast.message(UpdateNicName.this,"실제접속했어요");
+                }
             }
-
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError)
-            {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-    }*/
+    }
+
     private void showProcessDialog1() {
 
         dialog1 = new ProgressDialog(UpdateNicName.this);
@@ -165,6 +162,7 @@ public class UpdateNicName<tmpedtext> extends AppCompatActivity {
         dialog1.setCanceledOnTouchOutside(true);
         //
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.actionbarcustum, menu);
@@ -175,6 +173,7 @@ public class UpdateNicName<tmpedtext> extends AppCompatActivity {
         tmpedtext = edPreEdNicName.getEditableText().toString();
         nicnameView.setText(tmpedtext);
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -210,6 +209,7 @@ public class UpdateNicName<tmpedtext> extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     //화면 back 버튼 눌렀을때처리
     @Override
     public void onBackPressed() {

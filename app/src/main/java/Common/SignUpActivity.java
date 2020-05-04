@@ -199,6 +199,7 @@ public class SignUpActivity extends AppCompatActivity {
                             String selectMailPrimaryKey = tmps2;
                             String timeStampUpdateTime = LocalDateTime.now().toString();
                             String timeStampCreateTime = LocalDateTime.now().toString();
+                            String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
                             //db노드 저장할 노드지정
                             UserRef = FirebaseDatabase.getInstance().getReference().child(selectMailPrimaryKey).child("userProfile");
@@ -206,6 +207,7 @@ public class SignUpActivity extends AppCompatActivity {
                             userProfileMap.put("baseCurrencyCode","1");
                             userProfileMap.put("baseCurrencyName","KRW");
                             userProfileMap.put("coverPicture","");
+                            userProfileMap.put("currentUserId",currentUserId);
                             userProfileMap.put("displayMailId",displayMailId);
                             userProfileMap.put("loginMethodStatus","1");
                             userProfileMap.put("nicName","닉네임");
@@ -221,13 +223,29 @@ public class SignUpActivity extends AppCompatActivity {
                                 {
                                     if(task.isSuccessful())
                                     {
-                                        GotoUserDashboard();
-                                        MessageToast.message(SignUpActivity.this,"기본정설정완료!!!!!!");
-                                        dialog1.dismiss();
+                                        final String current_User_Id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                        DatabaseReference RealUserCheckIdSave = FirebaseDatabase.getInstance().getReference();
+                                        RealUserCheckIdSave.child(current_User_Id).child("realUserId").setValue("Y").addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+
+                                                if (task.isSuccessful()){
+                                                    GotoUserDashboard();
+                                                    MessageToast.message(SignUpActivity.this,"회원가입 및 기본정설정완료!!!!!!");
+                                                    dialog1.dismiss();
+                                                }else
+                                                    {
+                                                        String message = task.getException().getMessage();
+                                                        Toast.makeText(SignUpActivity.this,"기본정보 설정실패,회원탈퇴후 다시 가입해주세요  : " + message,Toast.LENGTH_SHORT).show();
+                                                        GotoUserDashboard();
+                                                        dialog1.dismiss();
+                                                }
+                                            }
+                                        });
                                     }
                                     else {
                                         String message = task.getException().getMessage();
-                                        Toast.makeText(SignUpActivity.this,"기본정보 설정실패(수동입력해주세요)  : " + message,Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(SignUpActivity.this,"기본정보 설정실패,회원탈퇴후 다시 가입해주세요  : " + message,Toast.LENGTH_SHORT).show();
                                         GotoUserDashboard();
                                         dialog1.dismiss();
                                     }
@@ -235,7 +253,7 @@ public class SignUpActivity extends AppCompatActivity {
                             });
                         } else {
                             String message = task.getException().getMessage();
-                            Toast.makeText(SignUpActivity.this,"등록실패 오류내용 : "+message,Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUpActivity.this,"가입실패,다시 시도해주세요 : "+message,Toast.LENGTH_SHORT).show();
                             //MessageToast.message(SignUpActivity.this,"기존사용자입니다..비밀번호 분실시는 초기화해주세요");
                             dialog1.dismiss();
 
