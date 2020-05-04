@@ -225,7 +225,6 @@ public class ProfileActivity extends AppCompatActivity {
         finish();
     }
     public void logoutStart(View view) {
-
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             FirebaseAuth.getInstance().signOut();

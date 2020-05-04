@@ -34,7 +34,7 @@
         android:icon="@drawable/ic_tags">
         <menu>
             <group
-                android:checkableBehavior="none">
+                android:checkableBehavior="single">
 
                 <item
                     android:id="@+id/nav_country"
@@ -56,28 +56,17 @@
         </menu>
 
     </item>
-
-    <item
-        android:title="기타"
-        android:icon="@drawable/ic_etc">
-        <menu>
             <group
-                android:checkableBehavior="none">
+                android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_etc1"
-                    android:title="미정"
-                    android:icon="@drawable/ic_calender"
-                    />
-                <item
-                    android:id="@+id/nav_etc2"
-                    android:title="미정"
+                    android:title="오프라인파일 다운로드"
                     android:icon="@drawable/ic_backup"
                     />
-
-
+                <item
+                    android:id="@+id/nav_logout"
+                    android:title="로그아웃"
+                    android:icon="@drawable/ic_logout"
+                    />
             </group>
-        </menu>
-
-    </item>
-
 </menu>

@@ -17,6 +17,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,6 +36,7 @@ import com.lmh.mytraveldairyjava.R;
 import Common.BackPressHandler;
 import Common.MessageToast;
 import Common.OnBoarding;
+import Common.SignInActivity;
 import Profile.ProfileActivity;
 
 public class UserDashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -147,6 +149,8 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
 
+
+
     }
 
     //실제등록접속되었는지 DB에 쿼리 확인
@@ -193,8 +197,17 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.nav_setting:
-                Intent intent = new Intent(this, ProfileActivity.class);
-                startActivity(intent);
+                Intent ProfileIntent = new Intent(this, ProfileActivity.class);
+                startActivity(ProfileIntent);
+                finish();
+                break;
+            case R.id.nav_logout:
+                FirebaseAuth.getInstance().signOut();
+                Toast.makeText(UserDashboard.this
+                        , "로그아웃 하였읍니다.", Toast.LENGTH_SHORT).show();
+                Intent logoutIntent = new Intent(UserDashboard.this, SignInActivity.class);
+                logoutIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(logoutIntent);
                 finish();
                 break;
         }
@@ -233,9 +246,15 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
         return super.onOptionsItemSelected(item);
     }
 
-    public void ttbtn1(View view) {
-        MessageToast.message(this, "툴바버튼을 눌렀네요");
-    }
+/*    public void navlogoutStart(View view) {
+        FirebaseAuth.getInstance().signOut();
+        Toast.makeText(UserDashboard.this
+                , "로그아웃 하였읍니다.", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(UserDashboard.this, SignInActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
+    }*/
 
     public void drawerbackStart(View view) {
         drawerLayout.openDrawer(GravityCompat.START);

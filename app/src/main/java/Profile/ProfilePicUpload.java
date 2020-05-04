@@ -75,6 +75,7 @@ public class ProfilePicUpload extends AppCompatActivity {
     private Uri test12;
 
     private  int i = 0;
+    private String cropAlready = "n";
 
     String profilePicture_FromDB;
 
@@ -189,6 +190,7 @@ public class ProfilePicUpload extends AppCompatActivity {
                 final CropImage.ActivityResult result = CropImage.getActivityResult(data);
                 resultUri = result.getUri();
                 selectedImage.setImageURI(resultUri);
+                cropAlready = "y";
             }
         }
     }
@@ -235,41 +237,46 @@ public class ProfilePicUpload extends AppCompatActivity {
             }
             case R.id.curr_changed: { // 오른쪽 상단 버튼 눌렀을 때
                 //스토리지 저장
-                selectedImage.setImageURI(resultUri);
-                showProcessDialog1();
-                final StorageReference filePath = UserProfileImageRef.child("Profileimage.jpg");
-                filePath.putFile(resultUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        if (taskSnapshot.getMetadata()!=null){
-                            if (taskSnapshot.getMetadata().getReference() != null){
-                                Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
-                                result.addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                    @Override
-                                    public void onSuccess(Uri uri) {
-                                        String downloadUrl = uri.toString();
-                                        //해시맵으로 timeStampUpdateTime..도 함꼐 업데이트..추가할것
-                                        UserRef.child("profilePicture").setValue(downloadUrl).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                if (task.isSuccessful()) {
-                                                    i = 5;
-                                                    Toast.makeText(ProfilePicUpload.this, "이미지 스토리지/DB저장완료", Toast.LENGTH_SHORT).show();
-                                                    dialog1.dismiss();
-                                                } else {
-                                                    selectedImage.setImageResource(R.drawable.ic_account_circle_black);
-                                                    String message = task.getException().getMessage();
-                                                    Toast.makeText(ProfilePicUpload.this, "이미지 DB저장 실패!! 다시 진행해주세요" + message, Toast.LENGTH_SHORT).show();
-                                                    dialog1.dismiss();
+                if (cropAlready.equals("y")){
+                    selectedImage.setImageURI(resultUri);
+                    showProcessDialog1();
+                    final StorageReference filePath = UserProfileImageRef.child("Profileimage.jpg");
+                    filePath.putFile(resultUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            if (taskSnapshot.getMetadata()!=null){
+                                if (taskSnapshot.getMetadata().getReference() != null){
+                                    Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
+                                    result.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        @Override
+                                        public void onSuccess(Uri uri) {
+                                            String downloadUrl = uri.toString();
+                                            //해시맵으로 timeStampUpdateTime..도 함꼐 업데이트..추가할것
+                                            UserRef.child("profilePicture").setValue(downloadUrl).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        i = 5;
+                                                        Toast.makeText(ProfilePicUpload.this, "이미지 스토리지/DB저장완료", Toast.LENGTH_SHORT).show();
+                                                        dialog1.dismiss();
+                                                    } else {
+                                                        selectedImage.setImageResource(R.drawable.ic_account_circle_black);
+                                                        String message = task.getException().getMessage();
+                                                        Toast.makeText(ProfilePicUpload.this, "이미지 DB저장 실패!! 다시 진행해주세요" + message, Toast.LENGTH_SHORT).show();
+                                                        dialog1.dismiss();
+                                                    }
                                                 }
-                                            }
-                                        });
-                                    }
-                                });
+                                            });
+                                        }
+                                    });
+                                }
                             }
                         }
-                    }
-                });
+                    });
+                } else {
+                    Toast.makeText(ProfilePicUpload.this, "선택한 사진이 없읍니다!!!" , Toast.LENGTH_SHORT).show();
+                }
+
             }
         }
         return super.onOptionsItemSelected(item);
