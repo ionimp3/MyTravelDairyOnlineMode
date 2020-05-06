@@ -9,6 +9,7 @@ import android.view.MenuItem;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.lmh.mytraveldairyjava.R;
@@ -23,10 +24,9 @@ import DashBoard.UserDashboard;
 
 public class PostNew extends AppCompatActivity {
     private Toolbar mToolbar;
+    private long pressedTime = 0;
 
     BottomNavigationView bottomNavigationView;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +41,8 @@ public class PostNew extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottomNav);
 
-        if (savedInstanceState ==null){
-            getSupportFragmentManager().beginTransaction().replace(R.id.bottomfragmentContainer,new PostNewMain()).commit();
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.bottomfragmentContainer, new PostNewMain()).commit();
         }
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -66,7 +66,7 @@ public class PostNew extends AppCompatActivity {
                         break;
                 }
                 //액티비티에 프래그먼트 연결
-                getSupportFragmentManager().beginTransaction().replace(R.id.bottomfragmentContainer,fragment).commit() ;
+                getSupportFragmentManager().beginTransaction().replace(R.id.bottomfragmentContainer, fragment).commit();
                 return true;
             }
         });
@@ -74,11 +74,11 @@ public class PostNew extends AppCompatActivity {
 
     }
 
-
     private void SendToUserDashBoard() {
         Intent SendToUserDashBoardIntent = new Intent(this, UserDashboard.class);
-        SendToUserDashBoardIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        SendToUserDashBoardIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(SendToUserDashBoardIntent);
         finish();
     }
+
 }

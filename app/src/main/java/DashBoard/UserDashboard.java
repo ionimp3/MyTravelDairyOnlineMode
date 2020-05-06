@@ -328,4 +328,8 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
         startActivity(PostNewIntent);
         finish();
     }
+
+    public void ttbtn1(View view) {
+        MessageToast.message(this,"미구현상태입니다.");
+    }
 }

@@ -8,6 +8,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,7 +33,6 @@ public class PostNewMain extends Fragment implements View.OnClickListener {
     RecyclerView recyclerView;
     List<PostNewMainModel> itemList;
     PostNewMainItemAdaptor adaptor;
-
 
 
     public PostNewMain() {
@@ -77,6 +77,13 @@ public class PostNewMain extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
+    }
+
+    //프레그먼트에서 툴바 사용한세트 : 3개함수
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
+        super.onCreate(savedInstanceState);
     }
 
     @Override

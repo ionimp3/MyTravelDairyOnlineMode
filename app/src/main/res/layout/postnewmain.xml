@@ -62,7 +62,6 @@
         android:layout_height="match_parent"
         android:fillViewport="true"
         >
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -93,11 +92,11 @@
                 android:layout_below="@+id/postnewmain_writting1"
                 android:layout_alignParentBottom="true"
                 android:layout_marginTop="5dp">
-                <ImageView
+                <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/onboarding_img7" />
+                    android:layout_height="wrap_content"
+                    android:hint="내용을 입력해주세요...."
+                    android:fontFamily="12sp"/>
             </RelativeLayout>
         </LinearLayout>
 
