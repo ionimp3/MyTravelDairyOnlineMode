@@ -131,7 +131,8 @@ public class SignInActivity extends AppCompatActivity {
                             // [START rtdb_keep_synced]
                             //DatabaseReference scoresRef = FirebaseDatabase.getInstance().getReference("");
                             // scoresRef.keepSynced(true);
-                            // [END rtdb_keep_synced]
+                            // [END rtdb_keep_sync
+                            //스낵바로 바꾸자
                             MessageToast.message(SignInActivity.this,"로그인 성공 !!!");
                             //Toast.makeText(SignInActivity.this, "로그인 성공 !!! : " + email, Toast.LENGTH_SHORT).show();
                             Intent signinIntent = new Intent(SignInActivity.this, UserDashboard.class);

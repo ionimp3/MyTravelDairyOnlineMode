@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bottom_nav_photo"
+        android:icon="@drawable/ic_camera"
+        android:title="사진" />
+    <item
+        android:id="@+id/bottom_nav_cost"
+        android:icon="@drawable/ic_local_currency"
+        android:title="경비" />
+    <item
+        android:id="@+id/bottom_nav_map"
+        android:icon="@drawable/ic_map"
+        android:title="맵정보" />
+
+    <item
+        android:id="@+id/bottom_nav_tags"
+        android:icon="@drawable/ic_tags"
+        android:title="Tags" />
+
+    <item
+        android:id="@+id/bottom_nav_other"
+        android:icon="@drawable/ic_description"
+        android:title="대안" />
+
+</menu>

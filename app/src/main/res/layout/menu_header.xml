@@ -8,14 +8,15 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/h_circleimage"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="160dp"
+        android:layout_height="124dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="49dp"
+        android:scaleType="centerCrop"
         android:src="@drawable/ic_account_circle_black"
         app:civ_border_color="@color/lightGrayColor"
         app:civ_border_width="1dp" />
@@ -44,6 +45,16 @@
         android:fontFamily="@font/mainsub_han_eng_notosanskr_light"
         android:text="TextView"
         android:textSize="12sp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="191dp"
+        android:layout_marginBottom="137dp"
+        android:layout_toEndOf="@+id/h_circleimage"
+        app:srcCompat="@drawable/ic_bell" />
 
 
 </RelativeLayout>

@@ -15,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +40,7 @@ import Common.BackPressHandler;
 import Common.MessageToast;
 import Common.OnBoarding;
 import Common.SignInActivity;
+import PostFolder.PostNew;
 import Profile.ProfileActivity;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -113,7 +113,7 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
 
 
         //menu hooks
-        menuListIcon = findViewById(R.id.drawerback);
+        menuListIcon = findViewById(R.id.appbar_area_drawerback);
         btncheck = findViewById(R.id.test_btncheck);
         drawerLayout = findViewById(R.id.drawer_layout);
         //뒤로가기 버튼 활성화시 아래문구 사용
@@ -183,15 +183,27 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-
-                    String showHeaderEmailId  = dataSnapshot.child("displayMailId").getValue(String.class);
-                    String showHeaderNicName = dataSnapshot.child("nicName").getValue(String.class);
-                    String showHeaderImage = dataSnapshot.child("profilePicture").getValue(String.class);
+                    //데이턱 불러올때 불러올 곳의 컬럼이 있는지 확인, 없을때 앱 크래쉬 남
+                    if(dataSnapshot.hasChild("displayMailId")){
+                        String showHeaderEmailId  = dataSnapshot.child("displayMailId").getValue(String.class);
+                        headerEmailId.setText(showHeaderEmailId);
+                    }else{
+                        MessageToast.message(UserDashboard.this,"메일아이디 정보가 없어 갱신 할수 없읍니다");
+                    }
+                    if(dataSnapshot.hasChild("nicName")){
+                        String showHeaderNicName = dataSnapshot.child("nicName").getValue(String.class);
+                        headerNicName.setText(showHeaderNicName);
+                    }else{
+                        MessageToast.message(UserDashboard.this,"닉네임 정보가 없어 갱신 할수 없읍니다");
+                    }
+                    if(dataSnapshot.hasChild("profilePicture")){
+                        String showHeaderImage  = dataSnapshot.child("profilePicture").getValue(String.class);
+                        Picasso.get().load(showHeaderImage).into(headerImage);
+                    }else{
+                        MessageToast.message(UserDashboard.this,"프로파일사진 정보가 없어 갱신 할수 없읍니다");
+                    }
                     //Picasso.get().load("http://i.imgur.com/DvpvklR.png").into(imageView);
                     //placeholder(R.drawable.ic_account_circle_black) -- 네트워크 문제로 못가져올때 이걸로 대치
-                    Picasso.get().load(showHeaderImage).into(headerImage);
-                    headerNicName.setText(showHeaderNicName);
-                    headerEmailId.setText(showHeaderEmailId);
                 } else {
                     Toast.makeText(UserDashboard.this,"불러오기 실패2",Toast.LENGTH_SHORT).show();
                     Log.d("불러오기", "불러오기 실패 ");
@@ -248,6 +260,7 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
                 break;
             case R.id.nav_setting:
                 Intent ProfileIntent = new Intent(this, ProfileActivity.class);
+                ProfileIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(ProfileIntent);
                 finish();
                 break;
@@ -307,5 +320,12 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
         } else {
             backPressHandler.onBackPressed("뒤로가기 버튼 한번 더 누르면 앱을 종료");
         }
+    }
+
+    public void postNewStart(View view) {
+        Intent PostNewIntent = new Intent(this, PostNew.class);
+        PostNewIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(PostNewIntent);
+        finish();
     }
 }

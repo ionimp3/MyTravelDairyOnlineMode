@@ -151,6 +151,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
+                    //userDashboard 코드보고, 컬럼이 미존재시 오류 처리 할것,,안하고 컬럼 미존재시 앱크래시 남
                     baseCurrencyName_FromDB = dataSnapshot.child("baseCurrencyName").getValue(String.class);
                     baseCurrencyCode_FromDB = dataSnapshot.child("baseCurrencyCode").getValue(String.class);
                     coverPicture_FromDB = dataSnapshot.child("coverPicture").getValue(String.class);

@@ -29,15 +29,16 @@
     </group>
 
     <item
-        android:title="카테고리"
+        android:title="Tags"
         android:icon="@drawable/ic_tags">
         <menu>
             <group
-                android:checkableBehavior="single">
+                android:checkableBehavior="single"
+                android:menuCategory="alternative">
 
                 <item
                     android:id="@+id/nav_country"
-                    android:title="나라"
+                    android:title="여행국가"
                     android:icon="@drawable/ic_world"
                     />
                 <item
@@ -65,7 +66,6 @@
                 <item
                     android:id="@+id/nav_logout"
                     android:title="로그아웃"
-                    android:icon="@drawable/ic_logout"
-                    />
+                    android:icon="@drawable/ic_logout"/>
             </group>
 </menu>

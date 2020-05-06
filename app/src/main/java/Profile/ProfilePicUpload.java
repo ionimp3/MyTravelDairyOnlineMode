@@ -188,7 +188,7 @@ public class ProfilePicUpload extends AppCompatActivity {
         dialog1 = new ProgressDialog(ProfilePicUpload.this);
         dialog1.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         dialog1.setTitle("이미지업로드");
-        dialog1.setMessage("스토리지,DB에 업로중입니다....");
+        dialog1.setMessage("스토리지,DB에 업로드 중입니다....");
         dialog1.show();
         dialog1.setCanceledOnTouchOutside(true);
         //

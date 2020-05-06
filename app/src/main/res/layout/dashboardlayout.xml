@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context="DashBoard.UserDashboard">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rootLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,93 +15,143 @@
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarlayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints">
+
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                android:layout_gravity="center"
                 android:background="@color/lightWhiteColor"
                 android:theme="@style/MyAppTheme"
                 app:layout_scrollFlags="enterAlways|scroll"
-                app:popupTheme="@style/MyAppTheme"
-                >
-                <LinearLayout
+                app:popupTheme="@style/MyAppTheme">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/relativeLayout3"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <Button
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:background="@drawable/ic_drawer_back_black_24dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginRight="10dp"
-                        android:id="@+id/drawerback"
-                        android:onClick="drawerbackStart"/>
-
+                    android:layout_height="56dp"
+                    app:layout_anchor="@+id/appBarlayout"
+                    app:layout_anchorGravity="top|center">
 
                     <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/logo1"
+                        android:id="@+id/appbar_area_image"
+                        android:layout_width="48dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="16dp"
+                        android:layout_toStartOf="@+id/appbar_area_title"
                         android:scaleType="centerCrop"
-                        android:layout_gravity="center_vertical"/>
+                        android:src="@drawable/logo1"
+                        app:layout_constraintStart_toEndOf="@+id/appbar_area_drawerback"
+                        tools:layout_editor_absoluteY="0dp" />
+
                     <TextView
-                        android:layout_width="50dp"
-                        android:layout_height="match_parent"
-                        android:text="MyTravelDairy"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="12sp"
-                        android:gravity="center"
-                        android:layout_gravity="right"
-                        android:layout_marginRight="10dp"
-                        android:fontFamily="@font/main_han_eng_notosanskr_regular"
-                        android:textStyle="bold"
-                        />
-                    <Button
+                        android:id="@+id/appbar_area_title"
                         android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:text="어디로 떠나 볼까??"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:layout_marginStart="8dp"
+                        android:layout_toStartOf="@+id/test_btncheck"
+                        android:fontFamily="@font/main_han_eng_notosanskr_regular"
                         android:gravity="center"
-                        android:paddingStart="10dp"
+                        android:text="MyTravelDairy"
+                        android:textColor="@color/grayColor"
                         android:textSize="12sp"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="20dp"
-                        android:onClick="ttbtn1"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/appbar_area_image"
+                        tools:layout_editor_absoluteY="3dp" />
+
+                    <Button
                         android:id="@+id/test_btncheck"
-                        tools:ignore="OnClick"
+                        android:layout_width="144dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
                         android:layout_gravity="center_vertical"
                         android:fontFamily="@font/mainsub_han_eng_notosanskr_light"
+                        android:gravity="center"
+                        android:onClick="ttbtn1"
+                        android:paddingStart="10dp"
+                        android:text="어디로 떠나 볼까??"
                         android:textColor="@color/grayColor"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.695"
+                        app:layout_constraintStart_toEndOf="@+id/appbar_area_title"
+                        app:layout_constraintTop_toTopOf="parent"
                         />
-                </LinearLayout>
+
+                    <Button
+                        android:id="@+id/appbar_area_drawerback"
+                        android:layout_width="28dp"
+                        android:layout_height="29dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginBottom="24dp"
+                        android:background="@drawable/ic_drawer_back_black_24dp"
+                        android:onClick="drawerbackStart"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.appcompat.widget.Toolbar>
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/warningColor">
+                android:background="@color/lightWhiteColor">
+
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tab_layout"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
                     android:background="@color/lightWhiteColor"
                     android:theme="@style/MyAppTabTheme"
-                    />
+                    app:layout_constraintHorizontal_weight="1"
+                    tools:ignore="MissingConstraints" />
+
                 <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="일정표"
-                    android:gravity="center"
-                    android:textSize="12sp"
+                    android:layout_width="80dp"
+                    android:layout_height="47dp"
+                    android:layout_toEndOf="@+id/tab_layout"
                     android:background="#00ffff"
-                    android:fontFamily="@font/mainsub_han_eng_notosanskr_light"/>
-            </LinearLayout>
+                    android:fontFamily="@font/mainsub_han_eng_notosanskr_light"
+                    android:gravity="center"
+                    android:text="일정추가"
+                    android:textSize="12sp"
+                    app:layout_anchor="@+id/tab_layout"
+                    app:layout_anchorGravity="end|top"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/tab_layout"
+                    tools:layout_editor_absoluteY="0dp"
+                    android:id="@+id/post_new"
+                    android:onClick="postNewStart"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </com.google.android.material.appbar.AppBarLayout>
+
         <FrameLayout
             android:id="@+id/simpleframelayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarlayout"
+            app:layout_constraintVertical_bias="0.0"
+            tools:layout_editor_absoluteX="0dp"
+            tools:ignore="MissingConstraints">
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view_layout"
