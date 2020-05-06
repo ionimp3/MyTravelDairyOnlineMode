@@ -11,31 +11,25 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.lmh.mytraveldairyjava.R;
 
 import Common.MessageToast;
-import ViewrModelAdapters.CostAdapter;
 
-public class BottomNavCost extends Fragment {
-    public BottomNavCost() {
+public class BottomNavTest extends Fragment {
+    public BottomNavTest() {
         // 빈공간필요
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.bottom_nav_cost,container,false);
-        RecyclerView recyclerView = view.findViewById(R.id.cost_rv_view);
-        CostAdapter costAdapter = new CostAdapter();
-        recyclerView.setAdapter(costAdapter);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(layoutManager);
-        return  view;
-    }
+        View view = inflater.inflate(R.layout.fragmenttestlayout,container,false);
+        return view;
 
+
+
+    }
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);

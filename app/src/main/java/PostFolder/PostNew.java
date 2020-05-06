@@ -10,6 +10,9 @@ import android.view.MenuItem;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.ListFragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.lmh.mytraveldairyjava.R;
@@ -40,6 +43,13 @@ public class PostNew extends AppCompatActivity {
         getSupportActionBar().setTitle("일정입력화면");
 
         bottomNavigationView = findViewById(R.id.bottomNav);
+
+
+        /*BottomNavTest fragment = new BottomNavTest();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.bottomfragmentContainer,fragment);
+        fragmentTransaction.commit();*/
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.bottomfragmentContainer, new PostNewMain()).commit();

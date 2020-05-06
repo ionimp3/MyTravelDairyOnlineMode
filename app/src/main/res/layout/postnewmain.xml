@@ -69,8 +69,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/postnewmain_writting"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content"                >
             </androidx.recyclerview.widget.RecyclerView>
 
             <RelativeLayout
@@ -79,11 +78,13 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginTop="5dp">
-                <ImageView
+                <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/onboarding_img8" />
+                    android:layout_height="wrap_content"
+                    android:id="@+id/cost_rv_view">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
             </RelativeLayout>
 
             <RelativeLayout

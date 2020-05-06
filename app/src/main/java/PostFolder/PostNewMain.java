@@ -43,16 +43,12 @@ public class PostNewMain extends Fragment implements View.OnClickListener {
     //레이아웃셋팅,프래그먼트가 생성될때..여기서
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v= inflater.inflate(R.layout.postnewmain,container,false);
-
         recyclerView=v.findViewById(R.id.postnewmain_writting);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
         //initData();
         recyclerView.setAdapter(new PostNewMainItemAdaptor(initData()));
-
         return v;
-
     }
 
     private List<PostNewMainModel> initData() {
