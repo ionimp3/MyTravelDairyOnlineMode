@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightWhiteColor"
-    tools:context="PostFolder.PostNew"
-    android:orientation="vertical">
+    tools:context="PostFolder.PostNew">
     <include
         android:id="@+id/update_Post_Page_Toolbar"
         layout="@layout/app_bar_layout"/>
@@ -32,4 +31,4 @@
         android:id="@+id/bottomNav"
         app:menu="@menu/bottom_nav_menu"/>
 
-</LinearLayout>
+</RelativeLayout>
