@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
     <LinearLayout
         android:id="@+id/constraintLayout"
@@ -55,20 +56,50 @@
             app:layout_constraintStart_toEndOf="@+id/post_main_title" />
     </LinearLayout>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/postnewmain_main_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        >
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/postnewmain_writting"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/postnewmain_writting_itemlayout" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/postnewmain_writting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+            </androidx.recyclerview.widget.RecyclerView>
 
+            <RelativeLayout
+                android:id="@+id/postnewmain_writting1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/onboarding_img8" />
+            </RelativeLayout>
 
-    </ScrollView>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/postnewmain_writting1"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/onboarding_img7" />
+            </RelativeLayout>
+        </LinearLayout>
 
-
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>
