@@ -1,0 +1,23 @@
+<menu  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/click_detail_edit_Mode"
+        android:checkable="true"
+        android:enabled="true"
+        android:icon="@drawable/ic_lock"
+        android:title="수정"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/click_detail_curr_changed"
+        android:checkable="true"
+        android:enabled="true"
+        android:icon="@drawable/ic_save"
+        android:title="저장"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/click_detail_curr_deleted"
+        android:enabled="true"
+        android:icon="@drawable/ic_delete"
+        android:title="삭제"
+        app:showAsAction="always" />
+</menu>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="OnBoarding.OnBoardingActivity">
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/partial_onBoarding_ViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </androidx.viewpager.widget.ViewPager>
+    <Button
+        android:id="@+id/btn_Skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00ffffff"
+        android:onClick="btn_action_skip"
+        android:padding="30dp"
+        android:text="SKIP"
+        android:textColor="#999999"
+        android:theme="@style/MyAppFontContent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="139dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/btn_sign_in"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/whiteColor"
+                android:fontFamily="@font/main_han_eng_notosanskr_regular"
+                android:onClick="btn_action_sing_in"
+                android:text="로그인"
+                android:textColor="@color/darkGrayColor"
+                android:theme="@style/MyAppFontsubTitle"
+                android:visibility="visible" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/partial_onBoarding_dots"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_vertical"
+            >
+        </LinearLayout>
+        <Button
+            android:id="@+id/btn_onBoarding_offline_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:text="오프라인모드"
+            android:theme="@style/MyAppFontContent"
+            android:background="#000f"
+            android:textColor="@color/darkGrayColor"
+            android:onClick="btn_action_offline_mode"
+            android:paddingEnd="30dp"/>
+
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

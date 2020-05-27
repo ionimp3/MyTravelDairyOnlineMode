@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/whiteColor"
+    tools:context="CommonFolder.TravelDairyDescriptionActivity"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:viewBindingIgnore="true">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/title_notosanskr_black"
+        android:text="MyTraleDairy Beta 0.0"
+        android:textStyle="bold"
+        android:layout_marginBottom="30dp"
+        android:theme="@style/MyAppFontTitle"
+        />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Android Studio 3.6.3"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold"
+        android:theme="@style/MyAppFontContent"/>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Online : FireBase DB+Storage"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold"
+        android:theme="@style/MyAppFontContent"/>
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Offline : Room + SQLITE DB"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold"
+        android:theme="@style/MyAppFontContent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="온라인 인증서비스 : Google FireBase"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold"
+        android:theme="@style/MyAppFontContent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Language : Java"
+        android:layout_marginBottom="50dp"
+        android:textStyle="bold"
+        android:theme="@style/MyAppFontContent"
+        />
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/mainsub_han_eng_notosanskr_light"
+        android:text=" 개인적으로 예행시 일정수립과 관련정보를 정리하고, 여행시 정보확인 및 습득한 정보 그리고 여행이 끝난 후 자료 정리를 용이하게 하기 위해 만들었읍니다. 구현은 위시빈여행앱,에어비앤비,클록 UI 와 오픈소스들을 모방하고 짜집기해서 만든 첫 개인용도 안드로이드앱 입니다. "
+        android:gravity="center"
+        android:theme="@style/MyAppFontComment"
+        />
+</LinearLayout>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ProfileFolder.ProfileImageActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/ab_profile_image_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_profile_image_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/whiteColor"
+            android:theme="@style/ProfileTheme"
+            app:layout_scrollFlags="enterAlways|scroll"
+            app:popupTheme="@style/ProfileTheme"
+            app:title="프로파일이미지 변경"
+            app:titleTextAppearance="@style/ToolbarTitleSize" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="208dp"
+        android:layout_height="25dp"
+        android:fontFamily="@font/main_han_eng_notosanskr_regular"
+        android:text="[프리뷰]"
+        android:textColor="@color/grayColor"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ab_profile_image_layout"
+        app:layout_constraintVertical_bias="0.120000005" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="352dp"
+        android:layout_height="178dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.00999999"
+        android:background="@color/blackColor">
+
+        <ImageView
+            android:id="@+id/image_header_cover_bg"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:alpha="0.3"
+            android:background="@drawable/bg_drawer_header"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="background image"
+            android:scaleType="centerCrop">
+        </ImageView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_cover_tran_bg"
+        android:layout_width="299dp"
+        android:layout_height="158dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout"
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout"
+        app:layout_constraintVertical_bias="0.04000002">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image_pre_profile"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_account_circle_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintStart_toStartOf="parent"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/whiteColor"
+            android:alpha="0.9"/>
+
+
+        <TextView
+            android:id="@+id/text_pre_nic_name"
+            android:layout_width="230dp"
+            android:layout_height="16dp"
+            android:fontFamily="@font/main_han_eng_notosanskr_regular"
+            android:gravity="center_vertical"
+            android:text="N/A"
+            android:textColor="@color/darkWhiteColor"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_pre_profile"
+            app:layout_constraintVertical_bias="0.31" />
+
+        <TextView
+            android:id="@+id/text_pre_mail_id"
+            android:layout_width="230dp"
+            android:layout_height="16dp"
+            android:fontFamily="@font/main_han_eng_notosanskr_regular"
+            android:gravity="center_vertical"
+            android:text="이메일아이디"
+            android:textColor="@color/darkWhiteColor"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_pre_nic_name"
+            app:layout_constraintVertical_bias="0.52" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/ed_rest_profile_image"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:background="@drawable/shape_round_btn"
+        android:gravity="center"
+        android:hint="초기화"
+        android:imeOptions="actionDone"
+        android:inputType="text"
+        android:maxLength="15"
+        android:onClick="btn_action_reset_image"
+        android:textColor="@color/grayColor"
+        android:theme="@style/MyAppFontsubTitle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintVertical_bias="0.32999998" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

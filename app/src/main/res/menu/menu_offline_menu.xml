@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_btn_home"
+            android:icon="@drawable/ic_profile"
+            android:title="홈" />
+        <item
+            android:id="@+id/nav_add"
+            android:icon="@drawable/ic_plus"
+            android:title="새로운 일정표만들기" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:icon="@drawable/ic_tags"
+            android:title="마이페이지">
+            <menu>
+                <item
+                    android:id="@+id/nav_alram"
+                    android:icon="@drawable/ic_bell"
+                    android:title="알림메세지" />
+                <item
+                    android:id="@+id/nav_setting"
+                    android:icon="@drawable/ic_setting"
+                    android:title="설정" />
+            </menu>
+        </item>
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:icon="@drawable/ic_tags"
+            android:title="Tags">
+            <menu>
+                <item
+                    android:id="@+id/nav_country"
+                    android:icon="@drawable/ic_world"
+                    android:title="여행국가" />
+                <item
+                    android:id="@+id/nav_city"
+                    android:icon="@drawable/ic_city"
+                    android:title="도시" />
+                <item
+                    android:id="@+id/nav_place"
+                    android:icon="@drawable/ic_camera"
+                    android:title="여행지" />
+            </menu>
+        </item>
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:icon="@drawable/ic_tags"
+            android:title="기타">
+            <menu>
+                <item
+                    android:id="@+id/nav_app_end"
+                    android:icon="@drawable/ic_logout"
+                    android:title="종료" />
+            </menu>
+        </item>
+    </group>
+</menu>

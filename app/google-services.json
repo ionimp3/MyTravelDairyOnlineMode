@@ -8,6 +8,43 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:967872396874:android:5095d7b02e4a159281b0b3",
+        "android_client_info": {
+          "package_name": "com.lmh.mytraveldairy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "967872396874-ohikmf5c0cidg1lru7qh69q4g9r696n4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lmh.mytraveldairy",
+            "certificate_hash": "1f9889ccdd71107c90828b1fcb7c14bcbccbe5a6"
+          }
+        },
+        {
+          "client_id": "967872396874-2igrbnmstkpo0kiub87iitcu081a5qv2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHH7JQ5HA63oODR6p_a_HRRjWXTqN7SJc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "967872396874-2igrbnmstkpo0kiub87iitcu081a5qv2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:967872396874:android:f9b9b9bcb81b550981b0b3",
         "android_client_info": {
           "package_name": "com.lmh.mytraveldairyjava"

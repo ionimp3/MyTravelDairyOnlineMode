@@ -1,0 +1,9 @@
+<menu  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/curr_offline_new_plan_changed"
+        android:title="확인"
+        android:icon="@drawable/ic_check1"
+        app:showAsAction="always"
+        />
+</menu>
+
